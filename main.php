@@ -12,11 +12,11 @@ h1 {
 	margin: 20 auto;
     text-align: center;
 	font-size: 50px;
+	margin: 80px;
 }
 table {
   border: solid black;
   background: white;
-  border-radius: 9px;
   border-collapse: collapse;
   width: 100%;
   margin: 0 auto;
@@ -28,7 +28,7 @@ table td, table th {
 table thead tr {
   height: 10px;
   color: white;
-  background: blue;
+  background: #327a81;
   font-size: 15px;
 }
 table tbody tr {
@@ -38,14 +38,34 @@ table td, table th {
   text-align: center;
 }
 body {
-  background: linear-gradient(to right , #4158d0, #c850c0);
+  background: #91ced4;
   font: 16px "Arial";
   padding-top: 30px;
 }
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
 </style>
 <?php
 include './dbex/db_connect.php';
 $conn = OpenCon();
+$db = "simulationdb";
 
 $sqlQuery = "SELECT `Id`, `ffk_bit`, `fa_bit`, `localization_bit`, `maphandler_bit`, `mcu_bit`, `pathplanner_bit`, `waypoint_bit`, 
 `wphandler_bit`, `mpc_bit`, `coverage_percentage`, `min_alt`, `avg_alt`, `max_alt`, `time_coverage_threshold`, `avg_vel_lin`, 
@@ -54,7 +74,29 @@ $resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_err
 $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 
 ?>
-<h1> Simulations scenarios </h1>
+<div style="display:flex; flex-direction: row; align-items: center;">
+	<img src="../images/drone.png" width="650" height="400"/>
+	<h1> Simulations scenarios </h1>
+
+	<p>Navigation pagination:</p>
+	<div class="pagination" >
+	<?php
+	$tables = mysql_list_tables($db);
+	if (!$tables)
+	{
+		echo "DB error";
+		exit;
+	}
+	while ($name = mysql_fetch_row($tables)) { ?>
+		<a href="#"><?php echo $key; ?></a>
+		<?php } ?>
+	<!-- <a href="#" class="active">Home</a>
+	<a href="#">Link 1</a>
+	<a href="#">Link 2</a>
+	<a href="#">Link 3</a> -->
+	</div>
+</div>
+
 <body>
 	<table id="table1">
 		<thead>
