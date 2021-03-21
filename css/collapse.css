@@ -1,9 +1,0 @@
-table,tr,th,td{
-  border:1px solid #dddddd;
-  border-collapse:collapse;
-}
-.tbl-header{
-  width:calc(100% - 17px);
-  width:-webkit-calc(100% - 17px);
-  width:-moz-calc(100% - 17px);
-}
