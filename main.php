@@ -54,7 +54,7 @@ $resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_err
 $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 
 ?>
-<h1> Scenarios simulations </h1>
+<h1> Simulations scenarios </h1>
 <body>
 	<table id="table1">
 		<thead>
@@ -80,10 +80,11 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 			<th>Reason For Ending</th>
 			<?php
 				$developer = mysqli_fetch_assoc($resultSet2);
-				$arr=unserialize($developer ['stats']);
-				foreach ($arr as $key => $val) { ?>
-					<th><?php echo $key; ?></th>
-					<?php } ?> 
+				if ($developer['stats'] != '0'){
+					$arr=unserialize($developer ['stats']);
+					foreach ($arr as $key => $val) { ?>
+						<th><?php echo $key; ?></th>
+				<?php } }?> 
 		</tr>
 				</thead>
 				<tbody>
@@ -108,17 +109,15 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 				<td><?php echo $developer ['scenario_time']; ?></td>
 				<td><?php echo $developer ['ending_reason']; ?></td>
 				<?php
-				if ($developer['stats'] == '0') {
-					$val = '';
-				}
-				else {
+				if ($developer['stats'] != '0') {
 					$arr2=unserialize($developer ['stats']);
 					foreach ($arr2 as $key => $val) { ?>
 						<td><?php echo $val; ?></th>
-					<?php } ?>			   			
+						<?php }
+					}?>
 					</tbody>	   				   
 			</tr>
-			<?php }} ?>
+			<?php } ?>
 	</table>
 
 </body>
