@@ -80,20 +80,10 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 
 	<p>Navigation pagination:</p>
 	<div class="pagination" >
-	<?php
-	$tables = mysql_list_tables($db);
-	if (!$tables)
-	{
-		echo "DB error";
-		exit;
-	}
-	while ($name = mysql_fetch_row($tables)) { ?>
-		<a href="#"><?php echo $key; ?></a>
-		<?php } ?>
-	<!-- <a href="#" class="active">Home</a>
+	<a href="#" class="active">Home</a>
 	<a href="#">Link 1</a>
 	<a href="#">Link 2</a>
-	<a href="#">Link 3</a> -->
+	<a href="#">Link 3</a>
 	</div>
 </div>
 
