@@ -12,10 +12,10 @@ h1 {
 }
 
 table {
-    /*table-layout: fixed;*/
     width: 100%;
     text-shadow: 1px 1px 1px black;
     color: white;
+    line-height: 23px;
     border-collapse: collapse;
 }
 
@@ -30,6 +30,7 @@ thead th, tfoot th {
 
 tbody {
     font-family: 'Comfortaa', cursive;
+    /* background-color: white; */
     font-size: small;
 }
 
@@ -46,7 +47,7 @@ tbody td {
 }
 
 tfoot th {
-    text-align: right;
+    align-items: center;
 }
 
 
