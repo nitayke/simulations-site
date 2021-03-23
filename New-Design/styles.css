@@ -1,0 +1,62 @@
+/* spacing */
+
+body {
+    background: url(1100.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    color: white;
+    font-family: 'Rock Salt', cursive;
+}
+
+table {
+    /*table-layout: fixed;*/
+    width: 100%;
+    text-shadow: 1px 1px 1px black;
+    color: white;
+    border-collapse: collapse;
+}
+
+
+/* typography */
+
+  
+thead th, tfoot th {
+    font-family: 'Della Respira', cursive;
+    font-size: medium;
+}
+
+tbody {
+    font-family: 'Comfortaa', cursive;
+    font-size: small;
+}
+
+th {
+    letter-spacing: 2px;
+}
+
+td {
+    letter-spacing: 1px;
+}
+
+tbody td {
+    text-align: center;
+}
+
+tfoot th {
+    text-align: right;
+}
+
+
+/* graphics and colors */
+
+thead, tfoot {
+    text-shadow: 1px 1px 1px black;
+}
+
+thead th, tfoot th, tfoot td {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+    border: 3px solid #082444;
+}
