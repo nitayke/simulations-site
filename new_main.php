@@ -11,6 +11,7 @@
 
 <?php
 include './dbex/db_connect.php';
+
 $conn = OpenCon();
 
 ?>
@@ -75,7 +76,7 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 			<th>Reason For Ending</th>
 			<?php
 				$developer = mysqli_fetch_assoc($resultSet2);
-				if ($developer['stats'] != ''){
+				if ($developer['stats'] != '' && $developer['stats'] != '0'){ // TODO: REMOVE THE '0' AFTER REMOVING IT FROM DB
 					$arr=unserialize($developer ['stats']);
 					foreach ($arr as $key => $val)
 						echo "<th>" . $key . "</th>";
@@ -87,26 +88,10 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 		<?php
 		while( $developer = mysqli_fetch_assoc($resultSet) ) { ?>
 			<?php
-				echo "<td>" . $developer['Id'] . "</td>";
-				echo "<td>" . $developer['ffk_bit'] . "</td>";
-				echo "<td>" . $developer['fa_bit'] . "</td>";
-				echo "<td>" . $developer['localization_bit'] . "</td>";
-				echo "<td>" . $developer['maphandler_bit'] . "</td>";
-				echo "<td>" . $developer['mcu_bit'] . "</td>";
-				echo "<td>" . $developer['pathplanner_bit'] . "</td>";
-				echo "<td>" . $developer['waypoint_bit'] . "</td>";
-				echo "<td>" . $developer['wphandler_bit'] . "</td>";
-				echo "<td>" . $developer['mpc_bit'] . "</td>";
-				echo "<td>" . $developer['coverage_percentage'] . "</td>";
-				echo "<td>" . $developer['min_alt'] . "</td>";
-				echo "<td>" . $developer['avg_alt'] . "</td>";
-				echo "<td>" . $developer['max_alt'] . "</td>";
-				echo "<td>" . $developer['time_coverage_threshold'] . "</td>";
-				echo "<td>" . $developer['avg_vel_lin'] . "</td>";
-				echo "<td>" . $developer['avg_vel_ang'] . "</td>";
-				echo "<td>" . $developer['scenario_time'] . "</td>";
-				echo "<td>" . $developer['ending_reason'] . "</td>";
-			if ($developer['stats'] != '') {
+				foreach ($parameters as $param) {
+					echo "<td>" . $developer[$param] . "</td>";
+				}
+			if ($developer['stats'] != '' && $developer['stats'] != '0') { // SAME
 				$arr2 = unserialize($developer ['stats']);
 				foreach ($arr2 as $key => $val)
 					echo "<td>" . $val . "</td>";
