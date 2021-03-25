@@ -1,5 +1,7 @@
 <?php
 
+// INSERT TO lab1 TABLE
+
 include 'db_connect.php';
 
 $conn = OpenCon();

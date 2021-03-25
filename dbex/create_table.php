@@ -20,7 +20,7 @@ $sql = "CREATE TABLE " . $_POST['table_name'] . " (
     min_alt float(6),
     avg_alt float(6),
     max_alt float(6),
-    time_coverage_threshold int(6),
+    time_coverage_threshold float(6),
     avg_vel_lin float(6),
     avg_vel_ang float(6),
     scenario_time int(6),
