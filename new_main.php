@@ -107,11 +107,10 @@ if ($slide != '')
 				echo "<td>" . $developer['scenario_time'] . "</td>";
 				echo "<td>" . $developer['ending_reason'] . "</td>";
 			if ($developer['stats'] != '0') {
-				$arr2=unserialize($developer ['stats']);
-				foreach ($arr2 as $key => $val) { ?>
-					<td><?php echo $val; ?></td>
-					<?php }
-				}?>
+				$arr2 = unserialize($developer ['stats']);
+				foreach ($arr2 as $key => $val)
+					echo "<td>" . $val . "</td>";
+			}?>
 		</tbody>
 		<?php } ?>
 	</table>

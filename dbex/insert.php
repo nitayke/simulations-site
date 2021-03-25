@@ -7,7 +7,7 @@ $link = mysqli_connect("localhost", "elad", "Aa123456", "simulationdb");
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
- 
+
 // Escape user inputs for security
 
 $escapedGet = array_map(array($link, 'real_escape_string'), $_REQUEST);

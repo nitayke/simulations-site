@@ -4,7 +4,7 @@ url = 'http://192.168.2.138/dbex/insert.php'
 # myobj = {'Id':'5', 
 #         'bit_number':'34', 
 #         'sim_time':'344', 
-#         'reason_for_ending':'shum davar'} 
+#         'reason_for_ending':'shum davar'}
 
 # myobj = {'Id': '2', 'ffk_bit': '0', 'fa_bit':'0', 'localization_bit':'0', 'maphandler_bit':'0', 'mcu_bit':'0', 'pathplanner_bit':'0', 'waypoint_bit':'0', 
 # 'wphandler_bit':'0', 'mpc_bit':'0', 'coverage_percentage':'0', 'min_alt':'0', 'avg_alt':'0', 'max_alt':'0', 'time_coverage_threshold':'0', 'avg_vel_lin':'0', 
