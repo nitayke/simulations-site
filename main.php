@@ -30,9 +30,8 @@ $conn = OpenCon();
 
 		$result = mysqli_query($conn, "show tables");
 		while($table = mysqli_fetch_array($result)) {
-			if ($slide == '') {
+			if ($slide == '')
 				$slide = $table[0];
-			}
 			if ($table[0] == $slide)
 				echo("<a href=\"?table=" . $table[0] . "\" class=\"active\">" . $table[0] . "</a>");
 			else
@@ -43,11 +42,11 @@ $conn = OpenCon();
 
 <?php
 
-$sqlQuery = "SELECT `Id`, `ffk_bit`, `fa_bit`, `localization_bit`, `maphandler_bit`, `mcu_bit`, `pathplanner_bit`, `waypoint_bit`, 
-`wphandler_bit`, `mpc_bit`, `coverage_percentage`, `min_alt`, `avg_alt`, `max_alt`, `time_coverage_threshold`, `avg_vel_lin`, 
-`avg_vel_ang`, `scenario_time`, `ending_reason` , `stats` FROM " . $slide;
-$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
-$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
+	$sqlQuery = "SELECT `Id`, `ffk_bit`, `fa_bit`, `localization_bit`, `maphandler_bit`, `mcu_bit`, `pathplanner_bit`, `waypoint_bit`, 
+	`wphandler_bit`, `mpc_bit`, `coverage_percentage`, `min_alt`, `avg_alt`, `max_alt`, `time_coverage_threshold`, `avg_vel_lin`, 
+	`avg_vel_ang`, `scenario_time`, `ending_reason` , `stats` FROM " . $slide;
+	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
+	$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 
 ?>
 

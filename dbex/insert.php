@@ -6,12 +6,19 @@ $conn = OpenCon();
 
 $regular_fields = [];
 $stats = [];
+$table_name = '';
 
-foreach ($_POST as $k => $v)
+foreach ($_POST as $k => $v) {
     if (in_array($k, $parameters))
         $regular_fields[$k] = $v;
+    else if ($k == 'table_name')
+        $table_name = $v;
     else
         $stats[$k] = $v;
+}
+
+if ($table_name == '')
+    echo "No table name";
 
 if (empty($stats)) {
     echo "No stats key value was received\n";
