@@ -1,8 +1,15 @@
 import requests
 import sys
+import yaml
 url = 'http://192.168.2.138/dbex/insert.php'
 
 # TODO: CHANGE IT TO YAML FILE
+
+with open("params.yaml", 'r') as stream:
+    try:
+        print(yaml.safe_load(stream))
+    except yaml.YAMLError as exc:
+        print(exc)
 
 myobj = {'Id': sys.argv[1], 'ffk_bit': sys.argv[2], 'fa_bit':sys.argv[3], 'localization_bit':sys.argv[4], 
 'maphandler_bit':sys.argv[5], 'mcu_bit':sys.argv[6], 'pathplanner_bit':sys.argv[7], 'waypoint_bit':sys.argv[8], 

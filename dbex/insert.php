@@ -18,7 +18,8 @@ if (empty($stats)) {
     $sql = "INSERT INTO lab1 (" . implode(', ', array_keys($_POST)) . ", stats) VALUES (\"" . implode('", "', array_values($_POST)) . "\", '')";
 }
 else {
-    $sql = "INSERT INTO lab1 (" . implode(', ', array_keys($regular_fields)) . ", stats) VALUES (\"" . implode('", "', array_values($regular_fields)) . "\", \"" . addslashes(serialize($stats)) . "\")";
+    $sql = "INSERT INTO lab1 (" . implode(', ', array_keys($regular_fields)) . ", stats) VALUES (\"" . implode('", "', array_values($regular_fields)) . 
+    "\", \"" . addslashes(serialize($stats)) . "\")";
     echo $sql . "\n";
 }
 
