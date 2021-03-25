@@ -1,6 +1,7 @@
 import requests
 import sys
 import yaml
+
 url = 'http://192.168.2.138/dbex/insert.php'
 
 if len(sys.argv) != 4:
