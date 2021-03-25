@@ -1,30 +1,33 @@
 import requests
 import sys
 import yaml
+
 url = 'http://192.168.2.138/dbex/insert.php'
 
-# TODO: CHANGE IT TO YAML FILE
+if len(sys.argv) != 4:
+    print "Usage: python post.py <scenario_id> <yaml_file_path> <table_name>"
+    exit()
 
-with open("params.yaml", 'r') as stream:
+params = {}
+with open(sys.argv[2], 'r') as stream:
     try:
-        print(yaml.safe_load(stream))
+        params = yaml.safe_load(stream)
     except yaml.YAMLError as exc:
         print(exc)
+        exit(1)
 
-myobj = {'Id': sys.argv[1], 'ffk_bit': sys.argv[2], 'fa_bit':sys.argv[3], 'localization_bit':sys.argv[4], 
-'maphandler_bit':sys.argv[5], 'mcu_bit':sys.argv[6], 'pathplanner_bit':sys.argv[7], 'waypoint_bit':sys.argv[8], 
-'wphandler_bit':sys.argv[9], 'mpc_bit':sys.argv[10], 'coverage_percentage':sys.argv[11], 
-'min_alt':sys.argv[12], 'avg_alt':sys.argv[13], 'max_alt':sys.argv[14], 
-'time_coverage_threshold':sys.argv[15], 'avg_vel_lin':sys.argv[16], 
-'avg_vel_ang':sys.argv[17], 'scenario_time':sys.argv[18], 'ending_reason':sys.argv[19]}
+params['Id'] = sys.argv[1]
+params['table_name'] = sys.argv[2]
 
-arr = sys.argv[len(myobj)+1:]
+arr = sys.argv[len(params)+1:]
 if len(arr)%2!=0:
     print "The added key values do not devide in 2 "
 if len(arr) > 1 and len(arr)%2==0:
     for i in range(0, len(arr), 2):
-        myobj[arr[i]] = arr[i+1]
+        params[arr[i]] = arr[i+1]
 
-x = requests.post(url, data = myobj)
+print params
 
-print x.text
+x = requests.post(url, data=params)
+
+print x.content
