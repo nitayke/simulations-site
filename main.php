@@ -21,15 +21,22 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 
 ?>
 <div style="display:flex; flex-direction: row; align-items: center;">
-	<h1> Simulations scenarios </h1>
+	<h1> Simulations scenarios</h1>
+	
+	<h2>Tables:&nbsp;&nbsp;</h2>
 
-	<p>Navigation pagination:</p>
-	<div class="pagination" >
+	<div class="pagination">
 		<?php
-	$result = mysqli_query($conn, "show tables");
-	while($table = mysqli_fetch_array($result)) {
-		?> <a href="#"> <?php echo($table[0] . "</a>");
-	}?>
+		
+		$slide = array_key_exists("table", $_GET) ? trim($_GET["table"]) : '';
+
+		$result = mysqli_query($conn, "show tables");
+		while($table = mysqli_fetch_array($result)) {
+			if ($table[0] == $slide)
+				echo("<a href=\"main.php?table=" . $table[0] . "\" class=\"active\">" . $table[0] . "</a>");
+			else
+				echo("<a href=\"main.php?table=" . $table[0] . "\">" . $table[0] . "</a>");
+		}?>
 	</div>
 </div>
 
@@ -64,38 +71,8 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 						<th><?php echo $key; ?></th>
 				<?php } }?>
 		</tr>
-				</thead>
-				<tbody>
-			<?php while( $developer = mysqli_fetch_assoc($resultSet) ) { ?>
-				<td><?php echo $developer ['Id']; ?></td>
-				<td><?php echo $developer ['ffk_bit']; ?></td>
-				<td><?php echo $developer ['fa_bit']; ?></td>
-				<td><?php echo $developer ['localization_bit']; ?></td>
-				<td><?php echo $developer ['maphandler_bit']; ?></td>
-				<td><?php echo $developer ['mcu_bit']; ?></td>
-				<td><?php echo $developer ['pathplanner_bit']; ?></td>
-				<td><?php echo $developer ['waypoint_bit']; ?></td>
-				<td><?php echo $developer ['wphandler_bit']; ?></td>
-				<td><?php echo $developer ['mpc_bit']; ?></td>
-				<td><?php echo $developer ['coverage_percentage']; ?></td>
-				<td><?php echo $developer ['min_alt']; ?></td>
-				<td><?php echo $developer ['avg_alt']; ?></td>
-				<td><?php echo $developer ['max_alt']; ?></td>
-				<td><?php echo $developer ['time_coverage_threshold']; ?></td>
-				<td><?php echo $developer ['avg_vel_lin']; ?></td>
-				<td><?php echo $developer ['avg_vel_ang']; ?></td>
-				<td><?php echo $developer ['scenario_time']; ?></td>
-				<td><?php echo $developer ['ending_reason']; ?></td>
-				<?php
-				if ($developer['stats'] != '0') {
-					$arr2=unserialize($developer ['stats']);
-					foreach ($arr2 as $key => $val) { ?>
-						<td><?php echo $val; ?></th>
-						<?php }
-					}?>
-					</tbody>	   				   
-			</tr>
-			<?php } ?>
+		</thead>
+		<!--  -->
 	</table>
 
 </body>
