@@ -13,12 +13,6 @@ include './dbex/db_connect.php';
 $conn = OpenCon();
 $db = "simulationdb";
 
-$sqlQuery = "SELECT `Id`, `ffk_bit`, `fa_bit`, `localization_bit`, `maphandler_bit`, `mcu_bit`, `pathplanner_bit`, `waypoint_bit`, 
-`wphandler_bit`, `mpc_bit`, `coverage_percentage`, `min_alt`, `avg_alt`, `max_alt`, `time_coverage_threshold`, `avg_vel_lin`, 
-`avg_vel_ang`, `scenario_time`, `ending_reason` , `stats` FROM lab1";
-$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
-$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
-
 ?>
 <div style="display:flex; flex-direction: row; align-items: center;">
 	<h1> Simulations scenarios</h1>
@@ -39,6 +33,18 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 		}?>
 	</div>
 </div>
+
+<?php 
+if ($slide != '')
+{
+	$sqlQuery = "SELECT `Id`, `ffk_bit`, `fa_bit`, `localization_bit`, `maphandler_bit`, `mcu_bit`, `pathplanner_bit`, `waypoint_bit`, 
+	`wphandler_bit`, `mpc_bit`, `coverage_percentage`, `min_alt`, `avg_alt`, `max_alt`, `time_coverage_threshold`, `avg_vel_lin`, 
+	`avg_vel_ang`, `scenario_time`, `ending_reason` , `stats` FROM " . $slide;
+	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
+	$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
+}
+
+?>
 
 <body>
 	<table>
@@ -64,15 +70,22 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 			<th>Scenario Time</th>
 			<th>Reason For Ending</th>
 			<?php
-				$developer = mysqli_fetch_assoc($resultSet2);
-				if ($developer['stats'] != '0'){
-					$arr=unserialize($developer ['stats']);
-					foreach ($arr as $key => $val) { ?>
-						<th><?php echo $key; ?></th>
-				<?php } }?>
+				echo 1;
+				if ($slide != '')
+				{
+					$developer = mysqli_fetch_assoc($resultSet2);
+					if ($developer['stats'] != '0') {
+						$arr=unserialize($developer ['stats']);
+						foreach ($arr as $key => $val)
+							echo "<th>" . $key . "</th>";
+					}
+				}
+			?>
 		</tr>
 		</thead>
 		<!--  -->
+		<tbody>
+
 	</table>
 
 </body>
