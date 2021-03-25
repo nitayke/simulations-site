@@ -1,6 +1,6 @@
 <?php
 
-include 'db_connect.php';
+include '../dbex/db_connect.php';
 
 $conn = OpenCon();
 
@@ -18,12 +18,14 @@ foreach ($_POST as $k => $v) {
 }
 
 if ($table_name == '')
+{
     echo "No table name";
     exit;
+}
 
 if (empty($stats)) {
     echo "No stats key value was received\n";
-    $sql = "INSERT INTO $table_name (" . implode(', ', array_keys($_POST)) . ", stats) VALUES (\"" . implode('", "', array_values($_POST)) . "\", '')";
+    $sql = "INSERT INTO $table_name (" . implode(', ', array_keys($regular_fields)) . ", stats) VALUES (\"" . implode('", "', array_values($regular_fields)) . "\", '')";
 }
 else {
     $sql = "INSERT INTO $table_name (" . implode(', ', array_keys($regular_fields)) . ", stats) VALUES (\"" . implode('", "', array_values($regular_fields)) . 
