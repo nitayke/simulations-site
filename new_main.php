@@ -3,6 +3,7 @@
 <head>
 	<title>Indoors Simulations</title>
 	<meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Della+Respira' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 	<link href="style.css" rel="stylesheet" type="text/css">
@@ -37,14 +38,16 @@ $conn = OpenCon();
 </div>
 
 <?php
-if ($slide != '')
-{
-	$sqlQuery = "SELECT `Id`, `ffk_bit`, `fa_bit`, `localization_bit`, `maphandler_bit`, `mcu_bit`, `pathplanner_bit`, `waypoint_bit`, 
-	`wphandler_bit`, `mpc_bit`, `coverage_percentage`, `min_alt`, `avg_alt`, `max_alt`, `time_coverage_threshold`, `avg_vel_lin`, 
-	`avg_vel_ang`, `scenario_time`, `ending_reason` , `stats` FROM " . $slide;
-	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
-	$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
-}
+
+if ($slide == '')
+	exit;
+
+$sqlQuery = "SELECT `Id`, `ffk_bit`, `fa_bit`, `localization_bit`, `maphandler_bit`, `mcu_bit`, `pathplanner_bit`, `waypoint_bit`, 
+`wphandler_bit`, `mpc_bit`, `coverage_percentage`, `min_alt`, `avg_alt`, `max_alt`, `time_coverage_threshold`, `avg_vel_lin`, 
+`avg_vel_ang`, `scenario_time`, `ending_reason` , `stats` FROM " . $slide;
+$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
+$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
+
 ?>
 
 <body>
@@ -71,14 +74,12 @@ if ($slide != '')
 			<th>Scenario Time</th>
 			<th>Reason For Ending</th>
 			<?php
-				if ($slide == '')
-					exit;
 				$developer = mysqli_fetch_assoc($resultSet2);
-				if ($developer['stats'] != '0'){
+				if ($developer['stats'] != '' && $developer['stats'] != '0'){
 					$arr=unserialize($developer ['stats']);
-					foreach ($arr as $key => $val) { ?>
-						<th><?php echo $key; ?></th>
-				<?php } }?>
+					foreach ($arr as $key => $val)
+						echo "<th>" . $key . "</th>";
+				}?>
 		</tr>
 		</thead>
 
