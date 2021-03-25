@@ -11,7 +11,6 @@
 <?php
 include './dbex/db_connect.php';
 $conn = OpenCon();
-$db = "simulationdb";
 
 ?>
 <div style="display:flex; flex-direction: row; align-items: center;">
