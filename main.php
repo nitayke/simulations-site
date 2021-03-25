@@ -5,63 +5,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-
+	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
-<style>
-h1 {
-	margin: 20 auto;
-    text-align: center;
-	font-size: 50px;
-	margin: 80px;
-}
-table {
-  border: solid black;
-  background: white;
-  border-collapse: collapse;
-  width: 100%;
-  margin: 0 auto;
-}
-table td, table th {
-  border: 1px solid #000000;
-  padding: 8px;
-}
-table thead tr {
-  height: 10px;
-  color: white;
-  background: #327a81;
-  font-size: 15px;
-}
-table tbody tr {
-  height: 48px;
-}
-table td, table th {
-  text-align: center;
-}
-body {
-  background: #91ced4;
-  font: 16px "Arial";
-  padding-top: 30px;
-}
-.pagination {
-  display: inline-block;
-}
 
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color .3s;
-  border: 1px solid #ddd;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-  border: 1px solid #4CAF50;
-}
-
-</style>
 <?php
 include './dbex/db_connect.php';
 $conn = OpenCon();
@@ -75,20 +21,20 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 
 ?>
 <div style="display:flex; flex-direction: row; align-items: center;">
-	<img src="../images/drone.png" width="650" height="400"/>
 	<h1> Simulations scenarios </h1>
 
 	<p>Navigation pagination:</p>
 	<div class="pagination" >
-	<a href="#" class="active">Home</a>
-	<a href="#">Link 1</a>
-	<a href="#">Link 2</a>
-	<a href="#">Link 3</a>
+		<?php
+	$result = mysqli_query($conn, "show tables");
+	while($table = mysqli_fetch_array($result)) {
+		?> <a href="#"> <?php echo($table[0] . "</a>");
+	}?>
 	</div>
 </div>
 
 <body>
-	<table id="table1">
+	<table>
 		<thead>
 		<tr>
 			<th>Id</th>
@@ -116,7 +62,7 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 					$arr=unserialize($developer ['stats']);
 					foreach ($arr as $key => $val) { ?>
 						<th><?php echo $key; ?></th>
-				<?php } }?> 
+				<?php } }?>
 		</tr>
 				</thead>
 				<tbody>

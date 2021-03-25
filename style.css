@@ -1,0 +1,52 @@
+h1 {
+	margin: 20 auto;
+    text-align: center;
+	font-size: 50px;
+	margin: 80px;
+}
+table {
+  border: solid black;
+  background: white;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
+}
+table td, table th {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+table thead tr {
+  height: 10px;
+  color: white;
+  background: #327a81;
+  font-size: 15px;
+}
+table tbody tr {
+  height: 48px;
+}
+table td, table th {
+  text-align: center;
+}
+body {
+  background: #91ced4;
+  font: 16px "Arial";
+  padding-top: 30px;
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
