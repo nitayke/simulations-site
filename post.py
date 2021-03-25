@@ -18,4 +18,4 @@ if len(arr) > 1 and len(arr)%2==0:
 # print myobj
 x = requests.post(url, data = myobj)
 
-print(x.text)
+print(x.text) 

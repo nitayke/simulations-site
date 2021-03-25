@@ -75,7 +75,7 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 			<th>Reason For Ending</th>
 			<?php
 				$developer = mysqli_fetch_assoc($resultSet2);
-				if ($developer['stats'] != '' && $developer['stats'] != '0'){
+				if ($developer['stats'] != ''){
 					$arr=unserialize($developer ['stats']);
 					foreach ($arr as $key => $val)
 						echo "<th>" . $key . "</th>";
@@ -106,7 +106,7 @@ $resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_er
 				echo "<td>" . $developer['avg_vel_ang'] . "</td>";
 				echo "<td>" . $developer['scenario_time'] . "</td>";
 				echo "<td>" . $developer['ending_reason'] . "</td>";
-			if ($developer['stats'] != '0') {
+			if ($developer['stats'] != '') {
 				$arr2 = unserialize($developer ['stats']);
 				foreach ($arr2 as $key => $val)
 					echo "<td>" . $val . "</td>";

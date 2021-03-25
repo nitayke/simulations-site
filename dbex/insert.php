@@ -12,7 +12,7 @@ if($link === false){
 // Escape user inputs for security
 
 $escapedGet = array_map(array($link, 'real_escape_string'), $_REQUEST);
-
+    
 $Id = mysqli_real_escape_string($link, $_REQUEST['Id']);
 $ffk_bit = mysqli_real_escape_string($link, $_REQUEST['ffk_bit']);
 $fa_bit = mysqli_real_escape_string($link, $_REQUEST['fa_bit']);
@@ -61,7 +61,7 @@ if (empty($escapedGet)) {
     `avg_vel_ang`, `scenario_time`, `ending_reason` , `stats`) VALUES ('$Id', '$ffk_bit', '$fa_bit', '$localization_bit', '$maphandler_bit', '$mcu_bit', 
     '$pathplanner_bit', '$waypoint_bit', '$wphandler_bit', '$mpc_bit', '$coverage_percentage', '$min_alt', 
     '$avg_alt', '$max_alt', '$time_coverage_threshold', '$avg_vel_lin', '$avg_vel_ang', '$scenario_time', 
-    '$ending_reason' , '0')";
+    '$ending_reason' , '')";
 }
 else
 {
