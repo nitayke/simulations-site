@@ -29,6 +29,10 @@ table tbody tr {
 table td, table th {
   text-align: center;
 }
+label {
+  font-weight: bold;
+  font-size: 18px;
+}
 body {
   background: #91ced4;
   font: 16px "Arial";
