@@ -18,6 +18,9 @@
 
 	$slide = array_key_exists("table", $_GET) ? trim($_GET["table"]) : '';
 
+	$result = mysqli_query($conn, "show tables");
+	if ($slide == '')
+		$slide = mysqli_fetch_array($result)[0];
 	$sqlQuery = "SELECT " . implode(",", $parameters) . ", stats FROM " . $slide;
 	if ($filters)
 	{
@@ -27,7 +30,7 @@
 			$operator = $_POST['operator'];
 		$sqlQuery = $sqlQuery . " WHERE " . $_POST['parameter'] . $operator . $_POST['value'];
 	}
-	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
+	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error: ". mysqli_error($conn));
 	
 	$developer = mysqli_fetch_assoc($resultSet);
 	$updated_parameters = $parameters;
@@ -38,7 +41,7 @@
 	}
 ?>
 
-
+<body>
 <!-- Top Line - Title and links -->
 
 <div style="display:flex; flex-direction: row; align-items: center;">
@@ -52,11 +55,9 @@
 	<div class="pagination">
 		<?php
 		
-
 		$result = mysqli_query($conn, "show tables");
+
 		while($table = mysqli_fetch_array($result)) {
-			if ($slide == '')
-				$slide = $table[0];
 			if ($table[0] == $slide)
 				echo("<a href=\"?table=" . $table[0] . "\" class=\"active\">" . $table[0] . "</a>");
 			else
@@ -67,8 +68,8 @@
 
 
 <!-- Filters -->
-
-<div style="display:flex; flex-direction: row; align-items: center;">
+<div id="filters">
+<div style="display:flex; flex-direction: row; align-items: center;" id="filter1">
 
 <form method="post">
 <label for="parameter">Filter:</label>
@@ -101,9 +102,21 @@
 <input name="value" value="<?php echo $filters ? $_POST['value'] : ''; ?>">
 <input type="submit" name="submit" value="Go">
 </form>
+<input type="button" id="button" value="Add Condition"/>
+
+<script>
+document.getElementById("button").addEventListener("click", addCondition);
+function addCondition() {
+	var itm = document.getElementById("filter1");
+	itm.removeChild(document.getElementById("button"));
+	var cln = itm.cloneNode(true);
+	console.log(cln);
+	document.getElementById("filters").appendChild(cln);
+}
+</script>
 
 </div>
-
+</div>
 
 <!-- Table -->
 
