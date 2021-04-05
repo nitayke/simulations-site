@@ -13,6 +13,8 @@
 	include './dbex/db_connect.php';
 	include './variables.php';
 	$conn = OpenCon();
+	$filters = isset($_POST['parameter']) && isset($_POST['operator']) && isset($_POST['value']) &&
+	$_POST['parameter'] !== '' && $_POST['operator'] !== '' && $_POST['value'] !== '';
 ?>
 
 <!-- Top Line - Title and links -->
@@ -48,44 +50,48 @@
 <div style="display:flex; flex-direction: row; align-items: center;">
 
 <form method="post">
-
 <label for="parameter">Filter:</label>
 <select name="parameter">
 <option></option>
 <?php
-	foreach ($parameters as $param)
-		echo "<option value=\"" . $param . "\">" . str_replace('_', ' ', $param) . "</option>";
+	if ($filters)
+		foreach ($parameters as $param){
+			echo "<option" . ($_POST['parameter'] == $param ? " selected>".$param : ">".$param) . "</option>";
+	}
+	else
+		foreach ($parameters as $param)
+			echo "<option>" . $param . "</option>";
+	
 ?>
 </select>
 
-&nbsp;
 <select name="operator">
 <option></option>
-<option>==</option>
-<option>></option>
-<option><</option>
-<option>>=</option>
-<option><=</option>
-<option>!=</option>
+<?php
+	if ($filters)
+		foreach ($operators as $operator){
+			echo "<option" . ($_POST['operator'] == $operator ? " selected>".$operator : ">".$operator) . "</option>";
+		}
+	else
+		foreach ($operators as $operator)
+			echo "<option>" . $operator . "</option>";
+
+?>
 </select>
 
-&nbsp;
-<input name="value">
+<input name="value" value="<?php echo $filters ? $_POST['value'] : ''; ?>">
 <input type="submit" name="submit" value="Filter">
 </form>
 
-<br><br>
 </div>
+
 
 <!-- Table -->
 
 <?php
 	$sqlQuery = "SELECT " . implode(",", $parameters) . ", stats FROM " . $slide;
-
-	if (isset($_POST['parameter']) and isset($_POST['operator']) and isset($_POST['value']) and
-		$_POST['parameter'] != '' and $_POST['operator'] != '' and $_POST['value'] != '') 		// filter exists
+	if ($filters)
 	{
-			
 		if (array_key_exists($_POST['operator'], $operators_sql))
 			$operator = $operators_sql[$_POST['operator']];
 		else 

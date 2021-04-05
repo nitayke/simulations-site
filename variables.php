@@ -19,6 +19,8 @@ $parameters = ['Id',
 'scenario_time',
 'ending_reason'];
 
+$operators = ['==', '!=', '>', '<', '>=', '<='];
+
 $operators_sql = ["==" => "=", "!=" => "<>"];
 
 
