@@ -11,6 +11,7 @@
 
 <?php
 	include './dbex/db_connect.php';
+	include './variables.php';
 	$conn = OpenCon();
 ?>
 
@@ -22,7 +23,7 @@
 
 	<h1> Simulations scenarios</h1>
 	
-	<h2>Tables:&nbsp;&nbsp;</h2>
+	<h2>Tables:&nbsp;</h2>
 
 	<div class="pagination">
 		<?php
@@ -44,24 +45,50 @@
 
 <!-- Filters -->
 
-<form action="/action_page.php">
-  <label for="cars">Filter:</label>
-  <select name="parameter" id="parameter">
-  <?php
-		foreach ($parameters as $param)
-			echo "<option value=\"" . $param . "\">" . str_replace('_', ' ', $param) . "</option>";
-  ?>
-  </select>
-  <br><br>
-  <input type="submit" value="Submit">
-  <br><br><br>
+<div style="display:flex; flex-direction: row; align-items: center;">
+
+<form method="post">
+
+<label for="parameter">Filter:</label>
+<select name="parameter">
+<option></option>
+<?php
+	foreach ($parameters as $param)
+		echo "<option value=\"" . $param . "\">" . str_replace('_', ' ', $param) . "</option>";
+?>
+</select>
+
+&nbsp;
+<select name="operator">
+<option></option>
+<option>==</option>
+<option>></option>
+<option><</option>
+<option>>=</option>
+<option><=</option>
+<option>!=</option>
+</select>
+
+&nbsp;
+<input name="value">
+<input type="submit" name="submit" value="Filter">
 </form>
 
+<br><br>
+</div>
 
 <!-- Table -->
 
 <?php
 	$sqlQuery = "SELECT " . implode(",", $parameters) . ", stats FROM " . $slide;
+	if (isset($_POST['operator']) and isset($_POST['parameter']) and isset($_POST['value'])) // filter exists
+	{
+		if (array_key_exists($_POST['operator'], $operators_sql))
+			$operator = $operators_sql[$_POST['operator']];
+		else 
+			$operator = $_POST['operator'];
+		$sqlQuery = $sqlQuery . " WHERE " . $_POST['parameter'] . $operator . $_POST['value'];
+	}
 	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 	$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 ?>
