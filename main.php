@@ -28,9 +28,8 @@
 		$sqlQuery = $sqlQuery . " WHERE " . $_POST['parameter'] . $operator . $_POST['value'];
 	}
 	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
-	$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 	
-	$developer = mysqli_fetch_assoc($resultSet2);
+	$developer = mysqli_fetch_assoc($resultSet);
 	$updated_parameters = $parameters;
 	if ($developer['stats'] != '' && $developer['stats'] != '0'){
 		$arr=unserialize($developer ['stats']);
@@ -77,10 +76,10 @@
 <option></option>
 <?php
 	if ($filters)
-		foreach ($updated_parameters as $param)
+		foreach ($parameters as $param)
 			echo "<option" . ($_POST['parameter'] == $param ? " selected>".$param : ">".$param) . "</option>";
 	else
-		foreach ($updated_parameters as $param)
+		foreach ($parameters as $param)
 			echo "<option>" . $param . "</option>";
 	
 ?>
@@ -125,8 +124,7 @@
 			foreach ($parameters as $param)
 				echo "<td>" . $developer[$param] . "</td>";
 			if ($developer['stats'] != '' && $developer['stats'] != '0') {
-				$arr2 = unserialize($developer ['stats']);
-				foreach ($arr2 as $key => $val)
+				foreach ($arr as $key => $val)
 					echo "<td>" . $val . "</td>";
 			}
 			echo "</tbody>";
