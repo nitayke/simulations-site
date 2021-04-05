@@ -10,11 +10,12 @@
 </head>
 
 <?php
-include './dbex/db_connect.php';
-
-$conn = OpenCon();
-
+	include './dbex/db_connect.php';
+	$conn = OpenCon();
 ?>
+
+<!-- Top Line - Title and links -->
+
 <div style="display:flex; flex-direction: row; align-items: center;">
 	<a href="/">
 	<img src="drone.png" width="100"></a>
@@ -40,8 +41,27 @@ $conn = OpenCon();
 	</div>
 </div>
 
+
+<!-- Filters -->
+
+<form action="/action_page.php">
+  <label for="cars">Filter:</label>
+  <select name="parameter" id="parameter">
+  <?php
+		foreach ($parameters as $param)
+			echo "<option value=\"" . $param . "\">" . str_replace('_', ' ', $param) . "</option>";
+  ?>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+  <br><br><br>
+</form>
+
+
+<!-- Table -->
+
 <?php
-	$sqlQuery = "SELECT ". implode(",", $parameters) . ", stats FROM " . $slide;
+	$sqlQuery = "SELECT " . implode(",", $parameters) . ", stats FROM " . $slide;
 	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 	$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 ?>
