@@ -81,8 +81,11 @@
 
 <?php
 	$sqlQuery = "SELECT " . implode(",", $parameters) . ", stats FROM " . $slide;
-	if (isset($_POST['operator']) and isset($_POST['parameter']) and isset($_POST['value'])) // filter exists
+
+	if (isset($_POST['parameter']) and isset($_POST['operator']) and isset($_POST['value']) and
+		$_POST['parameter'] != '' and $_POST['operator'] != '' and $_POST['value'] != '') 		// filter exists
 	{
+			
 		if (array_key_exists($_POST['operator'], $operators_sql))
 			$operator = $operators_sql[$_POST['operator']];
 		else 
