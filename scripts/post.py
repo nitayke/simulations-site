@@ -10,11 +10,7 @@ if len(sys.argv) != 4:
 
 params = {}
 with open(sys.argv[2], 'r') as stream:
-    try:
-        params = yaml.safe_load(stream)
-    except yaml.YAMLError as exc:
-        print(exc)
-        exit(1)
+    params = yaml.safe_load(stream)
 
 params['Id'] = sys.argv[1]
 params['table_name'] = sys.argv[3]

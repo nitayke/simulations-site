@@ -41,39 +41,20 @@ $conn = OpenCon();
 </div>
 
 <?php
-
-	$sqlQuery = "SELECT `Id`, `ffk_bit`, `fa_bit`, `localization_bit`, `maphandler_bit`, `mcu_bit`, `pathplanner_bit`, `waypoint_bit`, 
-	`wphandler_bit`, `mpc_bit`, `coverage_percentage`, `min_alt`, `avg_alt`, `max_alt`, `time_coverage_threshold`, `avg_vel_lin`, 
-	`avg_vel_ang`, `scenario_time`, `ending_reason` , `stats` FROM " . $slide;
+	$sqlQuery = "SELECT ". implode(",", $parameters) . ", stats FROM " . $slide;
 	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
 	$resultSet2 = mysqli_query($conn, $sqlQuery) or die("database error:". mysqli_error($conn));
-
 ?>
 
 <body>
 	<table>
 		<thead>
 		<tr>
-			<th>Id</th>
-			<th>FFK Highest Bit</th>
-			<th>FA H Bit</th>
-			<th>Localization H Bit</th>
-			<th>MapHandler H Bit</th>
-			<th>Mcu H Bit</th>
-			<th>PathPlanner H Bit</th>
-			<th>WP H Bit</th>
-			<th>WPHandler H Bit</th>
-			<th>Mpc H Bit</th>
-			<th>Coverage Percentage</th>
-			<th>Min Altitude</th>
-			<th>Avg Altitude</th>
-			<th>Max Altitude</th>
-			<th>Time Passed to Coverage Threshold</th>
-			<th>Avg Velocity Linear</th>
-			<th>Avg Velocity Angular</th>
-			<th>Scenario Time</th>
-			<th>Reason For Ending</th>
 			<?php
+				foreach ($parameters as $param)
+				{
+					echo "<th>" . str_replace("_", " ", $param) . "</th>";
+				}
 				$developer = mysqli_fetch_assoc($resultSet2);
 				if ($developer['stats'] != '' && $developer['stats'] != '0'){ // TODO: REMOVE THE '0' AFTER REMOVING IT FROM DB
 					$arr=unserialize($developer ['stats']);
