@@ -3,6 +3,7 @@
 // INSERT TO lab1 TABLE
 
 include 'db_connect.php';
+include '../variables.php';
 
 $conn = OpenCon();
 
