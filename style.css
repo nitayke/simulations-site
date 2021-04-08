@@ -40,8 +40,8 @@ body {
 }
 .pagination {
   display: inline-block;
+  margin: 0px 50px 0px 10px;
 }
-
 .pagination a {
   color: black;
   float: left;
@@ -55,4 +55,19 @@ body {
   background-color: #327a81;
   color: white;
   border: 1px solid black;
+}
+
+a.button {
+  appearance: button;
+  background: #327a81;
+  text-decoration: none;
+  color: white;
+  border: 1px solid black;
+  padding: 10px;
+  transition-duration: 0.4s;
+}
+
+a.button:hover {
+  background: white;
+  color: black;
 }
