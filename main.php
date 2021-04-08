@@ -120,7 +120,8 @@ function addCondition() {
 
 		<tbody>
 		<?php
-		while( $developer = mysqli_fetch_assoc($resultSet) ) {
+		$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
+		while ($developer = mysqli_fetch_assoc($resultSet)) {
 			$line = "";
 			foreach ($parameters as $param)
 			{
@@ -134,16 +135,17 @@ function addCondition() {
 			if ($developer['stats'] != '' && $developer['stats'] != '0') {
 				foreach ($arr as $key => $val){
 					echo "<td>" . $val . "</td>";
-					$line .= $val . ", ";
+					$line .= ", " . $val;
 				}
 			}
-			$line = substr($line, 0, strlen($line) - 2) . "\n";
+			$line .= "\n";
 			fwrite($myfile, $line);
 
 			echo "</tbody>";
 		}
 		fclose($myfile);
 		?>
+		</tbody>
 	</table>
 
 </body>
