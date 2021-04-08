@@ -28,9 +28,12 @@
 			$operator = $operators_sql[$_POST['operator']];
 		else 
 			$operator = $_POST['operator'];
+
+		if ($_POST['parameter'] == 'ending_reason')
+			$_POST['value'] = '"' . $_POST['value'] . '"';
 		$sqlQuery = $sqlQuery . " WHERE " . $_POST['parameter'] . $operator . $_POST['value'];
 	}
-	$resultSet = mysqli_query($conn, $sqlQuery) or die("database error: ". mysqli_error($conn));
+	$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 	
 	$developer = mysqli_fetch_assoc($resultSet);
 	$updated_parameters = $parameters;
@@ -95,7 +98,6 @@
 	else
 		foreach ($operators as $operator)
 			echo "<option>" . $operator . "</option>";
-
 ?>
 </select>
 
