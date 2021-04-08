@@ -50,7 +50,9 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	}],
 	data: [{
 		type: "pie",
-		indexLabel: "{label} ({y})",
+        indexLabel: "{label} (#percent%)",
+        percentFormatString: "#0.##",
+        toolTipContent: "{y} (#percent%)",
 		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
 	}]
 });
