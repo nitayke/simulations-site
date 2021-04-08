@@ -23,6 +23,10 @@ table thead tr {
   background: #327a81;
   font-size: 15px;
 }
+table thead td {
+  background: white;
+  color: black;
+}
 table tbody tr {
   height: 48px;
 }

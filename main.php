@@ -103,7 +103,16 @@ function addCondition() {
 
 <body>
 	<table id="table">
-		<thead>
+	<thead>
+		<tr id="min">
+		<th>Min Value</th>
+		</tr>
+		<tr id="max">
+		<th>Max Value</th>
+		</tr>
+		<tr id="avg">
+		<th>Avg Value</th>
+		</tr>
 		<tr>
 			<?php
 				$line = "";
@@ -147,6 +156,49 @@ function addCondition() {
 		?>
 		</tbody>
 	</table>
+
+	<script>
+		var min = {}, max = {}, sum = {};
+		var table = document.getElementById("table");
+		var row_len = table.rows[0].cells.length;
+		for (var i = 0, row; row = table.rows[i]; i++)
+		{
+			for (var j = 1, cell; cell = row.cells[j]; j++)
+			{
+				console.log(cell, cell.innerHTML, parseFloat(cell.innerHTML));
+				if (isNaN(parseFloat(cell.innerHTML)))
+					continue;
+				console.log(min, max, sum);
+				var val = parseFloat(cell.innerHTML);
+				if (j in min)
+				{
+					if (val < min[j]) min[j] = val;
+				}
+				else min[j] = val;
+
+				if (j in max)
+				{
+					if (val > max[j]) max[j] = val;
+				}
+				else max[j] = val;
+
+				if (j in sum)
+				{
+					sum[j] += val;
+				}
+				else sum[j] = val;
+			}
+			
+		}
+		console.log(row_len);
+		for (var i = 0; i < row_len; i++)
+		{
+			var node = document.createElement("td");
+			node.innerHTML = min[i];
+			document.getElementById("min").appendChild(node);
+		}
+
+	</script>
 
 </body>
 </html>
