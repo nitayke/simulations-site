@@ -8,10 +8,10 @@
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
-
 <?php include './get_data.php'; ?>
 
 <body>
+
 
 <!-- Top Line - Title and links -->
 
@@ -41,6 +41,7 @@
 
 
 <!-- Filters -->
+
 <div id="filters">
 <div style="display:flex; flex-direction: row; align-items: center;" id="filter1">
 
@@ -89,6 +90,7 @@ function addCondition() {
 
 </div>
 </div>
+
 
 <!-- Table -->
 
