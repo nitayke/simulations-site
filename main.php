@@ -10,7 +10,6 @@
 </head>
 <?php 
 include './get_data.php';
-include './simple_html_dom.php';
 $path = "./table.csv";
 
 $myfile = fopen($path, "w");
