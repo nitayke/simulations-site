@@ -8,7 +8,13 @@
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
-<?php include './get_data.php'; ?>
+<?php 
+include './get_data.php';
+include './simple_html_dom.php';
+$path = "./table.csv";
+
+$myfile = fopen($path, "w");
+?>
 
 <body>
 
@@ -37,6 +43,8 @@
 	</div>
 	
 	<a href="/pichart.php" class="button">Pi Chart</a>
+
+	<a href="/table.csv" class="button">Get .csv file</a>
 </div>
 
 
@@ -95,12 +103,18 @@ function addCondition() {
 <!-- Table -->
 
 <body>
-	<table>
+	<table id="table">
 		<thead>
 		<tr>
 			<?php
-				foreach ($updated_parameters as $param)
+				$line = "";
+				foreach ($updated_parameters as $param) 
+				{
 					echo "<th>" . str_replace('_', ' ', $param) . "</th>";
+					$line = $line . str_replace('_', ' ', $param) . ", ";
+				}
+				$line = substr($line, 0, strlen($line) - 2) . "\n";
+				fwrite($myfile, $line);
 			?>
 		</tr>
 		</thead>
@@ -108,14 +122,28 @@ function addCondition() {
 		<tbody>
 		<?php
 		while( $developer = mysqli_fetch_assoc($resultSet) ) {
+			$line = "";
 			foreach ($parameters as $param)
+			{
 				echo "<td>" . $developer[$param] . "</td>";
-			if ($developer['stats'] != '' && $developer['stats'] != '0') {
-				foreach ($arr as $key => $val)
-					echo "<td>" . $val . "</td>";
+				$line = $line . $developer[$param] . ", ";
 			}
+			$line = substr($line, 0, strlen($line) - 2);
+			fwrite($myfile, $line);
+
+			$line = "";
+			if ($developer['stats'] != '' && $developer['stats'] != '0') {
+				foreach ($arr as $key => $val){
+					echo "<td>" . $val . "</td>";
+					$line .= $val . ", ";
+				}
+			}
+			$line = substr($line, 0, strlen($line) - 2) . "\n";
+			fwrite($myfile, $line);
+
 			echo "</tbody>";
 		}
+		fclose($myfile);
 		?>
 	</table>
 
