@@ -185,6 +185,17 @@ function addCondition() {
 		console.log(row_len);
 		for (var i = 1; i < row_len; i++)
 		{
+			if (isNaN(parseFloat(table.rows[4].cells[i].innerHTML)))
+			{
+				console.log("hi");
+				var rows = ["min", "max", "avg"];
+				rows.forEach(function(entry) {
+					var node = document.createElement("td");
+					node.innerHTML = "";
+					document.getElementById(entry).appendChild(node);
+				});
+				continue;
+			}
 			if (min[i] == BIG_NUM)
 				continue;
 			var node = document.createElement("td");

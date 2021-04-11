@@ -1,10 +1,4 @@
-Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit, waypoint bit, wphandler bit, mpc bit, coverage percentage, min alt, avg alt, max alt, time coverage threshold, avg vel lin, avg vel ang, scenario time, ending reason
-1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 232, 1.070955, 1.199131, 1.229488, 0, 0.261946, 0.201296, 199, Finished_Exploration_moved_to__HOLDING_POSITION
-2, 1, 0, 0, 0, 0, 0, 0, 1, 1, 232, 1.063543, 1.19818, 1.231248, 0, 0.253663, 0.2081, 272, Finished_Exploration_moved_to__HOLDING_POSITION
-3, 1, 0, 0, 0, 0, 0, 0, 1, 1, 234, 1.076851, 1.198403, 1.226585, 0, 0.265214, 0.210681, 294, Finished_Exploration_moved_to__HOLDING_POSITION
-5, 1, 0, 0, 0, 0, 0, 0, 1, 1, 234, 1.062575, 1.198092, 1.227154, 0, 0.271964, 0.218389, 317, Finished_Exploration_moved_to__HOLDING_POSITION
-6, 1, 0, 0, 0, 0, 0, 0, 1, 1, 233, 1.087203, 1.197729, 1.225497, 0, 0.270575, 0.213025, 320, Finished_Exploration_moved_to__HOLDING_POSITION
-7, 1, 0, 0, 0, 0, 0, 0, 1, 1, 232, 1.074945, 1.198108, 1.231201, 0, 0.246887, 0.218676, 287, Finished_Exploration_moved_to__HOLDING_POSITION
-8, 2, 0, 0, 0, 0, 0, 0, 1, 1, 233, 1.073936, 1.198471, 1.237348, 0, 0.220057, 0.253669, 346, Finished_Exploration_moved_to__HOLDING_POSITION
-9, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0.873517, 1.166353, 1.246357, 0, 0.088498, 0.053842, 14, System_Didnt_move_to_Exploration
-13, 2, 0, 0, 0, 0, 0, 0, 1, 0, 222, 1.023379, 1.161128, 1.214144, 0, 0.039596, 0.027018, 14, System_Didnt_move_to_Exploration
+Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit, waypoint bit, wphandler bit, mpc bit, coverage percentage, min alt, avg alt, max alt, time coverage threshold, avg vel lin, avg vel ang, scenario time, ending reason, d, n
+1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, no_reason, 0, 2
+2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, no_reason, 0, 2
+54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, no_reason, 0, 2
