@@ -157,7 +157,9 @@ function addCondition() {
 		</tbody>
 	</table>
 
+
 	<script>
+
 		var BIG_NUM = 99999;
 		var table = document.getElementById("table");
 		var row_len = table.rows[4].cells.length;
@@ -169,8 +171,15 @@ function addCondition() {
 			{
 				if (isNaN(parseFloat(cell.innerHTML)))
 					continue;
-				console.log(parseFloat(cell.innerHTML))
 				var val = parseFloat(cell.innerHTML);
+
+				if (j < 10) // bit cells
+				{
+					if (val == 1)
+						cell.style.background = "#eff542";
+					else if (val == 2)
+						cell.style.background = "#f55742";
+				}
 
 				if (val < min[j])
 					min[j] = val;

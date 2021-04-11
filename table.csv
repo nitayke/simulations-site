@@ -1,4 +1,2 @@
-Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit, waypoint bit, wphandler bit, mpc bit, coverage percentage, min alt, avg alt, max alt, time coverage threshold, avg vel lin, avg vel ang, scenario time, ending reason, d, n
-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, no_reason, 0, 2
-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, no_reason, 0, 2
-54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, no_reason, 0, 2
+Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit, waypoint bit, wphandler bit, mpc bit, coverage percentage, min alt, avg alt, max alt, time coverage threshold, avg vel lin, avg vel ang, scenario time, ending reason
+1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 232, 1.064875, 1.198256, 1.22954, 0, 0.258607, 0.224529, 295, Finished_Exploration_moved_to__HOLDING_POSITION
