@@ -9,7 +9,32 @@
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <?php 
-include './get_data.php';
+
+include './dbex/db_connect.php';
+include './variables.php';
+
+$conn = OpenCon();
+$filters = isset($_POST['parameter']) && isset($_POST['operator']) && isset($_POST['value']) &&
+$_POST['parameter'] !== '' && $_POST['operator'] !== '' && $_POST['value'] !== '';
+
+$slide = array_key_exists("table", $_GET) ? trim($_GET["table"]) : '';
+
+$result = mysqli_query($conn, "show tables");
+if ($slide == '')
+    $slide = mysqli_fetch_array($result)[0];
+$sqlQuery = "SELECT * FROM " . $slide;
+
+$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
+
+$developer = mysqli_fetch_assoc($resultSet);
+$updated_parameters = $parameters;
+if ($developer['stats'] != '' && $developer['stats'] != '0'){
+    $arr=unserialize($developer ['stats']);
+    foreach ($arr as $key => $val)
+        array_push($updated_parameters, $key);
+}
+
+
 $path = "./table.csv";
 
 $myfile = fopen($path, "w");
@@ -58,10 +83,10 @@ $myfile = fopen($path, "w");
 <option></option>
 <?php
 	if ($filters)
-		foreach ($parameters as $param)
+		foreach ($updated_parameters as $param)
 			echo "<option" . ($_POST['parameter'] == $param ? " selected>".$param : ">".$param) . "</option>";
 	else
-		foreach ($parameters as $param)
+		foreach ($updated_parameters as $param)
 			echo "<option>" . $param . "</option>";
 	
 ?>
@@ -133,7 +158,41 @@ $myfile = fopen($path, "w");
 		<?php
 		$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 		while ($developer = mysqli_fetch_assoc($resultSet)) {
+			$flag = true;
 			$line = "";
+			if ($filters)
+			{
+				switch ($_POST['operator'])
+				{
+					case '==':
+						if ($developer[$_POST['parameter']] !== $_POST['value'])
+							$flag = false;
+						break;
+					case '!=':
+						if ($developer[$_POST['parameter']] === $_POST['value'])
+							$flag = false;
+						break;
+					case '<':
+						if ($developer[$_POST['parameter']] >= $_POST['value'])
+							$flag = false;
+						break;
+					case '>':
+						if ($developer[$_POST['parameter']] <= $_POST['value'])
+							$flag = false;
+						break;
+					case '<=':
+						if ($developer[$_POST['parameter']] > $_POST['value'])
+							$flag = false;
+						break;
+					case '>=':
+						if ($developer[$_POST['parameter']] < $_POST['value'])
+							$flag = false;
+						break;
+				}
+				
+			}
+			if ($flag === false)
+				continue;
 			foreach ($parameters as $param)
 			{
 				echo "<td>" . $developer[$param] . "</td>";
