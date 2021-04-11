@@ -158,44 +158,49 @@ function addCondition() {
 	</table>
 
 	<script>
-		var min = {}, max = {}, sum = {};
+		var BIG_NUM = 99999;
 		var table = document.getElementById("table");
-		var row_len = table.rows[0].cells.length;
+		var row_len = table.rows[4].cells.length;
+		console.log(row_len);
+		var min = new Array(row_len).fill(BIG_NUM), max = new Array(row_len).fill(0), sum = new Array(row_len).fill(0);
 		for (var i = 0, row; row = table.rows[i]; i++)
 		{
 			for (var j = 1, cell; cell = row.cells[j]; j++)
 			{
-				console.log(cell, cell.innerHTML, parseFloat(cell.innerHTML));
 				if (isNaN(parseFloat(cell.innerHTML)))
 					continue;
-				console.log(min, max, sum);
+				console.log(parseFloat(cell.innerHTML))
 				var val = parseFloat(cell.innerHTML);
-				if (j in min)
-				{
-					if (val < min[j]) min[j] = val;
-				}
-				else min[j] = val;
 
-				if (j in max)
-				{
-					if (val > max[j]) max[j] = val;
-				}
-				else max[j] = val;
+				if (val < min[j])
+					min[j] = val;
 
-				if (j in sum)
-				{
-					sum[j] += val;
-				}
-				else sum[j] = val;
+				if (val > max[j])
+					max[j] = val;
+
+				sum[j] += val;
 			}
 			
 		}
 		console.log(row_len);
-		for (var i = 0; i < row_len; i++)
+		for (var i = 1; i < row_len; i++)
 		{
+			if (min[i] == BIG_NUM)
+				continue;
 			var node = document.createElement("td");
 			node.innerHTML = min[i];
 			document.getElementById("min").appendChild(node);
+
+			var node = document.createElement("td");
+			node.innerHTML = max[i];
+			document.getElementById("max").appendChild(node);
+			
+			var node = document.createElement("td");
+			if (i < 10)
+				node.innerHTML = "";
+			else
+				node.innerHTML = (sum[i] / (table.rows.length - 4)).toFixed(2);
+			document.getElementById("avg").appendChild(node);
 		}
 
 	</script>
