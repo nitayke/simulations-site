@@ -3,3 +3,5 @@ Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit,
 2, 1, 0, 0, 0, 0, 0, 0, 1, 1, 234, 1.046063, 1.197904, 1.230372, 0, 0.272979, 0.207388, 274, Finished_Exploration_moved_to__HOLDING_POSITION
 3, 1, 0, 0, 0, 0, 0, 0, 1, 1, 233, 1.063582, 1.198556, 1.22716, 0, 0.260246, 0.193328, 298, Finished_Exploration_moved_to__HOLDING_POSITION
 4, 1, 0, 0, 0, 0, 0, 0, 1, 1, 232, 1.071364, 1.197498, 1.234901, 0, 0.262378, 0.219178, 250, Finished_Exploration_moved_to__HOLDING_POSITION
+5, 1, 0, 0, 0, 0, 0, 0, 1, 1, 232, 1.060183, 1.19779, 1.228611, 0, 0.259963, 0.20731, 239, Finished_Exploration_moved_to__HOLDING_POSITION
+6, 2, 0, 0, 0, 0, 0, 0, 1, 1, 231, 1.081407, 1.199247, 1.223329, 0, 0.251619, 0.218908, 179, Finished_Exploration_moved_to__HOLDING_POSITION

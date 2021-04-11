@@ -160,6 +160,14 @@ $myfile = fopen($path, "w");
 		while ($developer = mysqli_fetch_assoc($resultSet)) {
 			$flag = true;
 			$line = "";
+			if ($developer['stats'] != '' && $developer['stats'] != '0') {
+				array_pop($developer);
+				foreach ($arr as $key => $val){
+					$developer[$key] = $val;
+				}
+			}
+			else
+				array_pop($developer);
 			if ($filters)
 			{
 				switch ($_POST['operator'])
@@ -193,29 +201,18 @@ $myfile = fopen($path, "w");
 			}
 			if ($flag === false)
 				continue;
-			foreach ($parameters as $param)
+			foreach ($developer as $key => $val)
 			{
-				echo "<td>" . $developer[$param] . "</td>";
-				$line = $line . $developer[$param] . ", ";
+				echo "<td>" . $val . "</td>";
+				$line = $line . $val . ", ";
 			}
-			$line = substr($line, 0, strlen($line) - 2);
-			fwrite($myfile, $line);
-
-			$line = "";
-			if ($developer['stats'] != '' && $developer['stats'] != '0') {
-				foreach ($arr as $key => $val){
-					echo "<td>" . $val . "</td>";
-					$line .= ", " . $val;
-				}
-			}
-			$line .= "\n";
+			$line = substr($line, 0, strlen($line) - 2) . "\n";
 			fwrite($myfile, $line);
 
 			echo "</tbody>";
 		}
 		fclose($myfile);
 		?>
-		</tbody>
 	</table>
 
 	<script src="./main.js"></script>
