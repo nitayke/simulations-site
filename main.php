@@ -9,10 +9,38 @@
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <?php 
-include './get_data.php';
+
+include './dbex/db_connect.php';
+include './variables.php';
+
+$conn = OpenCon();
+
+$slide = array_key_exists("table", $_GET) ? trim($_GET["table"]) : '';
+
+$result = mysqli_query($conn, "show tables");
+if ($slide == '')
+    $slide = mysqli_fetch_array($result)[0];
+$sqlQuery = "SELECT * FROM " . $slide;
+
+$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
+
+
 $path = "./table.csv";
 
 $myfile = fopen($path, "w");
+
+$developer = mysqli_fetch_assoc($resultSet);
+if ($developer['stats'] != '' && $developer['stats'] != '0') {
+    $arr=unserialize($developer ['stats']);
+	array_pop($developer);
+	foreach ($arr as $key => $val){
+		$developer[$key] = $val;
+	}
+}
+else
+	array_pop($developer);
+
+
 ?>
 
 <body>
@@ -49,46 +77,59 @@ $myfile = fopen($path, "w");
 
 <!-- Filters -->
 
-<div id="filters">
-<div style="display:flex; flex-direction: row; align-items: center;" id="filter1">
-
-<form method="post">
 <label for="parameter">Filter:</label>
-<select name="parameter">
+<select id="parameter">
 <option></option>
 <?php
-	if ($filters)
-		foreach ($parameters as $param)
-			echo "<option" . ($_POST['parameter'] == $param ? " selected>".$param : ">".$param) . "</option>";
-	else
-		foreach ($parameters as $param)
-			echo "<option>" . $param . "</option>";
-	
+	foreach ($developer as $key => $val)
+		echo "<option>" . $key . "</option>";
 ?>
 </select>
 
-<select name="operator">
+<select id="operator">
 <option></option>
 <?php
-	if ($filters)
-		foreach ($operators as $operator)
-			echo "<option" . ($_POST['operator'] == $operator ? " selected>".$operator : ">".$operator) . "</option>";
-	else
-		foreach ($operators as $operator)
-			echo "<option>" . $operator . "</option>";
+	foreach ($operators as $operator)
+		echo "<option>" . $operator . "</option>";
 ?>
 </select>
 
-<input name="value" value="<?php echo $filters ? $_POST['value'] : ''; ?>">
-<input type="submit" name="submit" value="Go" id="submit">
-</form>
-<input type="button" id="button" value="Add Condition"/>
-
-</div>
-</div>
+<input id="value">
+<input type="button" value="Go" id="filter_btn">
+<input type="button" id="add_filter_btn" value="Add Condition"/>
+<br><br>
 
 <script>
-	document.getElementById("button").addEventListener("click", addCondition);
+
+	var operators_url = {'==': "eq", "!=": "ne", ">": "gt", "<": "lt", ">=": "ge", "<=": "le"};
+	document.getElementById("filter_btn").addEventListener("click", filter);
+	function filter() {
+		var e = document.getElementById("parameter");
+		var strParam = e.options[e.selectedIndex].text;
+
+		e = document.getElementById("operator");
+		var strOp = e.options[e.selectedIndex].text;
+
+		var strVal = document.getElementById("value").value;
+
+		if (strParam.length == 0 || strOp.length == 0 || strVal.length == 0)
+		{
+			var uri = window.location.toString();
+			if (uri.indexOf("?") > 0) {
+				var clean_uri = uri.substring(0, uri.indexOf("?"));
+				window.location.href = clean_uri;
+			}
+		}
+		else
+		{
+			if (window.location.href.includes("?"))
+				window.location.href += '&' + strParam + '=' + operators_url[strOp] + strVal;
+			else
+				window.location.href = '?' + strParam + '=' + operators_url[strOp] + strVal;
+		}
+	}
+
+	document.getElementById("add_filter_btn").addEventListener("click", addCondition);
 	function addCondition() {
 		var itm = document.getElementById("filters").lastElementChild;
 		var addCondition = itm.removeChild(document.getElementById("button"));
@@ -118,10 +159,10 @@ $myfile = fopen($path, "w");
 		<tr>
 			<?php
 				$line = "";
-				foreach ($updated_parameters as $param) 
+				foreach ($developer as $key => $val)
 				{
-					echo "<th>" . str_replace('_', ' ', $param) . "</th>";
-					$line = $line . str_replace('_', ' ', $param) . ", ";
+					echo "<th>" . str_replace('_', ' ', $key) . "</th>";
+					$line = $line . str_replace('_', ' ', $key) . ", ";
 				}
 				$line = substr($line, 0, strlen($line) - 2) . "\n";
 				fwrite($myfile, $line);
@@ -133,30 +174,67 @@ $myfile = fopen($path, "w");
 		<?php
 		$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 		while ($developer = mysqli_fetch_assoc($resultSet)) {
-			$line = "";
-			foreach ($parameters as $param)
-			{
-				echo "<td>" . $developer[$param] . "</td>";
-				$line = $line . $developer[$param] . ", ";
-			}
-			$line = substr($line, 0, strlen($line) - 2);
-			fwrite($myfile, $line);
-
-			$line = "";
 			if ($developer['stats'] != '' && $developer['stats'] != '0') {
+				$arr =unserialize($developer ['stats']);
+				array_pop($developer);
 				foreach ($arr as $key => $val){
-					echo "<td>" . $val . "</td>";
-					$line .= ", " . $val;
+					$developer[$key] = $val;
 				}
 			}
-			$line .= "\n";
+			else
+				array_pop($developer);
+			$flag = true;
+			$line = "";
+			if (count($_GET) - isset($_GET['table']) > 0) // if there is parameter
+			{
+				foreach ($_GET as $key => $val)
+				{
+					if ($key !== 'table')
+					{
+						switch(substr($val, 0, 2))
+						{
+							case 'eq':
+								if ($developer[$key] !== substr($val, 2))
+									$flag = false;
+								break;
+							case 'ne':
+								if ($developer[$key] === substr($val, 2))
+									$flag = false;
+								break;
+							case 'lt':
+								if ($developer[$key] >= substr($val, 2))
+									$flag = false;
+								break;
+							case 'gt':
+								if ($developer[$key] <= substr($val, 2))
+									$flag = false;
+								break;
+							case 'le':
+								if ($developer[$key] > substr($val, 2))
+									$flag = false;
+								break;
+							case 'ge':
+								if ($developer[$key] < substr($val, 2))
+									$flag = false;
+								break;
+						}
+					}
+				}
+			}
+			if ($flag === false)
+				continue;
+			foreach ($developer as $key => $val)
+			{
+				echo "<td>" . $val . "</td>";
+				$line = $line . $val . ", ";
+			}
+			$line = substr($line, 0, strlen($line) - 2) . "\n";
 			fwrite($myfile, $line);
 
 			echo "</tbody>";
 		}
 		fclose($myfile);
 		?>
-		</tbody>
 	</table>
 
 	<script src="./main.js"></script>
