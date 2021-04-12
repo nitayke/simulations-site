@@ -50,7 +50,10 @@ include './get_data.php'
 
 <!-- Filters -->
 
-<label for="parameter">Filter:</label>
+<label for="parameter">Filters:</label>
+<br>
+<span id="filters">
+<span>
 <select id="parameter">
 <option></option>
 <?php
@@ -68,11 +71,19 @@ include './get_data.php'
 </select>
 
 <input id="value">
+
+<select id="logic_op" hidden>
+<option>And</option>
+<option>Or</option>
+</select>
+
+</span>
+</span>
 <input type="button" value="Go" id="filter_btn">
 <input type="button" id="add_filter_btn" value="Add Condition"/>
 <br><br>
 
-<script src="./filters.js"></script>
+<script src="./dev_filters.js"></script>
 
 
 <!-- Table -->
@@ -181,7 +192,7 @@ include './get_data.php'
 		?>
 	</table>
 
-	<script src="./main.js"></script>
+	<script src="./statistics.js"></script>
 
 </body>
 </html>
