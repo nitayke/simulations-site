@@ -1,4 +1,9 @@
 Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit, waypoint bit, wphandler bit, mpc bit, coverage percentage, min alt, avg alt, max alt, time coverage threshold, avg vel lin, avg vel ang, scenario time, ending reason
+1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.046377, 1.198383, 1.228479, 0, 0.26092, 0.229877, 213, Finished_Exploration_moved_to__HOLDING_POSITION
+2, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.076478, 1.198549, 1.233695, 0, 0.240318, 0.236958, 209, Finished_Exploration_moved_to__HOLDING_POSITION
+3, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.089447, 1.197322, 1.227733, 0, 0.25399, 0.234397, 249, Finished_Exploration_moved_to__HOLDING_POSITION
+4, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.062449, 1.19784, 1.23125, 0, 0.255421, 0.222476, 268, Finished_Exploration_moved_to__HOLDING_POSITION
+5, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.064965, 1.198308, 1.227949, 0, 0.263215, 0.209919, 300, Finished_Exploration_moved_to__HOLDING_POSITION
 6, 2, 0, 2, 0, 0, 0, 0, 1, 1, 225, 1.060535, 1.196798, 1.227419, 0, 0.221211, 0.269255, 102, System_Failure
 7, 2, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.070625, 1.197593, 1.22721, 0, 0.262519, 0.229371, 272, Finished_Exploration_moved_to__HOLDING_POSITION
 8, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.060835, 1.19791, 1.227901, 0, 0.25608, 0.226256, 273, Finished_Exploration_moved_to__HOLDING_POSITION
@@ -11,6 +16,15 @@ Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit,
 15, 2, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.059608, 1.198758, 1.224786, 0, 0.261475, 0.215887, 228, Finished_Exploration_moved_to__HOLDING_POSITION
 16, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.057497, 1.198674, 1.229079, 0, 0.261287, 0.200228, 298, Finished_Exploration_moved_to__HOLDING_POSITION
 17, 2, 0, 2, 0, 0, 0, 0, 1, 1, 225, 1.057056, 1.188521, 1.221157, 0, 0.143697, 0.228853, 42, System_Failure
+18, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.068501, 1.197719, 1.232735, 0, 0.267401, 0.181694, 319, Finished_Exploration_moved_to__HOLDING_POSITION
+19, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.082677, 1.19872, 1.241739, 0, 0.251594, 0.236348, 304, Finished_Exploration_moved_to__HOLDING_POSITION
+20, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.07374, 1.197622, 1.234972, 0, 0.272828, 0.198048, 268, Finished_Exploration_moved_to__HOLDING_POSITION
+21, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.045834, 1.197433, 1.229697, 0, 0.243929, 0.254541, 253, Finished_Exploration_moved_to__HOLDING_POSITION
+22, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.077138, 1.198112, 1.230663, 0, 0.242286, 0.222583, 246, Finished_Exploration_moved_to__HOLDING_POSITION
+23, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.048273, 1.197321, 1.226238, 0, 0.265113, 0.219075, 246, Finished_Exploration_moved_to__HOLDING_POSITION
+24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 222, 1.064902, 1.162842, 1.194257, 0, 0.02996, 0.011281, 7, Finished_Exploration_moved_to__HOLDING_POSITION
+25, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.061963, 1.198385, 1.227589, 0, 0.229844, 0.191971, 294, Finished_Exploration_moved_to__HOLDING_POSITION
+26, 2, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.063174, 1.198231, 1.228026, 0, 0.257759, 0.225276, 234, Finished_Exploration_moved_to__HOLDING_POSITION
 37, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.089832, 1.198405, 1.230813, 0, 0.26341, 0.219396, 292, Finished_Exploration_moved_to__HOLDING_POSITION
 38, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.069688, 1.197808, 1.227402, 0, 0.236866, 0.225795, 262, Finished_Exploration_moved_to__HOLDING_POSITION
 39, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.077284, 1.19811, 1.227702, 0, 0.198795, 0.18401, 359, System_Timeout
@@ -25,3 +39,12 @@ Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit,
 48, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.050062, 1.197899, 1.227196, 0, 0.24592, 0.216297, 276, Finished_Exploration_moved_to__HOLDING_POSITION
 49, 2, 0, 0, 0, 0, 0, 0, 0, 1, 224, 1.076267, 1.171721, 1.207719, 0, 0.134172, 0.247049, 9, Finished_Exploration_moved_to__HOLDING_POSITION
 50, 1, 0, 2, 0, 0, 0, 0, 1, 1, 222, 0.137663, 1.187196, 1.229118, 0, 0.260626, 0.202029, 359, System_Timeout
+51, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.067395, 1.197405, 1.233025, 0, 0.256888, 0.186311, 292, Finished_Exploration_moved_to__HOLDING_POSITION
+52, 2, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.084704, 1.197905, 1.230227, 0, 0.251172, 0.199699, 291, Finished_Exploration_moved_to__HOLDING_POSITION
+53, 2, 0, 2, 0, 0, 0, 0, 1, 1, 223, 1.071088, 1.195935, 1.215933, 0, 0.214764, 0.269087, 60, System_Failure
+54, 2, 0, 2, 0, 0, 0, 0, 1, 1, 222, 0.103499, 1.175059, 1.221607, 0, 0.202308, 0.284109, 359, System_Timeout
+55, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.072325, 1.197073, 1.218183, 0, 0.205392, 0.248557, 72, Finished_Exploration_moved_to__HOLDING_POSITION
+56, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.067385, 1.197595, 1.228942, 0, 0.264747, 0.217182, 267, Finished_Exploration_moved_to__HOLDING_POSITION
+57, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.064317, 1.198163, 1.228456, 0, 0.288344, 0.203434, 285, Finished_Exploration_moved_to__HOLDING_POSITION
+58, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.064998, 1.198164, 1.225685, 0, 0.258837, 0.237137, 233, Finished_Exploration_moved_to__HOLDING_POSITION
+59, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.064666, 1.197703, 1.231912, 0, 0.270773, 0.221658, 238, Finished_Exploration_moved_to__HOLDING_POSITION

@@ -82,7 +82,7 @@ include './get_data.php';
 <input type="button" id="add_filter_btn" value="Add Condition"/>
 <br><br>
 
-<script src="./filters.js"></script>
+<script src="./filters_dev.js"></script>
 
 
 <!-- Table -->
@@ -126,6 +126,26 @@ include './get_data.php';
 
 		<tbody>
 		<?php
+
+		function unserialize_filters($filters)
+		{
+			$result = [];
+			$tmp = "";
+			foreach(str_split($filters) as $char)
+			{
+				if ($char === '=' || $char === '*' || $char === '+')
+				{
+					array_push($result, $tmp);
+					$tmp = "";
+					array_push($result, $char);
+				}
+				else
+					$tmp .= $char;
+			}
+			array_push($result, $tmp);
+			return $result;
+		}
+
 		$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 		while ($developer = mysqli_fetch_assoc($resultSet)) {
 			if ($developer['stats'] != '' && $developer['stats'] != '0') {
@@ -139,9 +159,10 @@ include './get_data.php';
 				array_pop($developer);
 			$flag = true;
 			$line = "";
-			if (count($_GET) - isset($_GET['table']) > 0) // if there is parameter
+			if (isset($_GET['filters']))
 			{
-				// print_r($_GET);
+				$filters = unserialize_filters($_GET['filters']);
+				print_r($filters);
 				foreach ($_GET as $key => $val)
 				{
 					if ($key !== 'table')

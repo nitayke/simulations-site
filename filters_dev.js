@@ -1,0 +1,67 @@
+var operators_url = {'==': "eq", "!=": "ne", ">": "gt", "<": "lt", ">=": "ge", "<=": "le"};
+
+const PARAM = 0, OPERATOR = 1, VALUE = 2;
+const parameters = ['Id',
+'ffk_bit',
+'fa_bit',
+'localization_bit',
+'maphandler_bit',
+'mcu_bit',
+'pathplanner_bit',
+'waypoint_bit',
+'wphandler_bit',
+'mpc_bit',
+'coverage_percentage',
+'min_alt',
+'avg_alt',
+'max_alt',
+'time_coverage_threshold',
+'avg_vel_lin',
+'avg_vel_ang',
+'scenario_time',
+'ending_reason'];
+
+document.getElementById("filter_btn").addEventListener("click", filter);
+function filter() {
+    var children = document.getElementById("filters").children;
+
+    var params_str = "";
+
+    var uri = window.location.toString();
+    var url = new URL(uri);
+    var params = new URLSearchParams(url.search);
+
+    for (var i = 0; i < children.length; i += 3) {
+        console.log(2, params.toString());
+        var fields = children[i].children;
+
+        var e = fields.item(PARAM);
+        var strParam = e.options[e.selectedIndex].text;
+
+        e = fields.item(OPERATOR);
+        var strOp = e.options[e.selectedIndex].text;
+
+        var strVal = fields.item(VALUE).value;
+
+        params_str += strParam + '=' + operators_url[strOp] + strVal;
+
+        var node = document.getElementById("logic_op");
+        if (node.options[node.selectedIndex].text == 'And')
+            params_str += '*';
+        else
+            params_str += '+';
+    }
+    params_str = params_str.substr(0, params_str.length - 1);
+    params.set('filter', params_str);
+    window.location.href = url.origin + url.pathname + '?' + params.toString();
+}
+
+document.getElementById("add_filter_btn").addEventListener("click", addCondition);
+function addCondition() {
+    var itm = document.getElementById("filters").lastElementChild;
+    var cln = itm.cloneNode(true);
+    document.getElementById("filters").appendChild(document.createElement("br"));
+    document.getElementById("filters").appendChild(document.createElement("br"));
+    itm.lastElementChild.hidden = false;
+    document.getElementById("filters").appendChild(cln);
+}
