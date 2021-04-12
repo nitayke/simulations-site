@@ -1,1 +1,2 @@
 Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit, waypoint bit, wphandler bit, mpc bit, coverage percentage, min alt, avg alt, max alt, time coverage threshold, avg vel lin, avg vel ang, scenario time, ending reason
+1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.046377, 1.198383, 1.228479, 0, 0.26092, 0.229877, 213, Finished_Exploration_moved_to__HOLDING_POSITION
