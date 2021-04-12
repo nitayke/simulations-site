@@ -11,7 +11,7 @@
 <?php 
 
 include './variables.php';
-include './get_data.php'
+include './get_data.php';
 
 ?>
 
@@ -82,7 +82,7 @@ include './get_data.php'
 <input type="button" id="add_filter_btn" value="Add Condition"/>
 <br><br>
 
-<script src="./dev_filters.js"></script>
+<script src="./filters.js"></script>
 
 
 <!-- Table -->
