@@ -30,15 +30,17 @@ $path = "./table.csv";
 $myfile = fopen($path, "w");
 
 $developer = mysqli_fetch_assoc($resultSet);
-if ($developer['stats'] != '' && $developer['stats'] != '0') {
-    $arr=unserialize($developer ['stats']);
-	array_pop($developer);
-	foreach ($arr as $key => $val){
-		$developer[$key] = $val;
+if (!is_null($developer)) {
+	if ($developer['stats'] != '' && $developer['stats'] != '0') {
+		$arr=unserialize($developer ['stats']);
+		array_pop($developer);
+		foreach ($arr as $key => $val){
+			$developer[$key] = $val;
+		}
 	}
+	else
+		array_pop($developer);
 }
-else
-	array_pop($developer);
 
 
 ?>
@@ -99,47 +101,7 @@ else
 <input type="button" id="add_filter_btn" value="Add Condition"/>
 <br><br>
 
-<script>
-
-	var operators_url = {'==': "eq", "!=": "ne", ">": "gt", "<": "lt", ">=": "ge", "<=": "le"};
-	document.getElementById("filter_btn").addEventListener("click", filter);
-	function filter() {
-		var e = document.getElementById("parameter");
-		var strParam = e.options[e.selectedIndex].text;
-
-		e = document.getElementById("operator");
-		var strOp = e.options[e.selectedIndex].text;
-
-		var strVal = document.getElementById("value").value;
-
-		if (strParam.length == 0 || strOp.length == 0 || strVal.length == 0)
-		{
-			var uri = window.location.toString();
-			if (uri.indexOf("?") > 0) {
-				var clean_uri = uri.substring(0, uri.indexOf("?"));
-				window.location.href = clean_uri;
-			}
-		}
-		else
-		{
-			if (window.location.href.includes("?"))
-				window.location.href += '&' + strParam + '=' + operators_url[strOp] + strVal;
-			else
-				window.location.href = '?' + strParam + '=' + operators_url[strOp] + strVal;
-		}
-	}
-
-	document.getElementById("add_filter_btn").addEventListener("click", addCondition);
-	function addCondition() {
-		var itm = document.getElementById("filters").lastElementChild;
-		var addCondition = itm.removeChild(document.getElementById("button"));
-		var go = itm.lastElementChild.removeChild(document.getElementById("submit"));
-		var cln = itm.cloneNode(true);
-		cln.lastElementChild.appendChild(go);
-		cln.appendChild(addCondition);
-		document.getElementById("filters").appendChild(cln);
-	}
-</script>
+<script src="./filters.js"></script>
 
 
 <!-- Table -->
@@ -159,10 +121,21 @@ else
 		<tr>
 			<?php
 				$line = "";
-				foreach ($developer as $key => $val)
+				if (is_null($developer))
 				{
-					echo "<th>" . str_replace('_', ' ', $key) . "</th>";
-					$line = $line . str_replace('_', ' ', $key) . ", ";
+					foreach ($parameters as $param)
+					{
+						echo "<th>" . str_replace('_', ' ', $param) . "</th>";
+						$line = $line . str_replace('_', ' ', $param) . ", ";
+					}
+				}
+				else
+				{
+					foreach ($developer as $key => $val)
+					{
+						echo "<th>" . str_replace('_', ' ', $key) . "</th>";
+						$line = $line . str_replace('_', ' ', $key) . ", ";
+					}
 				}
 				$line = substr($line, 0, strlen($line) - 2) . "\n";
 				fwrite($myfile, $line);
