@@ -10,7 +10,6 @@
 </head>
 <?php 
 
-include './dbex/db_connect.php';
 include './variables.php';
 include './get_data.php'
 

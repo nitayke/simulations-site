@@ -14,6 +14,8 @@ Id, ffk bit, fa bit, localization bit, maphandler bit, mcu bit, pathplanner bit,
 13, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.068751, 1.197249, 1.227031, 0, 0.251363, 0.229209, 248, Finished_Exploration_moved_to__HOLDING_POSITION
 14, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.067341, 1.197454, 1.228267, 0, 0.268524, 0.227148, 247, Finished_Exploration_moved_to__HOLDING_POSITION
 15, 2, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.059608, 1.198758, 1.224786, 0, 0.261475, 0.215887, 228, Finished_Exploration_moved_to__HOLDING_POSITION
+16, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.057497, 1.198674, 1.229079, 0, 0.261287, 0.200228, 298, Finished_Exploration_moved_to__HOLDING_POSITION
+17, 2, 0, 2, 0, 0, 0, 0, 1, 1, 225, 1.057056, 1.188521, 1.221157, 0, 0.143697, 0.228853, 42, System_Failure
 37, 1, 0, 0, 0, 0, 0, 0, 1, 1, 225, 1.089832, 1.198405, 1.230813, 0, 0.26341, 0.219396, 292, Finished_Exploration_moved_to__HOLDING_POSITION
 38, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.069688, 1.197808, 1.227402, 0, 0.236866, 0.225795, 262, Finished_Exploration_moved_to__HOLDING_POSITION
 39, 1, 0, 0, 0, 0, 0, 0, 1, 1, 224, 1.077284, 1.19811, 1.227702, 0, 0.198795, 0.18401, 359, System_Timeout

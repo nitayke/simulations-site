@@ -1,4 +1,6 @@
 <?php
+include './dbex/db_connect.php';
+
 $conn = OpenCon();
 
 $slide = array_key_exists("table", $_GET) ? trim($_GET["table"]) : '';
