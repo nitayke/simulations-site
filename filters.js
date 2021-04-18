@@ -1,25 +1,22 @@
-var operators_url = {'==': "eq", "!=": "ne", ">": "gt", "<": "lt", ">=": "ge", "<=": "le"};
+const PARAM = 0, OPERATOR = 1, VALUE = 2, REASON = 3;
+var is_reason = false;
 
-const PARAM = 0, OPERATOR = 1, VALUE = 2;
-const parameters = ['Id',
-'ffk_bit',
-'fa_bit',
-'localization_bit',
-'maphandler_bit',
-'mcu_bit',
-'pathplanner_bit',
-'waypoint_bit',
-'wphandler_bit',
-'mpc_bit',
-'coverage_percentage',
-'min_alt',
-'avg_alt',
-'max_alt',
-'time_coverage_threshold',
-'avg_vel_lin',
-'avg_vel_ang',
-'scenario_time',
-'ending_reason'];
+function paramChange(selected)
+{
+    var strParam = selected.options[selected.selectedIndex].text;
+    if (strParam === "ending_reason")
+    {
+        selected.parentElement.querySelector("#value").hidden = true;
+        selected.parentElement.querySelector("#ending_reason").hidden = false;
+        is_reason = true;
+    }
+    else
+    {
+        selected.parentElement.querySelector("#value").hidden = false;
+        selected.parentElement.querySelector("#ending_reason").hidden = true;
+        is_reason = false;
+    }
+}
 
 document.getElementById("filter_btn").addEventListener("click", filter);
 function filter() {
@@ -40,8 +37,15 @@ function filter() {
 
         e = fields.item(OPERATOR);
         var strOp = e.options[e.selectedIndex].text;
+        var strVal;
 
-        var strVal = fields.item(VALUE).value;
+        if (is_reason)
+        {
+            e = fields.item(REASON);
+            strVal = '"' + e.options[e.selectedIndex].text + '"';
+        }
+        else
+            strVal = fields.item(VALUE).value;
 
         params_str += strParam + strOp + strVal;
 

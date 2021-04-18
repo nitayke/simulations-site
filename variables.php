@@ -21,6 +21,15 @@ $parameters = ['Id',
 
 $operators = ['==', '!=', '>', '<', '>=', '<='];
 
-$operators_sql = ["==" => "=", "!=" => "<>"];
+$ending_reasons = ["System_Failure",
+"User_Request",
+"System_Timeout",
+"System_Didnt_move_to_Exploration",
+"System_Didnt_move_to_TakeOff",
+"System_Didnt_move_to_INDOOR",
+"System_Didnt_move_to_ARM",
+"System_Didnt_move_to_WIFI",
+"Finished_Exploration_moved_to__HOLDING_POSITION",
+"Didnt_catch_reason"];
 
 ?>

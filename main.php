@@ -53,7 +53,7 @@ include './get_data.php';
 <br>
 <span id="filters">
 <span>
-<select id="parameter">
+<select id="parameter" onchange="paramChange(this)">
 <option></option>
 <?php
 	foreach ($developer as $key => $val)
@@ -70,6 +70,14 @@ include './get_data.php';
 </select>
 
 <input id="value">
+
+<select id="ending_reason" hidden>
+<option></option>
+<?php
+	foreach ($ending_reasons as $value)
+		echo "<option>" . $value . "</option>";
+?>
+</select>
 
 <select id="logic_op" hidden>
 <option>And</option>
