@@ -5,7 +5,7 @@ include 'db_connect.php';
 $conn = OpenCon();
 
 // sql to create table
-$sql = "CREATE TABLE " . $_POST['table_name'] . " (
+$sql = "CREATE TABLE `" . $_POST['table_name'] . "` (
     Id int(6) AUTO_INCREMENT PRIMARY KEY,
     ffk_bit int(6),
     fa_bit int(6),

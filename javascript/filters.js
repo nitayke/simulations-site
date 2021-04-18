@@ -18,6 +18,15 @@ function paramChange(selected)
     }
 }
 
+var input = document.getElementById("value");
+input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13)
+    {
+        event.preventDefault();
+        document.getElementById("filter_btn").click();
+    }
+})
+
 document.getElementById("filter_btn").addEventListener("click", filter);
 function filter() {
     var children = document.getElementById("filters").children;
