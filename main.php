@@ -102,23 +102,15 @@ include './get_data.php';
 		<tr>
 			<?php
 				$line = "";
-				if (is_null($developer))
+				if (!is_null($developer)) // empty table
+					$parameters = $developer;
+				foreach ($parameters as $param => $val)
 				{
-					foreach ($parameters as $param)
-					{
-						echo "<th>" . str_replace('_', ' ', $param) . "</th>";
-						$line = $line . str_replace('_', ' ', $param) . ", ";
-					}
-				}
-				else
-				{
-					foreach ($developer as $key => $val)
-					{
-						echo "<th>" . str_replace('_', ' ', $key) . "</th>";
-						$line = $line . str_replace('_', ' ', $key) . ", ";
-					}
+					echo "<th>" . str_replace('_', ' ', $param) . "</th>";
+					$line = $line . str_replace('_', ' ', $param) . ", ";
 				}
 				$line = substr($line, 0, strlen($line) - 2) . "\n";
+				
 				fwrite($myfile, $line);
 			?>
 		</tr>
@@ -126,6 +118,18 @@ include './get_data.php';
 
 		<tbody>
 		<?php
+		if (isset($_GET['filter']))
+		{
+			$filters = $_GET['filter'];
+			foreach ($parameters as $key => $val)
+			{
+				$filters = str_replace($key, '$developer[\'' . $key . "']", $filters);
+			}
+			$filters = str_replace('*', '&&', $filters);
+			$filters = str_replace('+', '||', $filters);
+		}
+
+
 		$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 		while ($developer = mysqli_fetch_assoc($resultSet)) {
 			if ($developer['stats'] != '' && $developer['stats'] != '0') {
@@ -137,46 +141,8 @@ include './get_data.php';
 			}
 			else
 				array_pop($developer);
-			$flag = true;
 			$line = "";
-			if (count($_GET) - isset($_GET['table']) > 0) // if there is parameter
-			{
-				// print_r($_GET);
-				foreach ($_GET as $key => $val)
-				{
-					if ($key !== 'table')
-					{
-						switch(substr($val, 0, 2))
-						{
-							case 'eq':
-								if ($developer[$key] !== substr($val, 2))
-									$flag = false;
-								break;
-							case 'ne':
-								if ($developer[$key] === substr($val, 2))
-									$flag = false;
-								break;
-							case 'lt':
-								if ($developer[$key] >= substr($val, 2))
-									$flag = false;
-								break;
-							case 'gt':
-								if ($developer[$key] <= substr($val, 2))
-									$flag = false;
-								break;
-							case 'le':
-								if ($developer[$key] > substr($val, 2))
-									$flag = false;
-								break;
-							case 'ge':
-								if ($developer[$key] < substr($val, 2))
-									$flag = false;
-								break;
-						}
-					}
-				}
-			}
-			if ($flag === false)
+			if (isset($_GET['filter']) && !eval("return " . $filters . ";"))
 				continue;
 			foreach ($developer as $key => $val)
 			{

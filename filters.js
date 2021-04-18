@@ -25,15 +25,11 @@ document.getElementById("filter_btn").addEventListener("click", filter);
 function filter() {
     var children = document.getElementById("filters").children;
 
+    var params_str = "";
+
     var uri = window.location.toString();
     var url = new URL(uri);
     var params = new URLSearchParams(url.search);
-    console.log(params)
-    for (var [key, value] of params) {
-        console.log(1, key, value);
-        if (key !== "table")
-            params.delete(key);
-    }
 
     for (var i = 0; i < children.length; i += 3) {
         console.log(2, params.toString());
@@ -47,9 +43,16 @@ function filter() {
 
         var strVal = fields.item(VALUE).value;
 
-        params.append(strParam, operators_url[strOp] + strVal);
+        params_str += strParam + strOp + strVal;
+
+        var node = document.getElementById("logic_op");
+        if (node.options[node.selectedIndex].text == 'And')
+            params_str += '*';
+        else
+            params_str += '+';
     }
-    console.log(2.4, url.origin + url.pathname + '?' + params.toString());
+    params_str = params_str.substr(0, params_str.length - 1);
+    params.set('filter', params_str);
     window.location.href = url.origin + url.pathname + '?' + params.toString();
 }
 
