@@ -25,22 +25,20 @@ include './get_data.php';
 	<img src="drone.png" width="100"></a>
 
 	<h1>Simulations scenarios</h1>
-	
+	<script src="./javascript/table.js"></script>
 	<label>Tables:</label>
-
-	<div class="pagination">
+	<select class="filter" onchange="selectChange(this)">
 		<?php
 		
 		$result = mysqli_query($conn, "show tables");
 
 		while($table = mysqli_fetch_array($result)) {
 			if ($table[0] == $slide)
-				echo("<a href=\"?table=" . $table[0] . "\" class=\"active\">" . $table[0] . "</a>");
+				echo "<option selected>" . $table[0] . "</option>";
 			else
-				echo("<a href=\"?table=" . $table[0] . "\">" . $table[0] . "</a>");
+				echo "<option>" . $table[0] . "</option>";
 		}?>
-	</div>
-	
+	</select>
 	<a href="/pichart.php" class="button">Pi Chart</a>
 
 	<a href="/table.csv" class="button">Get .csv file</a>
@@ -53,7 +51,7 @@ include './get_data.php';
 <br>
 <span id="filters">
 <span>
-<select id="parameter" onchange="paramChange(this)">
+<select id="parameter" onchange="paramChange(this)" class="filter">
 <option></option>
 <?php
 	foreach ($developer as $key => $val)
@@ -61,7 +59,7 @@ include './get_data.php';
 ?>
 </select>
 
-<select id="operator">
+<select id="operator" class="filter">
 <option></option>
 <?php
 	foreach ($operators as $operator)
@@ -69,9 +67,9 @@ include './get_data.php';
 ?>
 </select>
 
-<input id="value">
+<input id="value" class="filter">
 
-<select id="ending_reason" hidden>
+<select id="ending_reason" hidden class="filter">
 <option></option>
 <?php
 	foreach ($ending_reasons as $value)
@@ -79,18 +77,18 @@ include './get_data.php';
 ?>
 </select>
 
-<select id="logic_op" hidden>
+<select id="logic_op" hidden class="filter">
 <option>And</option>
 <option>Or</option>
 </select>
 
 </span>
 </span>
-<input type="button" value="Go" id="filter_btn">
-<input type="button" id="add_filter_btn" value="Add Condition"/>
+<input type="button" value="Go" id="filter_btn" class="button">
+<input type="button" id="add_filter_btn" value="Add Condition" class="button">
 <br><br>
 
-<script src="./filters.js"></script>
+<script src="./javascript/filters.js"></script>
 
 
 <!-- Table -->
@@ -166,7 +164,7 @@ include './get_data.php';
 		?>
 	</table>
 
-	<script src="./statistics.js"></script>
+	<script src="./javascript/statistics.js"></script>
 
 </body>
 </html>

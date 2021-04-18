@@ -1,6 +1,6 @@
 h1 {
-    font-family: 'Della Respira', cursive;
-    text-align: center;
+  font-family: 'Della Respira', cursive;
+  text-align: center;
 	font-size: 50px;
   margin: 0px 50px 0px 50px;
 }
@@ -47,28 +47,35 @@ body {
   float: left;
   padding: 8px 16px;
   text-decoration: none;
-  transition: background-color .3s;
   border: 1px solid black;
 }
-
 .pagination a.active {
   background-color: #327a81;
   color: white;
   border: 1px solid black;
 }
-
-a.button {
-  appearance: button;
+.button {
   background: #327a81;
   text-decoration: none;
   margin: 0px 5px 0px 5px;
   color: white;
   border: 1px solid black;
+  font-size: 18px;
   padding: 10px;
+  cursor: pointer;
   transition-duration: 0.4s;
 }
-
-a.button:hover {
+.button:hover {
   background: white;
   color: black;
+}
+
+.filter {
+  font-size: 20px;
+  padding: 2px 10px;
+  margin: 3px;
+}
+
+option:hover {
+  background-color: #327a81;
 }

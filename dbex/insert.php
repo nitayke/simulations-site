@@ -16,13 +16,14 @@ foreach ($_POST as $k => $v) {
     else
         $stats[$k] = $v;
 }
+$table_name = array_shift($_POST);
 
 if (empty($stats)) {
     echo "No stats key value was received\n";
-    $sql = "INSERT INTO lab1 (" . implode(', ', array_keys($_POST)) . ", stats) VALUES (\"" . implode('", "', array_values($_POST)) . "\", '')";
+    $sql = "INSERT INTO " . $table_name . " (" . implode(', ', array_keys($_POST)) . ", stats) VALUES (\"" . implode('", "', array_values($_POST)) . "\", '')";
 }
 else {
-    $sql = "INSERT INTO lab1 (" . implode(', ', array_keys($regular_fields)) . ", stats) VALUES (\"" . implode('", "', array_values($regular_fields)) . 
+    $sql = "INSERT INTO " . $table_name . " (" . implode(', ', array_keys($regular_fields)) . ", stats) VALUES (\"" . implode('", "', array_values($regular_fields)) . 
     "\", \"" . addslashes(serialize($stats)) . "\")";
     echo $sql . "\n";
 }

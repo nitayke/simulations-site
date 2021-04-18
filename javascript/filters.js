@@ -47,6 +47,9 @@ function filter() {
         else
             strVal = fields.item(VALUE).value;
 
+        if (strParam === '' || strOp === '' || strVal === '')
+            return;
+
         params_str += strParam + strOp + strVal;
 
         var node = document.getElementById("logic_op");
