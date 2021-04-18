@@ -24,7 +24,7 @@ $sql = "CREATE TABLE `" . $_POST['table_name'] . "` (
     avg_vel_lin float(6),
     avg_vel_ang float(6),
     scenario_time int(6),
-    ending_reason varchar(30),
+    ending_reason varchar(100),
     stats longblob )";
 
 if (mysqli_query($conn, $sql)) {

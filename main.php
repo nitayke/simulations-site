@@ -110,6 +110,9 @@ include './get_data.php';
 				$line = "";
 				if (!is_null($developer)) // empty table
 					$parameters = $developer;
+				else
+					$parameters = array_flip($parameters);
+				
 				foreach ($parameters as $param => $val)
 				{
 					echo "<th>" . str_replace('_', ' ', $param) . "</th>";
