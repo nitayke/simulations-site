@@ -43,7 +43,7 @@ function filter() {
 
         var strVal = fields.item(VALUE).value;
 
-        params_str += strParam + '=' + operators_url[strOp] + strVal;
+        params_str += strParam + strOp + strVal;
 
         var node = document.getElementById("logic_op");
         if (node.options[node.selectedIndex].text == 'And')

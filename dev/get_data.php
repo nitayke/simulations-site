@@ -13,7 +13,7 @@ $sqlQuery = "SELECT * FROM " . $slide;
 $resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 
 
-$path = "./table.csv";
+$path = "../table.csv"; // CHANGE IT TO ./table.csv
 
 $myfile = fopen($path, "w");
 
