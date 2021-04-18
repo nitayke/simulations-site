@@ -76,6 +76,6 @@ body {
   margin: 3px;
 }
 
-option:hover {
-  background-color: #327a81;
+#table_choose {
+  margin: 0px 80px 0px 10px;
 }

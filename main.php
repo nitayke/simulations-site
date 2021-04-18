@@ -27,7 +27,7 @@ include './get_data.php';
 	<h1>Simulations scenarios</h1>
 	<script src="./javascript/table.js"></script>
 	<label>Tables:</label>
-	<select class="filter" onchange="selectChange(this)">
+	<select class="filter" onchange="selectChange(this)" id="table_choose">
 		<?php
 		
 		$result = mysqli_query($conn, "show tables");
