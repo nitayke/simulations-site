@@ -68,18 +68,20 @@ chart.render();
 <a href="/">
 	<img src="drone.png" width="100"></a>
 
-<div class="pagination">
+<script src="./javascript/table.js"></script>
+<label>Tables:</label>
+<select class="filter" onchange="selectChange(this)" id="table_choose">
     <?php
     
     $result = mysqli_query($conn, "show tables");
 
     while($table = mysqli_fetch_array($result)) {
         if ($table[0] == $slide)
-            echo("<a href=\"?table=" . $table[0] . "\" class=\"active\">" . $table[0] . "</a>");
+            echo "<option selected>" . $table[0] . "</option>";
         else
-            echo("<a href=\"?table=" . $table[0] . "\">" . $table[0] . "</a>");
+            echo "<option>" . $table[0] . "</option>";
     }?>
-</div>
+</select>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
