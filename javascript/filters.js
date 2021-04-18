@@ -8,24 +8,13 @@ function paramChange(selected)
     {
         selected.parentElement.querySelector("#value").hidden = true;
         selected.parentElement.querySelector("#ending_reason").hidden = false;
-        is_reason = true;
     }
     else
     {
         selected.parentElement.querySelector("#value").hidden = false;
         selected.parentElement.querySelector("#ending_reason").hidden = true;
-        is_reason = false;
     }
 }
-
-var input = document.getElementById("value");
-input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13)
-    {
-        event.preventDefault();
-        document.getElementById("filter_btn").click();
-    }
-})
 
 document.getElementById("filter_btn").addEventListener("click", filter);
 function filter() {
@@ -38,7 +27,6 @@ function filter() {
     var params = new URLSearchParams(url.search);
 
     for (var i = 0; i < children.length; i += 3) {
-        console.log(2, params.toString());
         var fields = children[i].children;
 
         var e = fields.item(PARAM);
@@ -48,7 +36,9 @@ function filter() {
         var strOp = e.options[e.selectedIndex].text;
         var strVal;
 
-        if (is_reason)
+        e = fields.item(REASON);
+        
+        if (e.options[e.selectedIndex].text !== '')
         {
             e = fields.item(REASON);
             strVal = '"' + e.options[e.selectedIndex].text + '"';
@@ -80,4 +70,17 @@ function addCondition() {
     document.getElementById("filters").appendChild(document.createElement("br"));
     itm.lastElementChild.hidden = false;
     document.getElementById("filters").appendChild(cln);
+
+    var inputs = document.querySelectorAll("#value");
+    console.log(inputs)
+    for (var i = 0; i < inputs.length; i++)
+    {   
+        inputs[i].addEventListener("keyup", function(event) {
+            if (event.keyCode === 13)
+            {
+                event.preventDefault();
+                document.getElementById("filter_btn").click();
+            }
+        })
+    }
 }
