@@ -58,3 +58,21 @@ for (var i = 1; i < row_len; i++)
         node.innerHTML = (sum[i] / (table.rows.length - 4)).toFixed(2);
     document.getElementById("avg").appendChild(node);
 }
+
+function removeColumn(index) {
+    for (var i = 0, row; row = table.rows[i]; i++)
+    {
+        row.deleteCell(index);
+    }
+}
+
+for (var j = 1, cell; cell = table.rows[3].cells[j]; j++)
+{
+    var button = document.createElement("button");
+    button.innerHTML = "remove";
+    button.addEventListener("click", function (e) {
+        removeColumn(e.toElement.parentElement.cellIndex);
+    })
+    cell.appendChild(document.createElement("br"))
+    cell.appendChild(button)
+}
