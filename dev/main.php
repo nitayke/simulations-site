@@ -82,7 +82,7 @@ include './get_data.php';
 <input type="button" id="add_filter_btn" value="Add Condition"/>
 <br><br>
 
-<script src="./filters_dev.js"></script>
+<script src="./filters.js"></script>
 
 
 <!-- Table -->
@@ -119,6 +119,7 @@ include './get_data.php';
 					}
 				}
 				$line = substr($line, 0, strlen($line) - 2) . "\n";
+				echo $myfile;
 				fwrite($myfile, $line);
 			?>
 		</tr>
@@ -163,6 +164,8 @@ include './get_data.php';
 			{
 				$filters = unserialize_filters($_GET['filters']);
 				print_r($filters);
+
+				
 				foreach ($_GET as $key => $val)
 				{
 					if ($key !== 'table')
