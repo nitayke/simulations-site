@@ -86,6 +86,7 @@ include './get_data.php';
 </span>
 <input type="button" value="Go" id="filter_btn" class="button">
 <input type="button" id="add_filter_btn" value="Add Condition" class="button">
+<input type="button" id="reset_btn" value="Reset" class="button">
 <br><br>
 
 <script src="./javascript/filters.js"></script>
@@ -96,6 +97,9 @@ include './get_data.php';
 <body>
 	<table id="table">
 	<thead>
+		<tr id="count">
+		<th>Count</th>
+		</tr>
 		<tr id="min">
 		<th>Min</th>
 		</tr>
@@ -132,12 +136,11 @@ include './get_data.php';
 			$filters = $_GET['filter'];
 			foreach ($parameters as $key => $val)
 			{
-				$filters = str_replace($key, '$developer[\'' . $key . "']", $filters);
+				$filters = str_replace($key, '@$developer[\'' . $key . "']", $filters);
 			}
 			$filters = str_replace('*', '&&', $filters);
 			$filters = str_replace('+', '||', $filters);
 		}
-
 
 		$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 		while ($developer = mysqli_fetch_assoc($resultSet)) {
@@ -152,7 +155,9 @@ include './get_data.php';
 				array_pop($developer);
 			$line = "";
 			if (isset($_GET['filter']) && !eval("return " . $filters . ";"))
+			{
 				continue;
+			}
 			foreach ($developer as $key => $val)
 			{
 				echo "<td>" . $val . "</td>";

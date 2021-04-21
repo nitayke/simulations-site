@@ -84,3 +84,12 @@ function addCondition() {
         })
     }
 }
+
+document.getElementById("reset_btn").addEventListener("click", reset);
+function reset() {
+    var uri = window.location.toString();
+    var url = new URL(uri);
+    var params = new URLSearchParams(url.search);
+    params.delete("filter");
+    window.location.href = url.origin + url.pathname + '?' + params.toString();
+}
