@@ -13,6 +13,11 @@
 include './variables.php';
 include './get_data.php';
 
+
+$path = "./table.csv";
+
+$myfile = fopen($path, "w");
+
 ?>
 
 <body>
@@ -120,9 +125,9 @@ include './get_data.php';
 				foreach ($parameters as $param => $val)
 				{
 					echo "<th>" . str_replace('_', ' ', $param) . "</th>";
-					$line = $line . str_replace('_', ' ', $param) . ", ";
+					$line = $line . str_replace('_', ' ', $param) . ",";
 				}
-				$line = substr($line, 0, strlen($line) - 2) . "\n";
+				$line = substr($line, 0, strlen($line) - 1) . "\n";
 				
 				fwrite($myfile, $line);
 			?>
@@ -161,9 +166,9 @@ include './get_data.php';
 			foreach ($developer as $key => $val)
 			{
 				echo "<td>" . $val . "</td>";
-				$line = $line . $val . ", ";
+				$line = $line . $val . ",";
 			}
-			$line = substr($line, 0, strlen($line) - 2) . "\n";
+			$line = substr($line, 0, strlen($line) - 1) . "\n";
 			fwrite($myfile, $line);
 
 			echo "</tbody>";

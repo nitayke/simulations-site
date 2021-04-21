@@ -7,12 +7,27 @@ $resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysql
 
 $dataPoints = [];
 
-while( $developer = mysqli_fetch_assoc($resultSet) )
-{
+
+$row = 1;
+$index = -1;
+$handle = fopen("./table.csv", "r") or die("Unable to open file!");
+while (($data = fgetcsv($handle)) !== false) {
+    if ($row === 1)
+    {
+        $index = array_search("ending reason", $data);
+        $row++;
+        continue;
+    }
+    if ($index === -1)
+    {
+        echo "wrong table.csv file!";
+        exit;
+    }
+    
     $found = false;
     for ($i = 0; $i < count($dataPoints); $i++)
     {
-        if ($dataPoints[$i]["label"] === $developer['ending_reason'])
+        if ($dataPoints[$i]["label"] === $data[$index])
         {
             $dataPoints[$i]["y"]++;
             $found = true;
@@ -21,9 +36,14 @@ while( $developer = mysqli_fetch_assoc($resultSet) )
     }
     if (!$found)
     {
-        array_push($dataPoints, array("label" => $developer['ending_reason'], "y" => 1));
+        array_push($dataPoints, array("label" => $data[$index], "y" => 1));
     }
+
+
+    $row++;
 }
+fclose($handle);
+
 ?>
 
 <!DOCTYPE HTML>
@@ -69,19 +89,6 @@ chart.render();
 	<img src="drone.png" width="100"></a>
 
 <script src="./javascript/table.js"></script>
-<label>Tables:</label>
-<select class="filter" onchange="selectChange(this)" id="table_choose">
-    <?php
-    
-    $result = mysqli_query($conn, "show tables");
-
-    while($table = mysqli_fetch_array($result)) {
-        if ($table[0] == $slide)
-            echo "<option selected>" . $table[0] . "</option>";
-        else
-            echo "<option>" . $table[0] . "</option>";
-    }?>
-</select>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
