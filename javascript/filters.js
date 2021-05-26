@@ -21,7 +21,7 @@ function serializeFilters(filters) // children
     var params_str_url = "";
 
     for (var i = 0; i < filters.length; i += 3) {
-        var fields = filters[i].filters;
+        var fields = filters[i].children;
 
         var e = fields.item(PARAM);
         var strParam = e.options[e.selectedIndex].text;
@@ -51,6 +51,7 @@ function serializeFilters(filters) // children
         else
             params_str_url += '+';
     }
+    params_str_url = params_str_url.slice(0, -1);
 
     return params_str_url;
 }
@@ -96,7 +97,16 @@ function reset() {
 }
 
 function save() {
-    $.post('', {xml: 'nitay' });
+    var children = document.getElementById("filters").children;
+    var filters = serializeFilters(children);
+    if (filters === undefined) {
+        alert("Please select a filter!");
+        return;
+    }
+    const data = JSON.stringify({
+        filters: filters
+      });
+    navigator.sendBeacon('dbex/save_filters.php', data);
     alert("Saved successfully!");
 }
 
