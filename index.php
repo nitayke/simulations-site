@@ -87,6 +87,7 @@
 <input type="button" value="Go" id="filter_btn" class="button">
 <input type="button" id="add_filter_btn" value="Add Filter" class="button">
 <input type="button" id="reset_btn" value="Clear Filters" class="button">
+<input type="button" id="save_filter_btn" value="Save Filters" class="button">
 <br><br>
 
 <script src="./javascript/filters.js"></script>

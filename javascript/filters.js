@@ -16,18 +16,12 @@ function paramChange(selected)
     }
 }
 
-document.getElementById("filter_btn").addEventListener("click", filter);
-function filter() {
-    var children = document.getElementById("filters").children;
+function serializeFilters(filters) // children
+{
+    var params_str_url = "";
 
-    var params_str = "";
-
-    var uri = window.location.toString();
-    var url = new URL(uri);
-    var params = new URLSearchParams(url.search);
-
-    for (var i = 0; i < children.length; i += 3) {
-        var fields = children[i].children;
+    for (var i = 0; i < filters.length; i += 3) {
+        var fields = filters[i].filters;
 
         var e = fields.item(PARAM);
         var strParam = e.options[e.selectedIndex].text;
@@ -49,20 +43,28 @@ function filter() {
         if (strParam === '' || strOp === '' || strVal === '')
             return;
 
-        params_str += strParam + strOp + strVal;
+        params_str_url += strParam + strOp + strVal;
 
         var node = document.getElementById("logic_op");
         if (node.options[node.selectedIndex].text == 'And')
-            params_str += '*';
+            params_str_url += '*';
         else
-            params_str += '+';
+            params_str_url += '+';
     }
+
+    return params_str_url;
+}
+
+function filter() {
+    var children = document.getElementById("filters").children;
+
+    var params_str = serializeFilters(children);
+
     params_str = params_str.substr(0, params_str.length - 1);
     params.set('filter', params_str);
     window.location.href = url.origin + url.pathname + '?' + params.toString();
 }
 
-document.getElementById("add_filter_btn").addEventListener("click", addCondition);
 function addCondition() {
     var itm = document.getElementById("filters").lastElementChild;
     var cln = itm.cloneNode(true);
@@ -85,7 +87,6 @@ function addCondition() {
     }
 }
 
-document.getElementById("reset_btn").addEventListener("click", reset);
 function reset() {
     var uri = window.location.toString();
     var url = new URL(uri);
@@ -93,3 +94,14 @@ function reset() {
     params.delete("filter");
     window.location.href = url.origin + url.pathname + '?' + params.toString();
 }
+
+function save() {
+    $.post('', {xml: 'nitay' });
+    alert("Saved successfully!");
+}
+
+
+document.getElementById("filter_btn").addEventListener("click", filter);
+document.getElementById("add_filter_btn").addEventListener("click", addCondition);
+document.getElementById("reset_btn").addEventListener("click", reset);
+document.getElementById("save_filter_btn").addEventListener("click", save);
