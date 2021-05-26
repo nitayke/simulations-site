@@ -1,4 +1,4 @@
-var BIG_NUM = 99999;
+var BIG_NUM = 9999999999;
 var table = document.getElementById("table");
 var row_len = table.rows[5].cells.length;
 
@@ -7,9 +7,9 @@ for (var i = 0, row; row = table.rows[i]; i++)
 {
     for (var j = 1, cell; cell = row.cells[j]; j++)
     {
-        if (isNaN(parseFloat(cell.innerHTML)))
-            continue;
         var val = parseFloat(cell.innerHTML);
+        if (isNaN(val))
+            continue;
 
         if (j < 10) // bit cells
         {
