@@ -51,13 +51,16 @@ function serializeFilters(filters) // children
         else
             params_str_url += '+';
     }
-    params_str_url = params_str_url.slice(0, -1);
 
     return params_str_url;
 }
 
 function filter() {
     var children = document.getElementById("filters").children;
+
+    var uri = window.location.toString();
+    var url = new URL(uri);
+    var params = new URLSearchParams(url.search);
 
     var params_str = serializeFilters(children);
 
