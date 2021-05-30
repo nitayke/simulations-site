@@ -48,7 +48,7 @@ for (var i = 0, row; row = table.rows[i]; i++)
 {
     if (row.cells[index] === undefined)
         continue
-    const parsed = parseInt(row.cells[index].innerHTML)
+    const parsed = parseFloat(row.cells[index].innerHTML)
     if (!isNaN(parsed))
         all_numbers.push(parsed)
 }
