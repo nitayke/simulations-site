@@ -1,1 +1,1 @@
-pathplanner_bit>2
+maphandler_bit==3

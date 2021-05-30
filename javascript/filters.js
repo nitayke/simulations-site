@@ -99,14 +99,14 @@ function reset() {
 function save() {
     var children = document.getElementById("filters").children;
     var filters = serializeFilters(children);
+    const Http = new XMLHttpRequest();
+    const url='dbex/filters_config.php';
+    Http.open("GET", url+'?set_filters='+filters, true); // get_filters for get
     if (filters === undefined) {
         alert("Please select a filter!");
         return;
     }
-    const data = JSON.stringify({
-        filters: filters
-      });
-    navigator.sendBeacon('dbex/save_filters.php', data);
+    Http.send();
     alert("Saved successfully!");
 }
 
