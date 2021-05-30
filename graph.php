@@ -40,7 +40,7 @@ while($table = mysqli_fetch_array($result)) {
 ?>
 </select>
 
-<label>Number of columns:</label>
+<label>Accuracy:</label>
 <input type="text" id="number_of_columns" class="filter">
 <input type="button" value="Go" id="num_col_btn" class="button">
 <br><br>
