@@ -1,2 +1,0 @@
-CREATE TABLE new_table LIKE original_table;
-INSERT INTO new_table SELECT * FROM original_table;

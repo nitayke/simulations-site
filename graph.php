@@ -40,15 +40,19 @@ while($table = mysqli_fetch_array($result)) {
 ?>
 </select>
 
+<label>Number of columns:</label>
+<input type="text" id="number_of_columns" class="filter">
+<input type="button" value="Go" id="num_col_btn" class="button">
 <br><br>
 
 <div id='graph'></div>
+<script src="./javascript/graph.js"></script>
 
 <script>
+
 var trace1 = {
-  x: [1, 2, 3, 4],
-  y: [10, 15, 13, 17],
-  type: 'scatter',
+  x: graph_x,
+  y: graph_y,
   name: 'All', 
   line: {color: 'blue'}
 };
@@ -56,7 +60,6 @@ var trace1 = {
 var trace2 = {
   x: [1, 2, 3, 4],
   y: [16, 5, 11, 9],
-  type: 'scatter',
   name: 'Good',
   line: {color: 'green'}
 };
@@ -64,7 +67,6 @@ var trace2 = {
 var trace3 = {
   x: [1, 2, 3, 4],
   y: [1, 2, 10, 4],
-  type: 'scatter',
   name: 'Bad',
   line: {color: 'red'}
 };
@@ -73,5 +75,6 @@ var data = [trace1, trace2, trace3];
 
 Plotly.newPlot('graph', data);
 </script>
+
 </body>
 </html>
