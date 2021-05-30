@@ -1,6 +1,25 @@
 <!DOCTYPE HTML>
 <html>
-<head>  
+<head>
+<script src="./javascript/table.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<label>Tables:</label>
+<select class="filter" onchange="selectChange(this)" id="table_choose">
+<?php
+include './get_data.php';
+$result = mysqli_query($conn, "show tables");
+
+while($table = mysqli_fetch_array($result)) {
+    if ($table[0] == $slide)
+        echo "<option selected>" . $table[0] . "</option>";
+    else
+        echo "<option>" . $table[0] . "</option>";
+}?>
+</select>
+<br>
+<br>
+
 <script>
 window.onload = function () {
 
@@ -9,22 +28,81 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	title:{
 		text: "Simulations Statistics"
 	},
-	data: [{        
-		type: "line",
-      	indexLabelFontSize: 16,
+	toolTip: {
+		shared: true
+	},
+	axisX: {
+		title: "Time",
+		suffix : " s"
+	},
+	axisY: {
+		title: "Speed",
+		titleFontColor: "#4F81BC",
+		suffix : " m/s",
+		lineColor: "#4F81BC",
+		tickColor: "#4F81BC"
+	},
+	axisY2: {
+		title: "Distance",
+		titleFontColor: "#C0504E",
+		suffix : " m",
+		lineColor: "#C0504E",
+		tickColor: "#C0504E"
+	},
+	data: [{
+		type: "spline",
+		name: "speed",
+		xValueFormatString: "#### sec",
+		yValueFormatString: "#,##0.00 m/s",
 		dataPoints: [
-			{ y: 450 },
-			{ y: 414},
-			{ y: 520 },
-			{ y: 460 },
-			{ y: 450 },
-			{ y: 500 },
-			{ y: 480 },
-			{ y: 480 },
-			{ y: 410 },
-			{ y: 500 },
-			{ y: 480 },
-			{ y: 510 }
+			{ x: 0 , y: 0 },
+			{ x: 11 , y: 8.2 },
+			{ x: 47 , y: 41.7 },
+			{ x: 56 , y: 16.7 },
+			{ x: 120 , y: 31.3 },
+			{ x: 131 , y: 18.2 },
+			{ x: 171 , y: 31.3 },
+			{ x: 189 , y: 61.1 },
+			{ x: 221 , y: 40.6 },
+			{ x: 232 , y: 18.2 },
+			{ x: 249 , y: 35.3 },
+			{ x: 253 , y: 12.5 },
+			{ x: 264 , y: 16.4 },
+			{ x: 280 , y: 37.5 },
+			{ x: 303 , y: 24.3 },
+			{ x: 346 , y: 23.3 },
+			{ x: 376 , y: 11.3 },
+			{ x: 388 , y: 8.3 },
+			{ x: 430 , y: 1.9 },
+			{ x: 451 , y: 4.8 }
+		]
+	},
+	{
+		type: "spline",  
+		axisYType: "secondary",
+		name: "distance covered",
+		yValueFormatString: "#,##0.# m",
+		dataPoints: [
+			{ x: 0 , y: 0 },
+			{ x: 11 , y: 90 },
+			{ x: 47 , y: 1590 },
+			{ x: 56 , y: 1740 },
+			{ x: 120 , y: 3740 },
+			{ x: 131 , y: 3940 },
+			{ x: 171 , y: 5190 },
+			{ x: 189 , y: 6290 },
+			{ x: 221 , y: 7590 },
+			{ x: 232 , y: 7790 },
+			{ x: 249 , y: 8390 },
+			{ x: 253 , y: 8440 },
+			{ x: 264 , y: 8620 },
+			{ x: 280 , y: 9220 },
+			{ x: 303 , y: 9780 },
+			{ x: 346 , y: 10780 },
+			{ x: 376 , y: 11120 },
+			{ x: 388 , y: 11220 },
+			{ x: 430 , y: 11300 },
+			{ x: 451 , y: 11400 }
 		]
 	}]
 });

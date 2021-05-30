@@ -1,3 +1,6 @@
+<!DOCTYPE HTML>
+<html>
+<head>
 <?php
 include './get_data.php';
 
@@ -46,12 +49,7 @@ fclose($handle);
 
 ?>
 
-<!DOCTYPE HTML>
-<html>
-<head>
-
 <link href="style.css" rel="stylesheet" type="text/css">
-
 
 <style type="text/css">
 body { background-color: #91ced4;}
