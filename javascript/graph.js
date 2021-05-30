@@ -44,6 +44,9 @@ for (var i = 0, row; row = table.rows[i]; i++)
 }
 
 var all_numbers = []
+var good = []
+var bad = []
+
 for (var i = 0, row; row = table.rows[i]; i++)
 {
     if (row.cells[index] === undefined)
@@ -51,28 +54,56 @@ for (var i = 0, row; row = table.rows[i]; i++)
     const parsed = parseFloat(row.cells[index].innerHTML)
     if (!isNaN(parsed))
         all_numbers.push(parsed)
+    if (row.cells[index].style.background === "rgb(69, 255, 153)")
+        good.push(parsed)
+    else
+        bad.push(parsed)
 }
 console.log(all_numbers)
+console.log(good)
+console.log(bad)
 
 var min = Math.min.apply(null, all_numbers)
 var max = Math.max.apply(null, all_numbers)
 
-const NUM_OF_COLS = params.get('cols')
+var NUM_OF_COLS = params.get('cols')
+if (!NUM_OF_COLS)
+    NUM_OF_COLS = 20;
 var graph_x = []
 var graph_y = []
+
+var good_x = []
+var good_y = []
+
+var bad_x = []
+var bad_y = []
 
 for (var i = 0; i < NUM_OF_COLS; i++)
 {
     graph_x.push((max-min)*i/NUM_OF_COLS + min)
+    good_x.push((max-min)*i/NUM_OF_COLS + min)
+    bad_x.push((max-min)*i/NUM_OF_COLS + min)
     var sum = 0
+    var good_sum = 0
+    var bad_sum = 0
     for (var j = 0; j < all_numbers.length; j++)
     {
         if (graph_x[i-1] < all_numbers[j] && graph_x[i] > all_numbers[j])
             sum++;
     }
+    for (var j = 0; j < good.length; j++)
+    {
+        if (good_x[i-1] < good[j] && good_x[i] > good[j])
+            good_sum++;
+    }
+    for (var j = 0; j < bad.length; j++)
+    {
+        if (bad_x[i-1] < bad[j] && bad_x[i] > bad[j])
+            bad_sum++;
+    }
     graph_y.push(sum)
+    good_y.push(good_sum)
+    bad_y.push(bad_sum)
 }
-console.log(graph_x)
-console.log(graph_y)
 
 document.getElementById("num_col_btn").addEventListener("click", set_num_cols);

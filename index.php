@@ -44,6 +44,7 @@
 	<a href="/pichart.php" class="button">Pi Chart</a>
 	<a href="/table.csv" class="button">Get .csv file</a>
 	<a href="/graph.php" class="button">Graph</a>
+	<a href="/filters_config.txt" class="button">Show Filters Config</a>
 </div>
 
 

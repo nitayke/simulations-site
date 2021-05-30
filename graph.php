@@ -43,6 +43,14 @@ while($table = mysqli_fetch_array($result)) {
 <label>Accuracy:</label>
 <input type="text" id="number_of_columns" class="filter">
 <input type="button" value="Go" id="num_col_btn" class="button">
+<label>(Default accuracy is 20)</label>
+<br><br>
+<input type="checkbox" id="all_cb" checked=true onclick="UpdatePlot()">
+<label>All</label>
+<input type="checkbox" id="good_cb" checked=true onclick="UpdatePlot()">
+<label>Good</label>
+<input type="checkbox" id="bad_cb" checked=true onclick="UpdatePlot()">
+<label>Bad</label>
 <br><br>
 
 <div id='graph'></div>
@@ -58,22 +66,40 @@ var trace1 = {
 };
 
 var trace2 = {
-  x: [1, 2, 3, 4],
-  y: [16, 5, 11, 9],
+  x: good_x,
+  y: good_y,
   name: 'Good',
   line: {color: 'green'}
 };
 
 var trace3 = {
-  x: [1, 2, 3, 4],
-  y: [1, 2, 10, 4],
+  x: bad_x,
+  y: bad_y,
   name: 'Bad',
   line: {color: 'red'}
 };
 
 var data = [trace1, trace2, trace3];
 
-Plotly.newPlot('graph', data);
+var new_data = []
+
+var checkboxes = []
+
+UpdatePlot()
+
+function UpdatePlot()
+{
+    new_data = []
+    checkboxes = [document.getElementById('all_cb'), document.getElementById('good_cb'), document.getElementById('bad_cb')]
+
+    for (var i = 0; i < 3; i++)
+    {
+        if (checkboxes[i].checked)
+            new_data.push(data[i])
+    }
+
+    Plotly.newPlot('graph', new_data);
+}
 </script>
 
 </body>
