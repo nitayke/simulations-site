@@ -12,7 +12,6 @@ $sqlQuery = "SELECT * FROM `" . $slide . "`";
 
 $resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 
-
 $developer = mysqli_fetch_assoc($resultSet);
 if (is_null($developer))
 	return;
@@ -25,5 +24,9 @@ if ($developer['stats'] != '' && $developer['stats'] != '0') {
 }
 else
 	array_pop($developer);
+
+print_r($developer);
+
+CloseCon($conn);
 
 ?>

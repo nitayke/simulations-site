@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<title>Statistics Pichart</title>
 <?php
 include './get_data.php';
 
