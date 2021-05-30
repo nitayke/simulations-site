@@ -1,1 +1,1 @@
-maphandler_bit==3
+ending_reason=="Finished_Exploration_moved_to__HOLDING_POSITION"*scenario_time<250*scenario_time>30

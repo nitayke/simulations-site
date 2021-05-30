@@ -51,6 +51,10 @@ function serializeFilters(filters) // children
         else
             params_str_url += '+';
     }
+    var last_char = params_str_url[params_str_url.length - 1]
+
+    if (last_char == '*' || last_char == '+')
+        params_str_url = params_str_url.substr(0, params_str_url.length - 1);
 
     return params_str_url;
 }

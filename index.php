@@ -12,6 +12,9 @@
 	include './get_data.php';
 	$path = "./table.csv";
 	$myfile = fopen($path, "w");
+	$tmpfile = fopen('./filters_config.txt', 'r');
+	$filters_config = fread($tmpfile, filesize('./filters_config.txt'));
+	fclose($tmpfile);
 ?>
 
 
@@ -116,7 +119,6 @@
 					$parameters = $developer;
 				else
 					$parameters = array_flip($parameters);
-				
 				foreach ($parameters as $param => $val)
 				{
 					echo "<th>" . str_replace('_', ' ', $param) . "</th>";
@@ -125,6 +127,20 @@
 				$line = substr($line, 0, strlen($line) - 1) . "\n";
 				
 				fwrite($myfile, $line);
+
+
+				function deserializeFilters($filters)
+				{
+					global $parameters;
+					foreach ($parameters as $key => $val)
+					{
+						$filters = str_replace($key, '$developer[\'' . $key . "']", $filters);
+					}
+					$filters = str_replace('*', '&&', $filters);
+					$filters = str_replace('+', '||', $filters);
+					return $filters;
+				}
+				
 			?>
 		</tr>
 		</thead>
@@ -134,13 +150,9 @@
 		if (isset($_GET['filter']))
 		{
 			$filters = $_GET['filter'];
-			foreach ($parameters as $key => $val)
-			{
-				$filters = str_replace($key, '@$developer[\'' . $key . "']", $filters);
-			}
-			$filters = str_replace('*', '&&', $filters);
-			$filters = str_replace('+', '||', $filters);
+			$filters = deserializeFilters($filters);
 		}
+		$filters_config = deserializeFilters($filters_config);
 
 		$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 		while ($developer = mysqli_fetch_assoc($resultSet)) {
@@ -160,7 +172,10 @@
 			}
 			foreach ($developer as $key => $val)
 			{
-				echo "<td>" . $val . "</td>";
+				if (eval("return ". $filters_config . ";"))
+					echo "<td style=\"background: rgb(69, 255, 153)\">" . $val . "</td>";
+				else
+					echo "<td style=\"background: rgb(255, 99, 64)\">" . $val . "</td>";
 				$line = $line . $val . ",";
 			}
 			$line = substr($line, 0, strlen($line) - 1) . "\n";
