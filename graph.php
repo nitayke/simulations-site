@@ -40,8 +40,7 @@ while($table = mysqli_fetch_array($result)) {
 ?>
 </select>
 
-<br>
-<br>
+<br><br>
 
 <div id='graph'></div>
 
