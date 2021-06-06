@@ -13,7 +13,7 @@ for (var i = 0, row; row = table.rows[i]; i++)
         if (isNaN(val))
             continue;
         
-        // Should we still do it?
+        // Do we need it?
 
         // if (j < 10) // bit cells
         // {
@@ -60,6 +60,9 @@ for (var i = 1; i < row_len; i++)
     document.getElementById("max").appendChild(node);
     
     var node = document.createElement("td");
+    
+    // Do we need it?
+
     // if (i < 10)
     //     node.innerHTML = "";
     // else

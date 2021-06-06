@@ -96,10 +96,12 @@
 <script src="./javascript/filters.js"></script>
 
 
+
 <!-- Table -->
 
 <body>
 	<table id="table">
+<div class="loader"></div>
 	<thead>
 		<tr id="count">
 		<th>Count</th>
@@ -145,7 +147,6 @@
 			?>
 		</tr>
 		</thead>
-
 		<tbody>
 		<?php
 		if (isset($_GET['filter']))
