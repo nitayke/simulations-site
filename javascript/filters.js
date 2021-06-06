@@ -117,16 +117,17 @@ function save() {
 
 function mouseOver() {
     const http = new XMLHttpRequest();
-    const url='filters_config.txt';
+    const url='filters_config.txt?_=' + new Date().getTime(); // it has to be unique to cancel caching
+    console.log(url)
     http.onreadystatechange = function() {
         if (this.readyState === 4) {
-            document.getElementById("filters_config_txt").innerHTML = http.response.replaceAll("*", "  and  ").replaceAll("+", "  or  ");
+            document.getElementById("filters_config_txt").innerHTML = this.response.replaceAll("*", " and ").replaceAll("+", " or ");
             document.getElementById("filters_config_txt").hidden = false;
+            document.getElementById("filters_config_txt").style.display = "inline-block";
         }
     }
     http.open("GET", url, true);
     http.send();
-    document.getElementById("filters_config_txt").style.display = "inline-block";
 }
 
 function mouseOut() {

@@ -46,6 +46,7 @@
 	<button class="button" onclick="graph()">Graph</button>
 	<div id="show_filters_config"class="button">Show Filters Config</div>
 </div>
+<br>
 
 <!-- Filters -->
 

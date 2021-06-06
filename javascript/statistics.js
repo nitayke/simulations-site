@@ -6,7 +6,6 @@ var row_len = table.rows[5].cells.length;
 
 var min = new Array(row_len).fill(BIG_NUM), max = new Array(row_len).fill(0), sum = new Array(row_len).fill(0);
 
-
 for (var i = 0, row; row = table.rows[i]; i++)
 {
     for (var j = 1, cell; cell = row.cells[j]; j++)
