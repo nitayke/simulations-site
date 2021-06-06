@@ -119,8 +119,7 @@ function mouseOver() {
     const http = new XMLHttpRequest();
     const url='filters_config.txt';
     http.onreadystatechange = function() {
-        if (http.readyState === 4) {
-            console.log(http.response)
+        if (this.readyState === 4) {
             document.getElementById("filters_config_txt").innerHTML = http.response.replaceAll("*", "  and  ").replaceAll("+", "  or  ");
             document.getElementById("filters_config_txt").hidden = false;
         }
