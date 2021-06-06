@@ -115,8 +115,31 @@ function save() {
     alert("Saved successfully!");
 }
 
+function mouseOver() {
+    const http = new XMLHttpRequest();
+    const url='filters_config.txt';
+    http.onreadystatechange = function() {
+        if (http.readyState === 4) {
+            console.log(http.response)
+            document.getElementById("filters_config_txt").innerHTML = http.response.replaceAll("*", " and ").replaceAll("+", " or ");
+            document.getElementById("filters_config_txt").hidden = false;
+        }
+    }
+    http.open("GET", url, true);
+    http.send();
+    document.getElementById("filters_config_txt").style.display = "inline-block";
+}
+
+function mouseOut() {
+    document.getElementById("filters_config_txt").hidden = true;
+    document.getElementById("filters_config_txt").style.display = "none";
+}
+
 
 document.getElementById("filter_btn").addEventListener("click", filter);
 document.getElementById("add_filter_btn").addEventListener("click", addCondition);
 document.getElementById("reset_btn").addEventListener("click", reset);
 document.getElementById("save_filter_btn").addEventListener("click", save);
+
+document.getElementById("show_filters_config").addEventListener("mouseover", mouseOver);
+document.getElementById("show_filters_config").addEventListener("mouseout", mouseOut);

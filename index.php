@@ -44,9 +44,8 @@
 	<a href="/pichart.php" class="button">Pi Chart</a>
 	<a href="/table.csv" class="button">Get .csv file</a>
 	<a href="/graph.php" class="button">Graph</a>
-	<a href="/filters_config.txt" class="button">Show Filters Config</a>
+	<div id="show_filters_config"class="button">Show Filters Config</div>
 </div>
-
 
 <!-- Filters -->
 
@@ -91,6 +90,7 @@
 <input type="button" id="add_filter_btn" value="Add Filter" class="button">
 <input type="button" id="reset_btn" value="Clear Filters" class="button">
 <input type="button" id="save_filter_btn" value="Save Filters" class="button">
+<span id="filters_config_txt" hidden></span>
 <br><br>
 
 <script src="./javascript/filters.js"></script>
