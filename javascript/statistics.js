@@ -14,16 +14,14 @@ for (var i = 0, row; row = table.rows[i]; i++)
         var val = parseFloat(cell.innerHTML);
         if (isNaN(val))
             continue;
-        
-        // Do we need it?
 
-        // if (j < 10) // bit cells
-        // {
-        //     if (val == 1)
-        //         cell.style.background = "#eff542";
-        //     else if (val == 2)
-        //         cell.style.background = "#f55742";
-        // }
+        if (j < 10) // bit cells
+        {
+            if (val == 1)
+                cell.style.background = "rgb(239, 255, 116)";
+            else if (val == 2)
+                cell.style.background = "rgb(255,77,77)";
+        }
 
         if (val < min[j])
             min[j] = val;

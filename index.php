@@ -178,7 +178,7 @@
 					if (eval("return ". $filters_config . ";"))
 						echo "<td style=\"background: rgb(69, 255, 153)\">" . $val . "</td>"; // green
 					else
-						echo "<td style=\"background: rgb(255, 99, 64)\">" . $val . "</td>"; // red
+						echo "<td style=\"background: rgb(255,77,77)\">" . $val . "</td>"; // red
 				}
 				else
 				{
