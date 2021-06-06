@@ -67,8 +67,6 @@ function filter() {
     var params = new URLSearchParams(url.search);
 
     var params_str = serializeFilters(children);
-
-    params_str = params_str.substr(0, params_str.length - 1);
     params.set('filter', params_str);
     window.location.href = url.origin + url.pathname + '?' + params.toString();
 }
