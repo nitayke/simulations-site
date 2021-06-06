@@ -1,5 +1,7 @@
 var BIG_NUM = 9999999999;
 var table = document.getElementById("table");
+if (table.rows.length === 5)
+    document.getElementById("loader").hidden = true;
 var row_len = table.rows[5].cells.length;
 
 var min = new Array(row_len).fill(BIG_NUM), max = new Array(row_len).fill(0), sum = new Array(row_len).fill(0);
@@ -88,3 +90,5 @@ for (var j = 1, cell; cell = table.rows[4].cells[j]; j++)
     cell.appendChild(document.createElement("br"))
     cell.appendChild(button)
 }
+
+document.getElementById("loader").hidden = true;

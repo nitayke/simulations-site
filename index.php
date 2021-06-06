@@ -95,13 +95,12 @@
 
 <script src="./javascript/filters.js"></script>
 
-
+<div class="loader" id="loader"></div>
 
 <!-- Table -->
 
 <body>
 	<table id="table">
-<div class="loader"></div>
 	<thead>
 		<tr id="count">
 		<th>Count</th>
