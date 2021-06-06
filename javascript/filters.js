@@ -106,7 +106,7 @@ function save() {
     var filters = serializeFilters(children);
     const Http = new XMLHttpRequest();
     const url='dbex/filters_config.php';
-    Http.open("GET", url+'?set_filters='+filters, true); // get_filters for get
+    Http.open("GET", url+'?set_filters='+filters, true);
     if (filters === undefined) {
         alert("Please select a filter!");
         return;
@@ -121,7 +121,7 @@ function mouseOver() {
     http.onreadystatechange = function() {
         if (http.readyState === 4) {
             console.log(http.response)
-            document.getElementById("filters_config_txt").innerHTML = http.response.replaceAll("*", " and ").replaceAll("+", " or ");
+            document.getElementById("filters_config_txt").innerHTML = http.response.replaceAll("*", "  and  ").replaceAll("+", "  or  ");
             document.getElementById("filters_config_txt").hidden = false;
         }
     }

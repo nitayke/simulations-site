@@ -158,7 +158,7 @@
 		$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 		while ($developer = mysqli_fetch_assoc($resultSet)) {
 			if ($developer['stats'] != '' && $developer['stats'] != '0') {
-				$arr =unserialize($developer ['stats']);
+				$arr = unserialize($developer ['stats']);
 				array_pop($developer);
 				foreach ($arr as $key => $val){
 					$developer[$key] = $val;
@@ -174,9 +174,9 @@
 			foreach ($developer as $key => $val)
 			{
 				if (eval("return ". $filters_config . ";"))
-					echo "<td style=\"background: rgb(69, 255, 153)\">" . $val . "</td>";
+					echo "<td style=\"background: rgb(69, 255, 153)\">" . $val . "</td>"; // green
 				else
-					echo "<td style=\"background: rgb(255, 99, 64)\">" . $val . "</td>";
+					echo "<td style=\"background: rgb(255, 99, 64)\">" . $val . "</td>"; // red
 				$line = $line . $val . ",";
 			}
 			$line = substr($line, 0, strlen($line) - 1) . "\n";
