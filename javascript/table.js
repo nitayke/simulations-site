@@ -16,3 +16,11 @@ function graphParamChange(selected)
     params.set("param", strParam);
     window.location.href = url.origin + url.pathname + '?' + params.toString();
 }
+
+function graph()
+{
+    var uri = window.location.toString();
+    var url = new URL(uri);
+    var params = new URLSearchParams(url.search);
+    window.location.href = url.origin + '/graph.php?' + params.toString();
+}

@@ -42,8 +42,8 @@
 		}?>
 	</select>
 	<a href="/pichart.php" class="button">Pi Chart</a>
-	<a href="/table.csv" class="button">Get .csv file</a>
-	<a href="/graph.php" class="button">Graph</a>
+	<a href="/table.csv" class="button">.csv file</a>
+	<button class="button" onclick="graph()">Graph</button>
 	<div id="show_filters_config"class="button">Show Filters Config</div>
 </div>
 
