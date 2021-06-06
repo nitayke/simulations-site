@@ -173,10 +173,17 @@
 			}
 			foreach ($developer as $key => $val)
 			{
-				if (eval("return ". $filters_config . ";"))
-					echo "<td style=\"background: rgb(69, 255, 153)\">" . $val . "</td>"; // green
+				if ($key === 'Id')
+				{
+					if (eval("return ". $filters_config . ";"))
+						echo "<td style=\"background: rgb(69, 255, 153)\">" . $val . "</td>"; // green
+					else
+						echo "<td style=\"background: rgb(255, 99, 64)\">" . $val . "</td>"; // red
+				}
 				else
-					echo "<td style=\"background: rgb(255, 99, 64)\">" . $val . "</td>"; // red
+				{
+					echo "<td>" . $val . "</td>";
+				}
 				$line = $line . $val . ",";
 			}
 			$line = substr($line, 0, strlen($line) - 1) . "\n";

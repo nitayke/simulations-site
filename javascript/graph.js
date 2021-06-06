@@ -54,7 +54,7 @@ for (var i = 0, row; row = table.rows[i]; i++)
     const parsed = parseFloat(row.cells[index].innerHTML)
     if (!isNaN(parsed))
         all_numbers.push(parsed)
-    if (row.cells[index].style.background === "rgb(69, 255, 153)")
+    if (row.cells[0].style.background === "rgb(69, 255, 153)")
         good.push(parsed)
     else
         bad.push(parsed)
