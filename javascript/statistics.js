@@ -60,10 +60,10 @@ for (var i = 1; i < row_len; i++)
     document.getElementById("max").appendChild(node);
     
     var node = document.createElement("td");
-    if (i < 10)
-        node.innerHTML = "";
-    else
-        node.innerHTML = (sum[i] / (table.rows.length - 5)).toFixed(2);
+    // if (i < 10)
+    //     node.innerHTML = "";
+    // else
+    node.innerHTML = (sum[i] / (table.rows.length - 5)).toFixed(2);
     document.getElementById("avg").appendChild(node);
 }
 

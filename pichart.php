@@ -52,10 +52,6 @@ fclose($handle);
 
 <link href="style.css" rel="stylesheet" type="text/css">
 
-<style type="text/css">
-body { background-color: #91ced4;}
-</style>
-
 <script>
 window.onload = function() {
 

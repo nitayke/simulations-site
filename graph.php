@@ -14,6 +14,10 @@ include './get_data.php';
 include './variables.php';
 ?>
 
+
+<a href="/">
+	<img src="drone.png" width="100">
+</a>
 <label>Tables:</label>
 <select class="filter" onchange="selectChange(this)" id="table_choose">
 <?php
