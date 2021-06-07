@@ -96,7 +96,7 @@
 
 <script src="./javascript/filters.js"></script>
 
-<div class="loader" id="loader"></div>
+<img src="./cat.png" class="loader" id="loader"></img>
 
 <!-- Table -->
 
