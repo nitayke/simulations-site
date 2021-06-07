@@ -44,8 +44,8 @@
 	<a href="/pichart.php" class="button">Pi Chart</a>
 	<a href="/table.csv" class="button">.csv file</a>
 	<?php echo "<a class=\"button\" href=\"/graph.php" . basename($_SERVER['REQUEST_URI']) . "\">Graph</a>";?>
+	<?php echo "<a class=\"button\" href=\"/exceptions.php" . basename($_SERVER['REQUEST_URI']) . "\">Exceptions</a>";?>
 	<div id="show_filters_config"class="button">Show Filters Config</div>
-	<a href="./exceptions.php" class="button">Exceptions</a>
 </div>
 <br>
 
