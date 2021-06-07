@@ -80,7 +80,6 @@ function addCondition() {
     document.getElementById("filters").appendChild(cln);
 
     var inputs = document.querySelectorAll("#value");
-    console.log(inputs)
     for (var i = 0; i < inputs.length; i++)
     {   
         inputs[i].addEventListener("keyup", function(event) {
@@ -118,7 +117,6 @@ function save() {
 function mouseOver() {
     const http = new XMLHttpRequest();
     const url='filters_config.txt?_=' + new Date().getTime(); // it has to be unique to cancel caching
-    console.log(url)
     http.onreadystatechange = function() {
         if (this.readyState === 4) {
             document.getElementById("filters_config_txt").innerHTML = this.response.replaceAll("*", " and ").replaceAll("+", " or ");

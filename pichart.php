@@ -78,7 +78,7 @@ chart.render();
 <body>
 
 <a href="/">
-	<img src="drone.png" width="100"></a>
+	<img src="./images/drone.png" width="100"></a>
 
 <script src="./javascript/table.js"></script>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>

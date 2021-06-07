@@ -19,6 +19,7 @@ function set_num_cols()
 var uri = window.location.toString()
 var url = new URL(uri)
 var params = new URLSearchParams(url.search)
+param = params.get('param')
 
 const http = new XMLHttpRequest()
 url = 'index.php?' + params.toString()
@@ -28,7 +29,6 @@ http.send(null)
 
 var doc = new DOMParser().parseFromString(http.responseText, "text/html")
 var table = doc.getElementById('table')
-param = params.get('param')
 
 var index = -1
 
@@ -59,9 +59,6 @@ for (var i = 0, row; row = table.rows[i]; i++)
     else
         bad.push(parsed)
 }
-console.log(all_numbers)
-console.log(good)
-console.log(bad)
 
 var min = Math.min.apply(null, all_numbers)
 var max = Math.max.apply(null, all_numbers)

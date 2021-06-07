@@ -10,13 +10,13 @@
 <body>
 
 <?php
-include './get_data.php';
-include './variables.php';
+include './dbex/get_data.php';
+include './dbex/variables.php';
 ?>
 
 
 <a href="/">
-	<img src="drone.png" width="100">
+	<img src="./images/drone.png" width="100">
 </a>
 <br>
 <label>Tables:</label>

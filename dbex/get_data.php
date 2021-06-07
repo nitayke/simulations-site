@@ -1,5 +1,5 @@
 <?php
-include './dbex/db_connect.php';
+include 'db_connect.php';
 
 $conn = OpenCon();
 

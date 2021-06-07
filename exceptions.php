@@ -10,13 +10,13 @@
 <body>
 
 <?php
-include './get_data.php';
-include './variables.php';
+include './dbex/get_data.php';
+include './dbex/variables.php';
 ?>
 
 
 <a href="/">
-	<img src="drone.png" width="100">
+	<img src="./images/drone.png" width="100">
 </a>
 <br>
 <label>Tables:</label>
@@ -30,19 +30,6 @@ while($table = mysqli_fetch_array($result)) {
     else
         echo "<option>" . $table[0] . "</option>";
 }?>
-</select>
-<label>Parameter:</label>
-<select id="parameter" onchange="paramChange(this)" class="menu">
-<option></option>
-<?php
-	foreach ($developer as $key => $val)
-    {
-        if (isset($_GET['param']) && $_GET['param'] === $key)
-		    echo "<option selected>" . $key . "</option>";
-        else
-		    echo "<option>" . $key . "</option>";
-    }
-?>
 </select>
 
 

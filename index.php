@@ -8,8 +8,8 @@
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <?php
-	include './variables.php';
-	include './get_data.php';
+	include './dbex/variables.php';
+	include './dbex/get_data.php';
 	$path = "./table.csv";
 	$myfile = fopen($path, "w");
 	$tmpfile = fopen('./filters_config.txt', 'r');
@@ -24,7 +24,7 @@
 
 <div style="display:flex; flex-direction: row; align-items: center;">
 	<a href="/">
-	<img src="drone.png" width="100"></a>
+	<img src="./images/drone.png" width="100"></a>
 
 	<h1>Simulations scenarios</h1>
 	<script src="./javascript/table.js"></script>
@@ -97,7 +97,7 @@
 
 <script src="./javascript/filters.js"></script>
 
-<img src="./cat.png" class="loader" id="loader"></img>
+<img src="./images/cat.png" class="loader" id="loader"></img>
 
 <!-- Table -->
 
