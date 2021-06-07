@@ -5,42 +5,23 @@
 <?php
     include './get_data.php';
 
-    $ending_reasons = [];
-
-    $dataPoints = [];
-
+    $fields = [];
     $row = 1;
     $index = -1;
+
     $handle = fopen("./table.csv", "r") or die("Unable to open file!");
     while (($data = fgetcsv($handle)) !== false) {
         if ($row === 1)
         {
-            $index = array_search("ending reason", $data);
-            $row++;
+            foreach ($data as $field) {
+                if (strpos($field, "bit") !== false || strpos($field, "alive") !== false) {
+                    array_push($fields, $field);
+                    echo $field . "<br>";
+                }
+            }
             continue;
         }
-        if ($index === -1)
-        {
-            echo "wrong table.csv file!";
-            exit;
-        }
         
-        $found = false;
-        for ($i = 0; $i < count($dataPoints); $i++)
-        {
-            if ($dataPoints[$i]["label"] === $data[$index])
-            {
-                $dataPoints[$i]["y"]++;
-                $found = true;
-                break;
-            }
-        }
-        if (!$found)
-        {
-            array_push($dataPoints, array("label" => $data[$index], "y" => 1));
-        }
-
-
         $row++;
     }
     fclose($handle);
