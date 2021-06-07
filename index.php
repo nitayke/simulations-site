@@ -43,7 +43,7 @@
 	</select>
 	<a href="/pichart.php" class="button">Pi Chart</a>
 	<a href="/table.csv" class="button">.csv file</a>
-	<button class="button" onclick="graph()">Graph</button>
+	<?php echo "<a class=\"button\" href=\"/graph.php" . basename($_SERVER['REQUEST_URI']) . "\">Graph</a>";?>
 	<div id="show_filters_config"class="button">Show Filters Config</div>
 	<a href="./exceptions.php" class="button">Exceptions</a>
 </div>

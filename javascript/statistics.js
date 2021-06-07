@@ -72,7 +72,6 @@ for (var i = 1; i < row_len; i++)
 function removeColumn(index) {
     for (var i = 1, row; row = table.rows[i]; i++)
     {
-        console.log(row);
         row.deleteCell(index);
     }
 }

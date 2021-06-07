@@ -1,7 +1,59 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Exceptions</title>
+    <script src="./javascript/table.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<?php
+include './get_data.php';
+include './variables.php';
+?>
+
+
+<a href="/">
+	<img src="drone.png" width="100">
+</a>
+<br>
+<label>Tables:</label>
+<select class="filter" onchange="selectChange(this)" id="table_choose">
+<?php
+$result = mysqli_query($conn, "show tables");
+
+while($table = mysqli_fetch_array($result)) {
+    if ($table[0] == $slide)
+        echo "<option selected>" . $table[0] . "</option>";
+    else
+        echo "<option>" . $table[0] . "</option>";
+}?>
+</select>
+<label>Parameter:</label>
+<select id="parameter" onchange="graphParamChange(this)" class="filter">
+<option></option>
+<?php
+	foreach ($developer as $key => $val)
+    {
+        if (isset($_GET['param']) && $_GET['param'] === $key)
+		    echo "<option selected>" . $key . "</option>";
+        else
+		    echo "<option>" . $key . "</option>";
+    }
+?>
+</select>
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
 <title>Exceptions</title>
+<link href="style.css" rel="stylesheet" type="text/css">
 <?php
     include './get_data.php';
 
@@ -14,7 +66,7 @@
         if ($row === 1)
         {
             foreach ($data as $field) {
-                if (strpos($field, "bit") !== false || strpos($field, "alive") !== false) {
+                if (strpos($field, " bit") !== false || strpos($field, "alive") !== false) {
                     array_push($fields, $field);
                     echo $field . "<br>";
                 }
@@ -27,42 +79,8 @@
     fclose($handle);
 
 ?>
-
-<link href="style.css" rel="stylesheet" type="text/css">
-
-<script>
-window.onload = function() {
-
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	title: {
-		text: "Ending Reasons Of Simulations"
-	},
-	subtitles: [{
-		text: "Indoors 2021"
-	}],
-	data: [{
-		type: "pie",
-        indexLabel: "{label} (#percent%)",
-        percentFormatString: "#0.##",
-        toolTipContent: "{y} (#percent%)",
-		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart.render();
-
-}
-</script>
 </head>
 
-
 <body>
-
-<a href="/">
-	<img src="drone.png" width="100"></a>
-
-<script src="./javascript/table.js"></script>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
