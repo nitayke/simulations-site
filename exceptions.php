@@ -20,7 +20,7 @@ include './variables.php';
 </a>
 <br>
 <label>Tables:</label>
-<select class="filter" onchange="selectChange(this)" id="table_choose">
+<select class="menu" onchange="tableChange(this)" id="table_choose">
 <?php
 $result = mysqli_query($conn, "show tables");
 
@@ -32,7 +32,7 @@ while($table = mysqli_fetch_array($result)) {
 }?>
 </select>
 <label>Parameter:</label>
-<select id="parameter" onchange="graphParamChange(this)" class="filter">
+<select id="parameter" onchange="paramChange(this)" class="menu">
 <option></option>
 <?php
 	foreach ($developer as $key => $val)
@@ -48,15 +48,7 @@ while($table = mysqli_fetch_array($result)) {
 
 
 
-
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>Exceptions</title>
-<link href="style.css" rel="stylesheet" type="text/css">
 <?php
-    include './get_data.php';
-
     $fields = [];
     $row = 1;
     $index = -1;

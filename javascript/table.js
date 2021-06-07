@@ -1,4 +1,4 @@
-function selectChange(selected)
+function tableChange(selected)
 {
     var uri = window.location.toString();
     var url = new URL(uri);
@@ -6,7 +6,7 @@ function selectChange(selected)
     window.location.href = url.origin + url.pathname + '?table=' + strParam;
 }
 
-function graphParamChange(selected)
+function paramChange(selected)
 {
     var strParam = selected.options[selected.selectedIndex].text;
     var uri = window.location.toString();

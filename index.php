@@ -29,7 +29,7 @@
 	<h1>Simulations scenarios</h1>
 	<script src="./javascript/table.js"></script>
 	<label>Tables:</label>
-	<select class="filter" onchange="selectChange(this)" id="table_choose">
+	<select class="menu" onchange="tableChange(this)" id="table_choose">
 		<?php
 		
 		$result = mysqli_query($conn, "show tables");
@@ -55,7 +55,7 @@
 <br>
 <span id="filters">
 <span>
-<select id="parameter" onchange="paramChange(this)" class="filter">
+<select id="parameter" onchange="paramChange(this)" class="menu">
 <option></option>
 <?php
 	foreach ($developer as $key => $val)
@@ -63,7 +63,7 @@
 ?>
 </select>
 
-<select id="operator" class="filter">
+<select id="operator" class="menu">
 <option></option>
 <?php
 	foreach ($operators as $operator)
@@ -71,9 +71,9 @@
 ?>
 </select>
 
-<input id="value" class="filter">
+<input id="value" class="menu">
 
-<select id="ending_reason" hidden class="filter">
+<select id="ending_reason" hidden class="menu">
 <option></option>
 <?php
 	foreach ($ending_reasons as $value)
@@ -81,7 +81,7 @@
 ?>
 </select>
 
-<select id="logic_op" hidden class="filter">
+<select id="logic_op" hidden class="menu">
 <option>And</option>
 <option>Or</option>
 </select>
