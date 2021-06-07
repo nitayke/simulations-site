@@ -19,7 +19,7 @@ function set_num_cols()
 var uri = window.location.toString()
 var url = new URL(uri)
 var params = new URLSearchParams(url.search)
-param = params.get('param')
+var param = params.get('param')
 
 const http = new XMLHttpRequest()
 url = 'index.php?' + params.toString()
