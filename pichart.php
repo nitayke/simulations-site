@@ -3,11 +3,8 @@
 <head>
 <title>Statistics Pichart</title>
 <?php
-include './get_data.php';
 
 $ending_reasons = [];
-
-$resultSet = mysqli_query($conn, $sqlQuery) or die("<br>database error: ". mysqli_error($conn));
 
 $dataPoints = [];
 

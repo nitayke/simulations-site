@@ -45,6 +45,7 @@
 	<a href="/table.csv" class="button">.csv file</a>
 	<button class="button" onclick="graph()">Graph</button>
 	<div id="show_filters_config"class="button">Show Filters Config</div>
+	<a href="./exceptions.php" class="button">Exceptions</a>
 </div>
 <br>
 
