@@ -1,11 +1,3 @@
-// function duplicate() {
-//     var original = document.getElementsByClassName('modal-content')[0];
-//     var clone = original.cloneNode(true); // "deep" clone
-//     original.parentNode.appendChild(clone);
-// }
-
-
-
 var uri = window.location.toString()
 var url = new URL(uri)
 var params = new URLSearchParams(url.search)
@@ -15,7 +7,6 @@ const http = new XMLHttpRequest()
 url = 'index.php?' + params.toString()
 http.open("GET", url, false)
 http.send(null)
-
 
 var doc = new DOMParser().parseFromString(http.responseText, "text/html")
 var table = doc.getElementById('table');
@@ -86,9 +77,9 @@ for (var key in exceptions)
 
     for (var id of exceptions[key])
     {
-        var id_elem = document.createElement("a")
-        id_elem.href = "google.com"
-        id_elem.text = id + " "
+        var id_elem = document.createElement("button")
+        id_elem.className = "sim-btn"
+        id_elem.innerHTML = id
         modal_content.appendChild(id_elem)
     }
 
