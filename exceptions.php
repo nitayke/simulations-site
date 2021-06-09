@@ -34,25 +34,7 @@ while($table = mysqli_fetch_array($result)) {
 }?>
 </select>
 
-<div class="btn-group" id="btn-group">
-</div>
-
-
-<!-- The Modal -->
-<div id="modal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close_modal" id="close_modal">&times;</span>
-    
-    <p>text</p>
-
-  </div>
-
-</div>
-
-
-
+<div class="btn-group" id="btn-group"></div>
 
 
 <script src="./javascript/exceptions.js"></script>

@@ -1,3 +1,11 @@
+// function duplicate() {
+//     var original = document.getElementsByClassName('modal-content')[0];
+//     var clone = original.cloneNode(true); // "deep" clone
+//     original.parentNode.appendChild(clone);
+// }
+
+
+
 var uri = window.location.toString()
 var url = new URL(uri)
 var params = new URLSearchParams(url.search)
@@ -42,40 +50,55 @@ for (var key in relevant_fields)
     }
 }
 
-console.log(exceptions)
-
 for (var key in exceptions)
 {
-    var elem = document.createElement("button")
-    elem.className = "button"
-    elem.innerHTML = key
+    var field_btn = document.createElement("button")
+    field_btn.className = "button"
+    field_btn.innerHTML = key
 
-    elem.onclick = function() {
-        modal.style.display = "block";
+    var modal_element = document.createElement("div")
+    modal_element.className = "modal"
+    modal_element.id = "modal " + key
+
+    var modal_content = document.createElement("div")
+    modal_content.className = "modal-content"
+    modal_content.id = "modal content " + key
+    
+    var close_modal = document.createElement("span")
+    close_modal.className = "close_modal"
+    close_modal.id = "close modal " + key
+    close_modal.innerHTML = "&times;"
+
+    field_btn.onclick = function(btn) {
+        modal_element = document.getElementById("modal " + btn.toElement.innerHTML)
+        modal_element.style.display = "block"
+    }
+    
+    close_modal.onclick = function() {
+        modal_element.style.display = "none"
+    }
+    
+    window.onclick = function(event) {
+      if (event.target == modal_element) {
+        modal_element.style.display = "none"
+      }
     }
 
-    document.getElementById("btn-group").appendChild(elem)
+    for (var id of exceptions[key])
+    {
+        var id_elem = document.createElement("a")
+        id_elem.href = "google.com"
+        id_elem.text = id + " "
+        modal_content.appendChild(id_elem)
+    }
+
+    document.getElementById("btn-group").appendChild(field_btn)
+    modal_content.appendChild(close_modal)
+    modal_element.appendChild(modal_content)
+    document.body.appendChild(modal_element)
 }
 
 
-
-// Get the modal
-var modal = document.getElementById("modal");
-
-// Get the <span> element that closes the modal
-var close_modal = document.getElementById("close_modal")
-
-// When the user clicks on <span> (x), close the modal
-close_modal.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
 
 /*
 iterate the table 
