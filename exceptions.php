@@ -34,31 +34,28 @@ while($table = mysqli_fetch_array($result)) {
 }?>
 </select>
 
+<div class="btn-group" id="btn-group">
+</div>
+
+
+<!-- The Modal -->
+<div id="modal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close_modal" id="close_modal">&times;</span>
+    
+    <p>text</p>
+
+  </div>
+
+</div>
+
+
+
+
 
 <script src="./javascript/exceptions.js"></script>
 
-<?php
-    // $fields = [];
-    // $row = 1;
-    // $index = -1;
-
-    // $handle = fopen("./table.csv", "r") or die("Unable to open file!");
-    // while (($data = fgetcsv($handle)) !== false) {
-    //     if ($row === 1)
-    //     {
-    //         foreach ($data as $field) {
-    //             if (strpos($field, " bit") !== false || strpos($field, "alive") !== false) {
-    //                 array_push($fields, $field);
-    //                 echo $field . "<br>";
-    //             }
-    //         }
-    //         continue;
-    //     }
-        
-    //     $row++;
-    // }
-    // fclose($handle);
-
-?>
 </body>
 </html>
