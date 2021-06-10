@@ -57,7 +57,7 @@ body {
 .button {
   background: #327a81;
   text-decoration: none;
-  margin: 0px 5px 0px 5px;
+  margin: 0px 5px 10px 5px;
   color: white;
   border: 1px solid black;
   font-size: 18px;

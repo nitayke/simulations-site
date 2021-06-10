@@ -1,16 +1,41 @@
+function doesFileExist(urlToFile) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    return xhr.status !== 404;
+}
+
 function get_targz(btn)
 {
+    // btn.parentElement.querySelector("span").click()
+    // document.getElementById("loader").hidden = false;
+    
+
     var uri = window.location.toString()
     var url = new URL(uri)
     var params = new URLSearchParams(url.search)
 
-    const http = new XMLHttpRequest()
-    url = '/dbex/get_sim.php?' + params.toString() + '&id=' + btn.innerHTML
-    console.log(url)
-    http.open("GET", url, false)
+    // deleting all files from tmp_folder
+    var url_str = '/dbex/get_sim.php?' + params.toString() + '&id=' + btn.innerHTML + '&delete='
+    var params = new URLSearchParams(url.search)
+    http.open("GET", url_str, false)
     http.send(null)
-}
 
+    // get new folder
+    url_str = '/dbex/get_sim.php?' + params.toString() + '&id=' + btn.innerHTML
+    http.open("GET", url_str, false)
+    http.send(null)
+
+    // link to download the file
+    var tar_file = '../tmp_folder/' + params.get('table') + '_' + btn.innerHTML + '.tar.gz'
+    // document.getElementById("loader").hidden = true;
+    if (doesFileExist(tar_file))
+        document.location.href = tar_file
+    else
+        alert("File not exists!")
+
+}
 
 
 var uri = window.location.toString()
@@ -104,17 +129,3 @@ for (var key in exceptions)
     modal_element.appendChild(modal_content)
     document.body.appendChild(modal_element)
 }
-
-
-
-/*
-iterate the table 
-find bit and alive fields
-iterate them
-find in every field the id of the exceptions
-show them with buttons to download
-download:
-    ssh in php - copy from lambda to web server
-    copy them to the web server
-    download from the site to a client computer
-*/

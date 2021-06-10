@@ -14,8 +14,6 @@ include './dbex/get_data.php';
 include './dbex/variables.php';
 ?>
 
-<body>
-
 
 <a href="/">
 	<img src="./images/drone.png" width="100">
@@ -35,6 +33,9 @@ while($table = mysqli_fetch_array($result)) {
 </select>
 
 <div class="btn-group" id="btn-group"></div>
+
+
+<img src="./images/cat.png" class="loader" id="loader" hidden></img>
 
 
 <script src="./javascript/exceptions.js"></script>
