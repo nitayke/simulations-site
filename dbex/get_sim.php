@@ -19,8 +19,10 @@ if (!$sftp = ssh2_sftp($connection))
     exit('Unable to create SFTP connection.');
 
 // download all the files
-$files    = scandir('ssh2.sftp://' . $sftp . $remoteDir);
+$files = scandir('ssh2.sftp://' . $sftp . $remoteDir);
 if (!empty($files)) {
+    mkdir("$localDir/$_GET[id]");
+    $localDir = "$localDir/$_GET[id]";
     foreach ($files as $file) {
         echo $file . "<br>";
         if ($file != '.' && $file != '..') {
@@ -29,6 +31,18 @@ if (!empty($files)) {
     }
 }
 
+// creating a tar.gz file
+$pd = new PharData("$localDir/archive.tar");
+$pd->buildFromDirectory($localDir);
+$pd->compress(Phar::GZ);
 
+
+// deleting all files in ../tmp_folder ($localDir) except archive.tar.gz
+$files = glob("$localDir/{,.}*", GLOB_BRACE);
+foreach($files as $file)
+{
+    if(is_file($file) && $file !== "$localDir/archive.tar.gz")
+        unlink($file);
+}
 
 ?>

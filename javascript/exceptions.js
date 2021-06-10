@@ -1,3 +1,18 @@
+function get_targz(btn)
+{
+    var uri = window.location.toString()
+    var url = new URL(uri)
+    var params = new URLSearchParams(url.search)
+
+    const http = new XMLHttpRequest()
+    url = '/dbex/get_sim.php?' + params.toString() + '&id=' + btn.innerHTML
+    console.log(url)
+    http.open("GET", url, false)
+    http.send(null)
+}
+
+
+
 var uri = window.location.toString()
 var url = new URL(uri)
 var params = new URLSearchParams(url.search)
@@ -80,6 +95,7 @@ for (var key in exceptions)
         var id_elem = document.createElement("button")
         id_elem.className = "sim-btn"
         id_elem.innerHTML = id
+        id_elem.onclick = function(){ get_targz(this) };
         modal_content.appendChild(id_elem)
     }
 
