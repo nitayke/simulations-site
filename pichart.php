@@ -79,6 +79,7 @@ chart.render();
 
 <a href="/">
 	<img src="./images/drone.png" width="100"></a>
+<h3>The data is taken from table.csv file</h3>
 
 <script src="./javascript/table.js"></script>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
