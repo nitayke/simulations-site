@@ -45,10 +45,10 @@ while($table = mysqli_fetch_array($result)) {
 ?>
 </select>
 
-<label>Accuracy:</label>
+<label>Range:</label>
 <input type="text" id="number_of_columns" class="menu">
 <input type="button" value="Go" id="num_col_btn" class="button">
-<label>(Default accuracy is 20)</label>
+<label>(Default Range is 10)</label>
 <br><br>
 <input type="checkbox" id="all_cb" checked=true onclick="UpdatePlot()">
 <label>All</label>

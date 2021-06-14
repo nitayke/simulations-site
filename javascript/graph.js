@@ -13,7 +13,7 @@ function setParam(key, value) {
 function set_num_cols()
 {
     let val = document.getElementById("number_of_columns").value;
-    setParam('cols', val)
+    setParam('range', val)
 }
 
 var uri = window.location.toString()
@@ -63,9 +63,9 @@ for (var i = 0, row; row = table.rows[i]; i++)
 var min = Math.min.apply(null, all_numbers)
 var max = Math.max.apply(null, all_numbers)
 
-var NUM_OF_COLS = params.get('cols')
-if (!NUM_OF_COLS)
-    NUM_OF_COLS = 20;
+var RANGE = params.get('range')
+if (!RANGE)
+    RANGE = 10;
 var graph_x = []
 var graph_y = []
 
@@ -75,11 +75,13 @@ var good_y = []
 var bad_x = []
 var bad_y = []
 
-for (var i = 0; i < NUM_OF_COLS; i++)
+RANGE = Math.floor(max / RANGE)
+
+for (var i = 0; i < RANGE; i++)
 {
-    graph_x.push((max-min)*i/NUM_OF_COLS + min)
-    good_x.push((max-min)*i/NUM_OF_COLS + min)
-    bad_x.push((max-min)*i/NUM_OF_COLS + min)
+    graph_x.push((max-min)*i/RANGE + min)
+    good_x.push((max-min)*i/RANGE + min)
+    bad_x.push((max-min)*i/RANGE + min)
     var sum = 0
     var good_sum = 0
     var bad_sum = 0
