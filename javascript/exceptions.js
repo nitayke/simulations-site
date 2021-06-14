@@ -8,34 +8,7 @@ function doesFileExist(urlToFile) {
 
 function get_targz(btn)
 {
-    document.location.href = 'https://10.42.149.53:5000/' + params.get('table') + '/' + btn.innerHTML
-    // btn.parentElement.querySelector("span").click()
-    // document.getElementById("loader").hidden = false;
-    
-
-    // var uri = window.location.toString()
-    // var url = new URL(uri)
-    // var params = new URLSearchParams(url.search)
-
-    // // deleting all files from tmp_folder
-    // var url_str = '/dbex/get_sim.php?' + params.toString() + '&id=' + btn.innerHTML + '&delete='
-    // var params = new URLSearchParams(url.search)
-    // http.open("GET", url_str, false)
-    // http.send(null)
-
-    // // get new folder
-    // url_str = '/dbex/get_sim.php?' + params.toString() + '&id=' + btn.innerHTML
-    // http.open("GET", url_str, false)
-    // http.send(null)
-
-    // // link to download the file
-    // var tar_file = '../tmp_folder/' + params.get('table') + '_' + btn.innerHTML + '.tar.gz'
-    // // document.getElementById("loader").hidden = true;
-    // if (doesFileExist(tar_file))
-    //     document.location.href = tar_file
-    // else
-    //     alert("File not exists!")
-
+    document.location.href = 'http://10.42.149.53:5000/' + params.get('table') + '/' + btn.innerHTML
 }
 
 
