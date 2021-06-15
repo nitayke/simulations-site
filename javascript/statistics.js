@@ -4,12 +4,12 @@ if (table.rows.length === 5)
     document.getElementById("loader").hidden = true;
 var row_len = table.rows[5].cells.length;
 
-var min = new Array(row_len).fill(BIG_NUM), max = new Array(row_len).fill(0), sum = new Array(row_len).fill(0);
+var min = new Array(row_len).fill(BIG_NUM),
+    max = new Array(row_len).fill(0),
+    sum = new Array(row_len).fill(0);
 
-for (var i = 0, row; row = table.rows[i]; i++)
-{
-    for (var j = 1, cell; cell = row.cells[j]; j++)
-    {
+for (var i = 0, row; row = table.rows[i]; i++) {
+    for (var j = 1, cell; cell = row.cells[j]; j++) {
         var val = parseFloat(cell.innerHTML);
         if (isNaN(val))
             continue;
@@ -36,10 +36,8 @@ var node = document.createElement("td");
 node.innerHTML = table.rows.length - 5;
 document.getElementById("count").appendChild(node);
 
-for (var i = 1; i < row_len; i++)
-{
-    if (isNaN(parseFloat(table.rows[5].cells[i].innerHTML)))
-    {
+for (var i = 1; i < row_len; i++) {
+    if (isNaN(parseFloat(table.rows[5].cells[i].innerHTML))) {
         var rows = ["min", "max", "avg"];
         rows.forEach(function(entry) {
             node = document.createElement("td");
@@ -57,9 +55,9 @@ for (var i = 1; i < row_len; i++)
     var node = document.createElement("td");
     node.innerHTML = max[i];
     document.getElementById("max").appendChild(node);
-    
+
     var node = document.createElement("td");
-    
+
     // Do we need it?
 
     // if (i < 10)
@@ -70,17 +68,15 @@ for (var i = 1; i < row_len; i++)
 }
 
 function removeColumn(index) {
-    for (var i = 1, row; row = table.rows[i]; i++)
-    {
+    for (var i = 1, row; row = table.rows[i]; i++) {
         row.deleteCell(index);
     }
 }
 
-for (var j = 1, cell; cell = table.rows[4].cells[j]; j++)
-{
+for (var j = 1, cell; cell = table.rows[4].cells[j]; j++) {
     var button = document.createElement("button");
     button.innerHTML = "remove";
-    button.addEventListener("click", function (e) {
+    button.addEventListener("click", function(e) {
         removeColumn(e.target.parentElement.cellIndex);
     })
     cell.appendChild(document.createElement("br"))

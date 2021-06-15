@@ -1,16 +1,15 @@
-const PARAM = 0, OPERATOR = 1, VALUE = 2, REASON = 3;
+const PARAM = 0,
+    OPERATOR = 1,
+    VALUE = 2,
+    REASON = 3;
 var is_reason = false;
 
-function paramChange(selected)
-{
+function paramChange(selected) {
     var strParam = selected.options[selected.selectedIndex].text;
-    if (strParam === "ending_reason")
-    {
+    if (strParam === "ending_reason") {
         selected.parentElement.querySelector("#value").hidden = true;
         selected.parentElement.querySelector("#ending_reason").hidden = false;
-    }
-    else
-    {
+    } else {
         selected.parentElement.querySelector("#value").hidden = false;
         selected.parentElement.querySelector("#ending_reason").hidden = true;
     }
@@ -31,13 +30,11 @@ function serializeFilters(filters) // children
         var strVal;
 
         e = fields.item(REASON);
-        
-        if (e.options[e.selectedIndex].text !== '')
-        {
+
+        if (e.options[e.selectedIndex].text !== '') {
             e = fields.item(REASON);
             strVal = '"' + e.options[e.selectedIndex].text + '"';
-        }
-        else
+        } else
             strVal = fields.item(VALUE).value;
 
         if (strParam === '' || strOp === '' || strVal === '')
@@ -80,11 +77,9 @@ function addCondition() {
     document.getElementById("filters").appendChild(cln);
 
     var inputs = document.querySelectorAll("#value");
-    for (var i = 0; i < inputs.length; i++)
-    {   
+    for (var i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener("keyup", function(event) {
-            if (event.keyCode === 13)
-            {
+            if (event.keyCode === 13) {
                 event.preventDefault();
                 document.getElementById("filter_btn").click();
             }
@@ -104,8 +99,8 @@ function save() {
     var children = document.getElementById("filters").children;
     var filters = serializeFilters(children);
     const Http = new XMLHttpRequest();
-    const url='dbex/filters_config.php';
-    Http.open("GET", url+'?set_filters='+filters, true);
+    const url = 'dbex/filters_config.php';
+    Http.open("GET", url + '?set_filters=' + filters, true);
     if (filters === undefined) {
         alert("Please select a filter!");
         return;
@@ -116,7 +111,7 @@ function save() {
 
 function mouseOver() {
     const http = new XMLHttpRequest();
-    const url='filters_config.txt?_=' + new Date().getTime(); // it has to be unique to cancel caching
+    const url = 'filters_config.txt?_=' + new Date().getTime(); // it has to be unique to cancel caching
     http.onreadystatechange = function() {
         if (this.readyState === 4) {
             document.getElementById("filters_config_txt").innerHTML = this.response.replaceAll("*", " and ").replaceAll("+", " or ");

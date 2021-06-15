@@ -1,163 +1,178 @@
 h1 {
-  font-family: 'Della Respira', cursive;
-  text-align: center;
-	font-size: 50px;
-  margin: 0px 50px 0px 50px;
+    font-family: 'Della Respira', cursive;
+    text-align: center;
+    font-size: 50px;
+    margin: 0px 50px 0px 50px;
 }
+
 table {
-  border: solid black;
-  background: white;
-  border-collapse: collapse;
-  width: 100%;
+    border: solid black;
+    background: white;
+    border-collapse: collapse;
+    width: 100%;
 }
-table td, table th {
-  border: 1px solid #000000;
-  padding: 8px;
+
+table td,
+table th {
+    border: 1px solid #000000;
+    padding: 8px;
 }
+
 table thead tr {
-  height: 10px;
-  color: white;
-  background: #327a81;
+    height: 10px;
+    color: white;
+    background: #327a81;
 }
+
 table thead td {
-  background: white;
-  color: black;
+    background: white;
+    color: black;
 }
+
 table tbody tr {
-  height: 48px;
+    height: 48px;
 }
-table td, table th {
-  text-align: center;
+
+table td,
+table th {
+    text-align: center;
 }
+
 label {
-  font-weight: bold;
-  font-size: 18px;
+    font-weight: bold;
+    font-size: 18px;
 }
+
 body {
-  background: #91ced4;
-  font: 16px "Arial";
-  padding-top: 30px;
+    background: #91ced4;
+    font: 16px "Arial";
+    padding-top: 30px;
 }
+
 .pagination {
-  display: inline-block;
-  margin: 0px 50px 0px 10px;
+    display: inline-block;
+    margin: 0px 50px 0px 10px;
 }
+
 .pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  border: 1px solid black;
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid black;
 }
+
 .pagination a.active {
-  background-color: #327a81;
-  color: white;
-  border: 1px solid black;
+    background-color: #327a81;
+    color: white;
+    border: 1px solid black;
 }
+
 .button {
-  background: #327a81;
-  text-decoration: none;
-  margin: 0px 5px 10px 5px;
-  color: white;
-  border: 1px solid black;
-  font-size: 18px;
-  padding: 10px;
-  cursor: pointer;
-  transition-duration: 0.4s;
+    background: #327a81;
+    text-decoration: none;
+    margin: 0px 5px 10px 5px;
+    color: white;
+    border: 1px solid black;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    transition-duration: 0.4s;
 }
+
 .button:hover {
-  background: white;
-  color: black;
+    background: white;
+    color: black;
 }
 
 .menu {
-  font-size: 20px;
-  padding: 2px 10px;
-  margin: 3px;
+    font-size: 20px;
+    padding: 2px 10px;
+    margin: 3px;
 }
 
 #table_choose {
-  margin: 0px 80px 0px 10px;
+    margin: 0px 80px 0px 10px;
 }
 
 #filters_config_txt {
-  border: 2px solid black;
-  padding: 10px;
-  background: white;
-  margin: 20px;
-  width: 540px;
+    border: 2px solid black;
+    padding: 10px;
+    background: white;
+    margin: 20px;
+    width: 540px;
 }
 
 .loader {
-  animation: spin 1s linear infinite;
-  width: 200px;
-  height: 200px;
-  position: fixed;
-  top: 40%;
-  left: 43%;
+    animation: spin 1s linear infinite;
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    top: 40%;
+    left: 43%;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .btn-group {
-  margin: 40px;
+    margin: 40px;
 }
 
-
-/* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal Content */
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: fit-content;
-  text-align: center;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: fit-content;
+    text-align: center;
 }
 
-/* The Close Button */
 .close_modal {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close_modal:hover,
 .close_modal:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .sim-btn {
-  border-radius: 3px;
-  background-color: white;
-  color: black;
-  border: 2px solid #e7e7e7;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  margin: 5px;
-  font-size: 18px;
+    border-radius: 3px;
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 18px;
 }
 
 .sim-btn:hover {
-  background-color: #e7e7e7;
+    background-color: #e7e7e7;
 }

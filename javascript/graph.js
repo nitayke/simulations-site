@@ -10,8 +10,7 @@ function setParam(key, value) {
     window.location.href = url.origin + url.pathname + '?' + params.toString();
 }
 
-function set_num_cols()
-{
+function set_num_cols() {
     let val = document.getElementById("number_of_columns").value;
     setParam('range', val)
 }
@@ -32,10 +31,8 @@ var table = doc.getElementById('table')
 
 var index = -1
 
-for (var i = 0, row; row = table.rows[i]; i++)
-{
-    for (var j = 1, cell; cell = row.cells[j]; j++)
-    {
+for (var i = 0, row; row = table.rows[i]; i++) {
+    for (var j = 1, cell; cell = row.cells[j]; j++) {
         if (i === 4 && cell.innerHTML === param.replaceAll('_', ' '))
             index = j
     }
@@ -47,8 +44,7 @@ var all_numbers = []
 var good = []
 var bad = []
 
-for (var i = 0, row; row = table.rows[i]; i++)
-{
+for (var i = 0, row; row = table.rows[i]; i++) {
     if (row.cells[index] === undefined)
         continue
     const parsed = parseFloat(row.cells[index].innerHTML)
@@ -77,27 +73,23 @@ var bad_y = []
 
 RANGE = Math.floor(max / RANGE)
 
-for (var i = 0; i < RANGE; i++)
-{
-    graph_x.push((max-min)*i/RANGE + min)
-    good_x.push((max-min)*i/RANGE + min)
-    bad_x.push((max-min)*i/RANGE + min)
+for (var i = 0; i < RANGE; i++) {
+    graph_x.push((max - min) * i / RANGE + min)
+    good_x.push((max - min) * i / RANGE + min)
+    bad_x.push((max - min) * i / RANGE + min)
     var sum = 0
     var good_sum = 0
     var bad_sum = 0
-    for (var j = 0; j < all_numbers.length; j++)
-    {
-        if (graph_x[i-1] < all_numbers[j] && graph_x[i] > all_numbers[j])
+    for (var j = 0; j < all_numbers.length; j++) {
+        if (graph_x[i - 1] < all_numbers[j] && graph_x[i] > all_numbers[j])
             sum++;
     }
-    for (var j = 0; j < good.length; j++)
-    {
-        if (good_x[i-1] < good[j] && good_x[i] > good[j])
+    for (var j = 0; j < good.length; j++) {
+        if (good_x[i - 1] < good[j] && good_x[i] > good[j])
             good_sum++;
     }
-    for (var j = 0; j < bad.length; j++)
-    {
-        if (bad_x[i-1] < bad[j] && bad_x[i] > bad[j])
+    for (var j = 0; j < bad.length; j++) {
+        if (bad_x[i - 1] < bad[j] && bad_x[i] > bad[j])
             bad_sum++;
     }
     graph_y.push(sum)

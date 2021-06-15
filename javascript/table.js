@@ -1,13 +1,11 @@
-function tableChange(selected)
-{
+function tableChange(selected) {
     var uri = window.location.toString();
     var url = new URL(uri);
     var strParam = selected.options[selected.selectedIndex].text;
     window.location.href = url.origin + url.pathname + '?table=' + strParam;
 }
 
-function paramChange(selected)
-{
+function paramChange(selected) {
     var strParam = selected.options[selected.selectedIndex].text;
     var uri = window.location.toString();
     var url = new URL(uri);
@@ -17,8 +15,7 @@ function paramChange(selected)
     window.location.href = url.origin + url.pathname + '?' + params.toString();
 }
 
-function graph()
-{
+function graph() {
     var uri = window.location.toString();
     var url = new URL(uri);
     var params = new URLSearchParams(url.search);

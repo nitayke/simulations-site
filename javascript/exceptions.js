@@ -2,12 +2,11 @@ function doesFileExist(urlToFile) {
     var xhr = new XMLHttpRequest();
     xhr.open('HEAD', urlToFile, false);
     xhr.send();
-     
+
     return xhr.status !== 404;
 }
 
-function get_targz(btn)
-{
+function get_targz(btn) {
     document.location.href = 'http://10.42.149.53:5000/' + params.get('table') + '/' + btn.innerHTML
 }
 
@@ -27,25 +26,22 @@ var table = doc.getElementById('table');
 
 // {<column>: [<column name>, <BIT/ALIVE>]}
 var relevant_fields = {}
-// {<column name>: <array of exceptions id>}
+    // {<column name>: <array of exceptions id>}
 var exceptions = {}
-const BIT = 2, ALIVE = 0;
+const BIT = 2,
+    ALIVE = 0;
 
-for (var j = 1, cell; cell = table.rows[4].cells[j]; j++)
-{
+for (var j = 1, cell; cell = table.rows[4].cells[j]; j++) {
     if (cell.innerHTML.includes(" bit"))
-        relevant_fields[j]= [cell.innerHTML, BIT]
+        relevant_fields[j] = [cell.innerHTML, BIT]
     else if (cell.innerHTML.includes(" alive"))
-        relevant_fields[j]= [cell.innerHTML, ALIVE]
+        relevant_fields[j] = [cell.innerHTML, ALIVE]
 }
 
-for (var key in relevant_fields)
-{
-    for (var i = 4, row; row = table.rows[i]; i++)
-    {
+for (var key in relevant_fields) {
+    for (var i = 4, row; row = table.rows[i]; i++) {
         // if the value is exceptional and it's alive field or bit field
-        if (parseInt(row.cells[key].innerHTML) === relevant_fields[key][1] && (relevant_fields[key][1] === BIT || relevant_fields[key][1] === ALIVE))
-        {
+        if (parseInt(row.cells[key].innerHTML) === relevant_fields[key][1] && (relevant_fields[key][1] === BIT || relevant_fields[key][1] === ALIVE)) {
             var val = parseInt(table.rows[i].cells[0].innerHTML)
             if (relevant_fields[key][0] in exceptions)
                 exceptions[relevant_fields[key][0]].push(val)
@@ -55,8 +51,7 @@ for (var key in relevant_fields)
     }
 }
 
-for (var key in exceptions)
-{
+for (var key in exceptions) {
     var field_btn = document.createElement("button")
     field_btn.className = "button"
     field_btn.innerHTML = key
@@ -68,7 +63,7 @@ for (var key in exceptions)
     var modal_content = document.createElement("div")
     modal_content.className = "modal-content"
     modal_content.id = "modal content " + key
-    
+
     var close_modal = document.createElement("span")
     close_modal.className = "close_modal"
     close_modal.id = "close modal " + key
@@ -78,23 +73,23 @@ for (var key in exceptions)
         modal_element = document.getElementById("modal " + btn.toElement.innerHTML)
         modal_element.style.display = "block"
     }
-    
+
     close_modal.onclick = function() {
         modal_element.style.display = "none"
     }
-    
+
     window.onclick = function(event) {
-      if (event.target == modal_element) {
-        modal_element.style.display = "none"
-      }
+        if (event.target == modal_element) {
+            modal_element.style.display = "none"
+        }
     }
 
-    for (var id of exceptions[key])
-    {
+    for (var id of exceptions[key]) {
+        // make it "a" element with href? (problem with exceeding the screen)
         var id_elem = document.createElement("button")
+        id_elem.onclick = function() { window.location.href = 'http://10.42.149.53:5000/' + params.get('table') + '/' + id }
         id_elem.className = "sim-btn"
         id_elem.innerHTML = id
-        id_elem.onclick = function(){ get_targz(this) };
         modal_content.appendChild(id_elem)
     }
 
