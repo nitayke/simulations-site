@@ -2,7 +2,7 @@
 
 this folder is for .php files which are not used in the web browser.
 
-## Files used in python scripts:
+## Files used in python scripts (uses \_POST parameters):
 
 ### clean.php
 
