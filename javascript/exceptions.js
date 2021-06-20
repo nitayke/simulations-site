@@ -26,7 +26,8 @@ var table = doc.getElementById('table');
 
 // {<column>: [<column name>, <BIT/ALIVE>]}
 var relevant_fields = {}
-    // {<column name>: <array of exceptions id>}
+
+// {<column name>: <array of exceptions id>}
 var exceptions = {}
 const BIT = 2,
     ALIVE = 0;
@@ -42,7 +43,7 @@ for (var key in relevant_fields) {
     for (var i = 4, row; row = table.rows[i]; i++) {
         // if the value is exceptional and it's alive field or bit field
         if (parseInt(row.cells[key].innerHTML) === relevant_fields[key][1] && (relevant_fields[key][1] === BIT || relevant_fields[key][1] === ALIVE)) {
-            var val = parseInt(table.rows[i].cells[0].innerHTML)
+            var val = parseInt(table.rows[i].cells[0].childNodes[0].innerHTML)
             if (relevant_fields[key][0] in exceptions)
                 exceptions[relevant_fields[key][0]].push(val)
             else
@@ -83,7 +84,6 @@ for (var key in exceptions) {
             modal_element.style.display = "none"
         }
     }
-
     for (var id of exceptions[key]) {
         var id_elem = document.createElement("a")
         id_elem.href = 'http://10.42.149.53:5000/' + params.get('table') + '/' + id
