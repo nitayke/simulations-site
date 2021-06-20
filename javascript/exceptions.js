@@ -85,9 +85,9 @@ for (var key in exceptions) {
     }
 
     for (var id of exceptions[key]) {
-        // make it "a" element with href? (problem with exceeding the screen)
-        var id_elem = document.createElement("button")
-        id_elem.onclick = function() { window.location.href = 'http://10.42.149.53:5000/' + params.get('table') + '/' + id }
+        var id_elem = document.createElement("a")
+        id_elem.href = 'http://10.42.149.53:5000/' + params.get('table') + '/' + id
+        id_elem.target = "_blank"
         id_elem.className = "sim-btn"
         id_elem.innerHTML = id
         modal_content.appendChild(id_elem)

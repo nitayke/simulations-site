@@ -178,9 +178,9 @@
 				if ($key === 'Id')
 				{
 					if (eval("return ". $filters_config . ";"))
-						echo "<td style=\"background: rgb(69, 255, 153)\">" . $val . "</td>"; // green
+						echo "<td style=\"background: rgb(69, 255, 153)\"><a href=\"http://10.42.149.53:5000/$_GET[table]/$val\" target=\"_blank\">$val</a></td>"; // green
 					else
-						echo "<td style=\"background: rgb(255,77,77)\">" . $val . "</td>"; // red
+						echo "<td style=\"background: rgb(255,77,77)\"><a href=\"http://10.42.149.53:5000/$_GET[table]/$val\" target=\"_blank\">$val</a></td>"; // red
 				}
 				else
 				{

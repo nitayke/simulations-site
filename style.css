@@ -1,5 +1,5 @@
 h1 {
-    font-family: 'Della Respira', cursive;
+    font-family: "Della Respira", cursive;
     text-align: center;
     font-size: 50px;
     margin: 0px 50px 0px 50px;
@@ -170,7 +170,9 @@ body {
     transition-duration: 0.4s;
     cursor: pointer;
     margin: 5px;
+    padding: 3px;
     font-size: 18px;
+    text-decoration: none;
 }
 
 .sim-btn:hover {
