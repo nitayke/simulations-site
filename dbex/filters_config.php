@@ -9,7 +9,6 @@ if (isset($_GET['set_filters']))
     fclose($file);
 }
 else
-{
-    echo 'Nothing!';
-}
+    echo 'Wrong Usage!';
+
 ?>

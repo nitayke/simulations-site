@@ -4,7 +4,6 @@ include 'db_connect.php';
 
 $conn = OpenCon();
 
-// sql to create table
 $sql = "CREATE TABLE `" . $_POST['table_name'] . "` (
     Id int(6) AUTO_INCREMENT PRIMARY KEY,
     ffk_bit int(6),
@@ -27,10 +26,11 @@ $sql = "CREATE TABLE `" . $_POST['table_name'] . "` (
     ending_reason varchar(100),
     stats longblob )";
 
-if (mysqli_query($conn, $sql)) {
+if (mysqli_query($conn, $sql))
   echo "Table created successfully";
-} else {
+else
   echo "Error creating table: " . mysqli_error($conn);
-}
 
-mysqli_close($conn);
+CloseCon($conn);
+
+?>
