@@ -4,6 +4,7 @@ const PARAM = 0,
     REASON = 3;
 var is_reason = false;
 
+// only for ending_reason (the list is in dbex/variables.php)
 function paramChange(selected) {
     var strParam = selected.options[selected.selectedIndex].text;
     if (strParam === "ending_reason") {
@@ -15,8 +16,8 @@ function paramChange(selected) {
     }
 }
 
-function serializeFilters(filters) // children
-{
+// gets HTML collection of filters
+function serializeFilters(filters) {
     var params_str_url = "";
 
     for (var i = 0; i < filters.length; i += 3) {
@@ -45,16 +46,19 @@ function serializeFilters(filters) // children
         var node = document.getElementById("logic_op");
         if (node.options[node.selectedIndex].text == 'And')
             params_str_url += '*';
-        else
+        else // Or
             params_str_url += '+';
     }
     var last_char = params_str_url[params_str_url.length - 1]
 
-    if (last_char == '*' || last_char == '+')
+    if (last_char === '*' || last_char === '+')
         params_str_url = params_str_url.substr(0, params_str_url.length - 1);
 
     return params_str_url;
 }
+
+
+// ------ EVENTS (See at the bottom) -------
 
 function filter() {
     var children = document.getElementById("filters").children;
@@ -75,16 +79,6 @@ function addCondition() {
     document.getElementById("filters").appendChild(document.createElement("br"));
     itm.lastElementChild.hidden = false;
     document.getElementById("filters").appendChild(cln);
-
-    var inputs = document.querySelectorAll("#value");
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener("keyup", function(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                document.getElementById("filter_btn").click();
-            }
-        })
-    }
 }
 
 function reset() {
