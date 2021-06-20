@@ -10,7 +10,7 @@ function setParam(key, value) {
     window.location.href = url.origin + url.pathname + '?' + params.toString();
 }
 
-function set_num_cols() {
+function set_range() {
     let val = document.getElementById("number_of_columns").value;
     setParam('range', val)
 }
@@ -97,4 +97,4 @@ for (var i = 0; i < RANGE; i++) {
     bad_y.push(bad_sum)
 }
 
-document.getElementById("num_col_btn").addEventListener("click", set_num_cols);
+document.getElementById("num_col_btn").addEventListener("click", set_range);

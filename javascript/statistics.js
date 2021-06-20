@@ -58,11 +58,6 @@ for (var i = 1; i < row_len; i++) {
 
     var node = document.createElement("td");
 
-    // Do we need it?
-
-    // if (i < 10)
-    //     node.innerHTML = "";
-    // else
     node.innerHTML = (sum[i] / (table.rows.length - 5)).toFixed(2);
     document.getElementById("avg").appendChild(node);
 }

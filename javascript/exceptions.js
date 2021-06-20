@@ -67,6 +67,8 @@ for (var key in exceptions) {
     modal_element.className = "modal"
     modal_element.id = "modal " + key
 
+
+    // TODO: fix the arrangement
     var modal_content = document.createElement("div")
     modal_content.className = "modal-content"
     modal_content.id = "modal content " + key
@@ -74,7 +76,7 @@ for (var key in exceptions) {
     var close_modal = document.createElement("span")
     close_modal.className = "close_modal"
     close_modal.id = "close modal " + key
-    close_modal.innerHTML = "&times;" // x
+    close_modal.innerHTML = "&times;" // x sign
 
     field_btn.onclick = function(btn) {
         modal_element = document.getElementById("modal " + btn.toElement.innerHTML)
