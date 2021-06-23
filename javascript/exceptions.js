@@ -67,8 +67,6 @@ for (var key in exceptions) {
     modal_element.className = "modal"
     modal_element.id = "modal " + key
 
-
-    // TODO: fix the arrangement
     var modal_content = document.createElement("div")
     modal_content.className = "modal-content"
     modal_content.id = "modal content " + key
