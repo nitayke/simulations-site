@@ -94,6 +94,7 @@ for (var key in exceptions) {
         }
     }
 
+    var count = 0;
     // in the modal, creating link for every exceptional simulation
     for (var id of exceptions[key]) {
         var id_elem = document.createElement("a")
@@ -102,10 +103,13 @@ for (var key in exceptions) {
         id_elem.className = "sim-btn"
         id_elem.innerHTML = id
         modal_content.appendChild(id_elem)
+        count++;
+        if (count % 20 == 0)
+            modal_content.innerHTML += "<br><br>"
     }
 
-    document.getElementById("btn-group").appendChild(field_btn)
     modal_content.appendChild(close_modal)
+    document.getElementById("btn-group").appendChild(field_btn)
     modal_element.appendChild(modal_content)
     document.body.appendChild(modal_element)
 }
