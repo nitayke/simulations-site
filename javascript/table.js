@@ -1,3 +1,5 @@
+// Functions for changing the url in case of choosing a table or a parameter.
+
 function tableChange(selected) {
     var uri = window.location.toString();
     var url = new URL(uri);
@@ -13,11 +15,4 @@ function paramChange(selected) {
     params.delete("param");
     params.set("param", strParam);
     window.location.href = url.origin + url.pathname + '?' + params.toString();
-}
-
-function graph() {
-    var uri = window.location.toString();
-    var url = new URL(uri);
-    var params = new URLSearchParams(url.search);
-    window.location.href = url.origin + '/graph.php?' + params.toString();
 }
