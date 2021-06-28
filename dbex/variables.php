@@ -30,6 +30,14 @@ $ending_reasons = ["System_Failure",
 "System_Didnt_move_to_ARM",
 "System_Didnt_move_to_WIFI",
 "Finished_Exploration_moved_to__HOLDING_POSITION",
+"PARAMS_NOT_LOADED",
+"System_Couldnt_calculate_OUTDOOR",
+"System_Didnt_succeed_to_Rotate",
+"System_Didnt_succeed_to_Manual_move",
+"System_Didnt_move_to_POINT_AND_GO",
+"System_Didnt_recieved_POINT_AND_GO_IMAGE",
+"Finished_POINT_AND_GO_without_success_moved_to_HOLDING_POSITION",
+"Finished_POINT_AND_GO_with_success_moved_to_HOLDING_POSITION",
 "Didnt_catch_reason"];
 
 ?>
