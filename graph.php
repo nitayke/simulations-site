@@ -57,7 +57,7 @@
     <input type="checkbox" id="bad_cb" checked=true onclick="UpdatePlot()">
     <label>Bad</label>
     <br><br>
-
+    <p>All the values are the upper limit. For example, 10 is 0-10 and 230 is 220-230.</p>
     <div id='graph'></div>
     <script src="./javascript/graph.js"></script>
 

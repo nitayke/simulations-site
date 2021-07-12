@@ -74,7 +74,6 @@ var bad_y = []
 
 // max/RANGE is the number of columns in the graph.
 for (var i = 0; i < Math.ceil(max / RANGE) + 3; i++) {
-    console.log('i is', i);
     // all of the graphs has the same x points
     var x_value = min + (max - min) * i / (max / RANGE)
     graph_x.push(x_value)
