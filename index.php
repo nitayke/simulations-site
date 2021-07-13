@@ -181,8 +181,6 @@
 						echo "<td style=\"background: rgb(69, 255, 153)\">$val</td>"; // green
 					else
 						echo "<td style=\"background: rgb(255,77,77)\">$val</td>"; // red
-
-					// <a href=\"http://10.42.149.53:5000/$slide/$val\" target=\"_blank\">$val</a>
 				}
 				else
 				{

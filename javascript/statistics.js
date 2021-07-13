@@ -92,7 +92,7 @@ for (var j = 1, cell; cell = table.rows[4].cells[j]; j++) {
 }
 
 
-
+// Adding links to Id that have folder in lambda
 for (var i = 5, row; row = table.rows[i]; i++) {
     var e = document.getElementById("table_choose");
     var str_table = e.options[e.selectedIndex].text;
