@@ -17,7 +17,6 @@ function set_range() {
 }
 
 
-
 var uri = window.location.toString()
 var url = new URL(uri)
 var params = new URLSearchParams(url.search)
