@@ -4,8 +4,6 @@
 <title>Statistics Pichart</title>
 <?php
 
-$ending_reasons = [];
-
 $dataPoints = [];
 
 

@@ -10,6 +10,7 @@
 <?php
 	include './dbex/variables.php';
 	include './dbex/get_data.php';
+	include './dbex/get_reasons.php';
 	$path = "./table.csv";
 	$myfile = fopen($path, "w");
 	$tmpfile = fopen('./filters_config.txt', 'r');
@@ -76,6 +77,7 @@
 <select id="ending_reason" hidden class="menu">
 <option></option>
 <?php
+	$ending_reasons = getReasons($slide);
 	foreach ($ending_reasons as $value)
 		echo "<option>" . $value . "</option>";
 ?>
