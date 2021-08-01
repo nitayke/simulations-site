@@ -48,7 +48,7 @@ for (var key in relevant_fields) {
     for (var i = 4, row; row = table.rows[i]; i++) {
         // if the value is exceptional and it's alive field or bit field
         if (parseInt(row.cells[key].innerHTML) === relevant_fields[key][1] && (relevant_fields[key][1] === BIT || relevant_fields[key][1] === ALIVE)) {
-            var val = parseInt(table.rows[i].cells[0].childNodes[0].innerHTML)
+            var val = parseInt(table.rows[i].cells[0].childNodes[0].textContent)
             if (relevant_fields[key][0] in exceptions)
                 exceptions[relevant_fields[key][0]].push(val)
             else

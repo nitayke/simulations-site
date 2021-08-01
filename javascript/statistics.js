@@ -98,7 +98,6 @@ for (var i = 5, row; row = table.rows[i]; i++) {
     var str_table = e.options[e.selectedIndex].text;
     var xhr = new XMLHttpRequest();
     var id = row.cells[0].innerHTML;
-    console.log(`http://10.42.149.53:5000/check/${str_table}/${id}`)
     if (doesFileExist(`http://10.42.149.53:5000/check/${str_table}/${id}`))
         row.cells[0].innerHTML = `<a href=\"http://10.42.149.53:5000/${str_table}/${id}\" target=\"_blank\">${id}</a>`
 }
