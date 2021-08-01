@@ -19,7 +19,11 @@ function getTable() {
 
     var doc = new DOMParser().parseFromString(http.responseText, "text/html")
     var table = doc.getElementById('table')
-    return [table, params.get('table')]
+
+    var e = document.getElementById("table_choose");
+    var table_name = e.options[e.selectedIndex].text;
+
+    return [table, table_name]
 }
 
 
