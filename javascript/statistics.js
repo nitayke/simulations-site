@@ -80,16 +80,25 @@ function removeColumn(index) {
     }
 }
 
+var remove_buttons_row = document.createElement("tr")
+
 // Adding remove buttons to every field
 for (var j = 1, cell; cell = table.rows[4].cells[j]; j++) {
+    var td = document.createElement("td");
+    td.className = "remove-container";
     var button = document.createElement("button");
     button.innerHTML = "remove";
+    button.className = "sim-btn remove-btn";
+    td.appendChild(button);
+    remove_buttons_row.appendChild(td);
+
     button.addEventListener("click", function(e) {
         removeColumn(e.target.parentElement.cellIndex);
     })
     cell.appendChild(document.createElement("br"))
-    cell.appendChild(button)
 }
+table.insertBefore(remove_buttons_row, table.childNodes[3])
+
 
 
 // Adding links to Id that have folder in lambda

@@ -9,7 +9,6 @@ table {
     border: solid black;
     background: white;
     border-collapse: collapse;
-    width: 100%;
 }
 
 table td,
@@ -176,4 +175,12 @@ body {
 
 .sim-btn:hover {
     background-color: #e7e7e7;
+}
+
+.remove-btn {
+    display: inline-block;
+}
+
+.remove-container {
+    padding: 0px;
 }
