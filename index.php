@@ -12,12 +12,11 @@
 	include './dbex/get_data.php';
 	include './dbex/get_reasons.php';
 	$path = "./table.csv";
-	$myfile = fopen($path, "w");
-	$tmpfile = fopen('./filters_config.txt', 'r');
+	$myfile = fopen($path, "w") or die("Can not open csv file");;
+	$tmpfile = fopen('./filters_config.txt', 'r') or die("Can not open config file");;
 	$filters_config = fread($tmpfile, filesize('./filters_config.txt'));
 	fclose($tmpfile);
 ?>
-
 
 <body>
 
@@ -134,7 +133,6 @@
 				
 				fwrite($myfile, $line);
 
-
 				function deserializeFilters($filters)
 				{
 					global $parameters;
@@ -149,6 +147,7 @@
 				
 			?>
 		</tr>
+
 		</thead>
 		<tbody>
 		<?php
