@@ -5,8 +5,9 @@
 [Downaload link](https://www.apachefriends.org/download.html)
 Run the program with `chmod +x filename.run` and `./filename.run`.
 
-The folder will be in `/opt/lampp/htdocs`.
-Replace the file index.html with you `index.php` file.
+Make sure all the 3 processes are running.
+
+The folder with the server files is in `/opt/lampp/htdocs`.
 
 ## MySQL database
 
